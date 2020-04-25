@@ -1,0 +1,228 @@
+@import './common.scss';
+.videoclasspanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 110px;
+}
+
+.videoclasspanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.comul {
+    float: left;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 20px;
+    .comli {
+        float: left;
+        width: 100%;
+        padding: 15px;
+        display: flex;
+        background-color: $bcf;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        .compic {
+            width: 130px;
+            height: 89px;
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .complay {
+                width: 24px;
+                height: 24px;
+                background: url("../assets/image/play.png");
+                background-size: 100% 100%;
+                border-radius: 50%;
+            }
+            .duration {
+                background: rgb(0, 0, 0, 0.4);
+                border-radius: 7.5px;
+                width: auto;
+                height: 15px;
+                line-height: 16px;
+                padding: 0 6px;
+                position: absolute;
+                left: 6px;
+                bottom: 6px;
+                .spshichang {
+                    font-size: 10px;
+                    color: $bcf;
+                    transform: scale(0.83, 0.83);
+                }
+            }
+        }
+        .comdetail {
+            flex: 1;
+            margin-left: 15px;
+            position: relative;
+            .comname {
+                float: left;
+                width: 100%;
+                font-size: 16px;
+                color: $bt;
+                font-weight: bold;
+                line-height: 20px;
+                @include Two_lines;
+            }
+            .num {
+                position: absolute;
+                bottom: 0px;
+                height: 10px;
+                line-height: 10px;
+                .price {
+                    float: left;
+                    font-size: 16px;
+                    color: $jg;
+                    font-weight: bold;
+                }
+                .listen {
+                    float: left;
+                    font-size: 14px;
+                    color: $fz;
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+
+.nocntetview {
+    width: 100%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .nocontent {
+        float: left;
+        width: 100%;
+        margin-top: -30px;
+        .nocontentpicview {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .nocontentpic {
+                float: left;
+                width: 132px;
+                height: 94px;
+            }
+        }
+        .nocontenttext {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            color: $fz;
+            margin-top: 30px;
+        }
+    }
+}
+
+.pricemianfei {
+    float: left;
+    font-size: 14px;
+    color: $theme;
+}
+
+.commontitles {
+    width: 100%;
+    position: fixed;
+    z-index: 51;
+    background-color: #ffffff;
+    height: 60px;
+    max-width: 768px;
+    min-width: 320px;
+    top: 0px;
+}
+
+.commontitle {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.commonback {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.commonbackpic {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/back.png");
+    background-size: 100% 100%;
+}
+
+.commontitlename {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+}
+
+.yabess {
+    top: 60px;
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+}
+
+.vanttab {
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+
+::v-deep .van-tab {
+    font-size: 16px;
+    width: auto;
+    padding: 0;
+    min-width: auto;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tab--active {
+    font-size: 16px;
+    width: auto;
+    padding: 0;
+    min-width: auto;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tabs__line {
+    border-radius: 1.5px;
+}
+
+::v-deep .cube-pullup-wrapper {
+    height: 50px;
+    .before-trigger {
+        span {
+            font-size: 13px;
+            color: #999999;
+        }
+    }
+}

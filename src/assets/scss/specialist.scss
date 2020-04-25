@@ -1,0 +1,752 @@
+@import './common.scss';
+.yjbtitle {
+    padding-left: 20px;
+    width: 100%;
+    position: fixed;
+    background-color: transparent;
+    height: 60px;
+    line-height: 60px;
+    font-size: 24px;
+    color: $bt;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.jianbian {
+    width: 100%;
+    height: 200px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.specialistpanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 3;
+    padding-top: 60px;
+    padding-bottom: 49px;
+}
+
+.specialistpanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.report_consult {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    margin-top: 10px;
+    .report {
+        width: 47.8%;
+        height: 80px;
+        border-radius: 6px;
+        padding: 10px;
+        .reporttitle {
+            width: 100%;
+            float: left;
+            color: $bcf;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+        .pipei {
+            width: 100%;
+            float: left;
+            color: $bcf;
+            font-size: 12px;
+            margin-top: 13px;
+        }
+        .doctor {
+            width: 100%;
+            float: left;
+            color: $bcf;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+    }
+    .report:nth-child(1) {
+        float: left;
+        background: url("../assets/image/report.png");
+        background-size: 100% 100%;
+    }
+    .report:nth-child(2) {
+        float: right;
+        background: url("../assets/image/consult_two.png");
+        background-size: 100% 100%;
+    }
+}
+
+.columnview {
+    width: 100%;
+    float: left;
+    display: flex;
+    margin-top: 25px;
+}
+
+.column {
+    float: left;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.columnviews {
+    width: 100%;
+    float: left;
+    margin-top: 25px;
+}
+
+.columns {
+    float: left;
+    width: 25%;
+    margin-bottom: 20px;
+}
+
+.columnpicview {
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .columnpic {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.columntext {
+    float: left;
+    width: 100%;
+    color: $bt;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.doctorlist {
+    float: left;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.doctorlistview {
+    width: 100%;
+    white-space: nowrap;
+    padding-top: 35px;
+    li {
+        display: inline-block;
+        a {
+            width: 190px;
+            margin-right: 15px;
+            height: 115px;
+            display: inline-block;
+            position: relative;
+            padding: 0 20px;
+            background-color: $bcf;
+            border-radius: 6px;
+            .doctorpic {
+                position: absolute;
+                top: -25px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+            .doctorname {
+                float: left;
+                width: 100%;
+                font-size: 14px;
+                color: $bt;
+                font-weight: bold;
+                margin-top: 35px;
+            }
+            .doctordetail {
+                float: left;
+                width: 100%;
+                height: 12px;
+                line-height: 12px;
+                margin-top: 10px;
+                .zhuzhi {
+                    float: left;
+                    line-height: 12px;
+                    font-size: 12px;
+                    color: $bt;
+                }
+                .doctorstar {
+                    margin-left: 8px;
+                    float: left;
+                    width: 12px;
+                    height: 12px;
+                    background: url("../assets/image/star.png");
+                    background-size: 100% 100%;
+                }
+                .pingfen {
+                    float: left;
+                    margin-left: 5px;
+                    color: #FFC44D;
+                    line-height: 12px;
+                    font-size: 12px;
+                }
+            }
+            .hospital_address {
+                margin-top: 10px;
+                float: left;
+                line-height: 12px;
+                font-size: 12px;
+                color: $bt;
+            }
+        }
+    }
+    li:last-child {
+        margin-right: 0px;
+    }
+}
+
+.optionbar {
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.bar {
+    position: relative;
+    margin-right: 20px;
+    height: 30px;
+    float: left;
+}
+
+.bartext {
+    float: left;
+    font-size: 16px;
+    color: $bt;
+    text-align: center;
+    line-height: 14px;
+    font-weight: bold;
+}
+
+.bartext-active {
+    float: left;
+    font-size: 16px;
+    color: $bt;
+    text-align: center;
+    line-height: 14px;
+    font-weight: bold;
+}
+
+.barlineview {
+    float: left;
+    position: absolute;
+    top: 28px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.barline {
+    float: left;
+    background: $theme;
+    border-radius: 1.5px;
+    width: 20px;
+    height: 3px;
+    animation: scale 0.3s;
+}
+
+.issuelist {
+    width: 100%;
+    float: left;
+    margin-bottom: 15px;
+    ul {
+        width: 100%;
+        float: left;
+    }
+}
+
+.checker_item {
+    float: left;
+    background-color: #EDF2F1;
+    border-radius: 12.5px;
+    height: 25px;
+    color: #333333;
+    font-size: 12px;
+    padding: 0;
+    line-height: 25px;
+    padding: 0 10px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.checker_item_active {
+    float: left;
+    background-color: #D5F2E9;
+    border-radius: 12.5px;
+    height: 25px;
+    color: #21C891;
+    font-size: 12px;
+    padding: 0;
+    line-height: 25px;
+    padding: 0 10px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.contents {
+    float: left;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.bgcontent {
+    float: left;
+    width: 100%;
+}
+
+.smcontent {
+    float: left;
+    width: 100%;
+}
+
+.specialistview {
+    float: left;
+    width: 100%;
+    border-radius: 12px;
+    background-color: $bcf;
+    margin-bottom: 20px;
+    padding: 15px;
+    .specialistviewuser {
+        float: left;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        .specialistpic {
+            float: left;
+            height: 50px;
+            width: 50px;
+            margin-right: 10px;
+        }
+        .specialistdetail {
+            flex: 1;
+            float: left;
+            .specialisttit {
+                float: left;
+                width: 100%;
+                height: 12px;
+                line-height: 12px;
+                margin-top: 10px;
+                .spename {
+                    float: left;
+                    font-size: 16px;
+                    color: $bt;
+                    font-weight: bold;
+                }
+                .attending_doctor {
+                    margin-left: 6px;
+                    float: left;
+                    font-size: 12px;
+                    color: $bt;
+                }
+                .sperightstar {
+                    float: right;
+                    .spestars {
+                        float: left;
+                        width: 12px;
+                        height: 12px;
+                        background: url("../assets/image/star.png");
+                        background-size: 100% 100%;
+                    }
+                    span {
+                        margin-left: 5px;
+                        float: left;
+                        color: #FFC44D;
+                        font-size: 12px;
+                    }
+                }
+            }
+            .speaddress {
+                margin-top: 8px;
+                float: left;
+                width: 100%;
+                font-size: 12px;
+                color: $bt;
+                span {
+                    float: right;
+                    font-size: 12px;
+                    color: $fz;
+                }
+            }
+        }
+    }
+    .begoodat {
+        float: left;
+        width: 100%;
+        font-size: 13px;
+        color: $fz;
+        line-height: 18px;
+        margin-top: 14px;
+        @include Two_lines;
+    }
+    .solve {
+        float: left;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        .solvetextview {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            .solvetextpic {
+                width: 24px;
+                height: 24px;
+                background: url("../assets/image/consulttext.png");
+                background-size: 100% 100%;
+                margin-right: 6px;
+            }
+            .solvetextpics {
+                width: 24px;
+                height: 24px;
+                background: url("../assets/image/consult_one.png");
+                background-size: 100% 100%;
+                margin-right: 6px;
+            }
+            .solvetext {
+                font-size: 13px;
+                color: #666666;
+                font-weight: bold;
+            }
+        }
+        .solvetextview:nth-child(2) {
+            margin-right: 0;
+        }
+        .askdoctor {
+            margin-left: auto;
+            background-color: #EDF2F1;
+            height: 33px;
+            padding: 0;
+            font-size: 13px;
+            color: $theme;
+            font-weight: bold;
+            width: 77px;
+            border-radius: 40px;
+        }
+    }
+}
+
+.hotissue {
+    width: 100%;
+    float: left;
+    padding: 15px;
+    background-color: $bcf;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    .hotissueview {
+        width: 100%;
+        float: left;
+        display: flex;
+        .hotissuepic {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: url("../assets/image/problem.png");
+            background-size: 100% 100%;
+            border-radius: 50%;
+        }
+        .hotissuetext {
+            float: left;
+            flex: 1;
+            margin-left: 12px;
+            color: #666666;
+            font-size: 13px;
+            line-height: 18px;
+            @include Two_lines;
+        }
+    }
+    .hotissuedoctor {
+        width: 100%;
+        float: left;
+        margin-top: 20px;
+        margin-bottom: 9px;
+        padding-left: 32px;
+        .hotissuedoctorview {
+            width: 100%;
+            float: left;
+            .hcvdoctorpic {
+                float: left;
+                width: 40px;
+                height: 40px;
+            }
+            .hcvdoctoranswer {
+                float: left;
+                margin-left: 15px;
+                height: 40px;
+                width: auto;
+                padding: 0 16px;
+                border-radius: 12px 12px 12px 0px;
+                background: #EDF2F1;
+                color: $theme;
+                font-size: 13px;
+            }
+        }
+        .hotissuedoctordetail {
+            width: 100%;
+            float: left;
+            line-height: 15px;
+            margin-top: 17px;
+            .hcvdoctor {
+                float: left;
+                font-size: 13px;
+                font-weight: bold;
+                color: $bt;
+            }
+            .hcvaddress {
+                float: left;
+                font-size: 12px;
+                color: $fz;
+                margin-left: 10px;
+            }
+            .hcvzhuzhidoctor {
+                float: left;
+                font-size: 12px;
+                color: $fz;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.morebtnview {
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    .morebtn {
+        width: 132px;
+        height: 35px;
+        background: #EDF2F1;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        justify-content: center;
+        div {
+            height: 20px;
+            display: flex;
+            align-items: center;
+            .morebtntext {
+                font-size: 13px;
+                color: $theme;
+            }
+            .morebtnpic {
+                margin-left: 5px;
+                width: 11px;
+                height: 7px;
+                background: url("../assets/image/triangle.png");
+                background-size: 100% 100%;
+            }
+        }
+    }
+}
+
+.modelmengceng {
+    float: left;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 50px;
+    .close {
+        width: 100%;
+        float: left;
+        margin-top: 15px;
+        .closepic {
+            float: right;
+            width: 24px;
+            height: 24px;
+            background: url("../assets/image/close.png");
+            background-size: 100% 100%;
+        }
+    }
+    .changeconsule {
+        width: 100%;
+        float: left;
+        font-size: 22px;
+        font-weight: bold;
+        color: $bt;
+    }
+}
+
+.consultway {
+    width: 100%;
+    float: left;
+    margin-top: 40px;
+    display: flex;
+    .consultpic {
+        width: 43px;
+        height: 43px;
+        background: url("../assets/image/consulttext.png");
+        background-size: 100% 100%;
+    }
+    .consultpics {
+        width: 43px;
+        height: 43px;
+        background: url("../assets/image/consult_one.png");
+        background-size: 100% 100%;
+    }
+    .consultdetail {
+        float: left;
+        flex: 1;
+        margin-left: 14px;
+        .consulttext {
+            float: left;
+            width: 100%;
+            font-size: 14px;
+            color: $bt;
+            font-weight: bold;
+        }
+        .consultprice {
+            float: left;
+            width: 100%;
+            font-size: 14px;
+            color: $jg;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .consultcontent {
+            float: left;
+            width: 100%;
+            font-size: 12px;
+            color: $fz;
+            margin-top: 16px;
+            line-height: 17px;
+        }
+    }
+    .arrowview {
+        margin-left: auto;
+        .arrow {
+            margin-top: 6px;
+            width: 24px;
+            height: 24px;
+            background: url("../assets/image/consult_arrows.png");
+            background-size: 100% 100%;
+        }
+    }
+}
+
+.nocntetview {
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    .nocontent {
+        float: left;
+        width: 100%;
+        margin-top: -30px;
+        .nocontentpicview {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .nocontentpic {
+                float: left;
+                width: 132px;
+                height: 94px;
+            }
+        }
+        .nocontenttext {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            color: $fz;
+            margin-top: 30px;
+        }
+    }
+}
+
+.cube-btn_disabled::after {
+    border: none;
+}
+
+.noticeview {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    .trumpet {
+        width: 24px;
+        height: 24px;
+        background: url("../assets/image/notice.png");
+        background-size: 100%;
+        float: left;
+    }
+    .notice {
+        float: left;
+        flex: 1;
+        margin-left: 10px;
+        background: #FAFAFA;
+        height: 100%;
+        border-radius: 4px;
+        padding-top: 3px;
+    }
+}
+
+::v-deep .horizontal-scroll-list-wrap {
+    .cube-scroll-content {
+        display: inline-block;
+    }
+}
+
+::v-deep .van-popup--bottom.van-popup--round {
+    border-radius: 12px 12px 0 0;
+}
+
+::v-deep .van-notice-bar {
+    height: auto;
+    padding: 0 10px;
+    padding-top: 1px;
+}
+
+.vanttab {
+    float: left;
+    height: 100%;
+}
+
+::v-deep .van-tab {
+    font-size: 16px;
+    width: auto;
+    padding: 0;
+    margin-right: 20px;
+    min-width: auto;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tab--active {
+    font-size: 16px;
+    width: auto;
+    padding: 0;
+    margin-right: 20px;
+    min-width: auto;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tabs__line {
+    border-radius: 1.5px;
+}

@@ -1,0 +1,145 @@
+@import './common.scss';
+.knowledgepanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    background: rgba(247, 249, 252, 1);
+}
+
+.planes {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.knowledgepanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.know {
+    width: 100%;
+    height: 100%;
+    background-color: $bcf;
+}
+
+.contentview {
+    width: 100%;
+    float: left;
+    height: 10px;
+    background: #ffffff;
+}
+
+.content {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    background: #ffffff;
+    margin-bottom: 10px;
+    .title {
+        width: 100%;
+        float: left;
+        color: $bt;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 30px;
+    }
+    .option {
+        width: 100%;
+        float: left;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .optionbtn {
+            width: 105px;
+            float: left;
+            text-align: center;
+            height: 37.5px;
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(212, 214, 217, 1);
+            border-radius: 6px;
+            font-size: 13px;
+            color: $bt;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+    }
+    .option::after {
+        content: "";
+        width: 105px;
+        height: 37.5px;
+    }
+    .options {
+        width: 100%;
+        float: left;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .optionbtn {
+            width: 105px;
+            float: left;
+            text-align: center;
+            height: 37.5px;
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(212, 214, 217, 1);
+            border-radius: 6px;
+            font-size: 13px;
+            color: $bt;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+    }
+}
+
+.commontitles {
+    width: 100%;
+    position: fixed;
+    z-index: 51;
+    background-color: #ffffff;
+    height: 60px;
+    max-width: 768px;
+    min-width: 320px;
+    top: 0px;
+}
+
+.commontitle {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.commonback {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.commonbackpic {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/back.png");
+    background-size: 100% 100%;
+}
+
+.commontitlename {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+}

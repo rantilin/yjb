@@ -1,0 +1,190 @@
+@import './common.scss';
+* {
+    float: left;
+    box-sizing: border-box;
+}
+
+.panlesview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+}
+
+.loginpanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+    background-color: $bcf;
+}
+
+.dldv {
+    width: 100%;
+}
+
+.hy {
+    width: 100%;
+    color: #2E334D;
+    font-size: 24px;
+    margin: 55px 0;
+    padding: 0 35.5px;
+}
+
+.logininpt,
+.submitview {
+    width: 100%;
+    padding: 0 35.5px;
+}
+
+.cube-input-field {
+    width: 100%;
+}
+
+.cube-input::after {
+    border: none;
+}
+
+.cube-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #E6E8F2;
+    color: #2E334D;
+    font-size: 15px;
+}
+
+.yzm {
+    margin-top: 38px;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #E6E8F2;
+    padding-bottom: 7px;
+    overflow: hidden;
+    .cube-input {
+        flex: 1;
+        border: none;
+        line-height: 34px;
+        height: 34px;
+    }
+    button {
+        border: none;
+        background: transparent;
+        color: #FFFFFF;
+        font-size: 14px;
+        line-height: 34px;
+        height: 34px;
+        background: linear-gradient(270deg, rgba(73, 230, 197, 1) 0%, rgba(30, 199, 143, 1) 100%);
+        border-radius: 17px;
+        padding: 0 10px;
+    }
+    button:focus {
+        outline: none;
+    }
+}
+
+.cube-checkbox-ui::before {
+    color: red;
+}
+
+.cube-checkbox_checked .cube-checkbox-ui i {
+    color: red !important;
+}
+
+.xieyia {
+    color: $theme;
+}
+
+.cube-checkbox {
+    color: #525566;
+    font-size: 10px;
+}
+
+.xieyi {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.xieyiview {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    div {
+        .xieyipic {
+            height: 15px;
+            width: 15px;
+            background-size: 100% 100%;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 1px solid rgb(172, 175, 191);
+        }
+        .xieyipic-active {
+            height: 15px;
+            width: 15px;
+            background-size: 100% 100%;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: none;
+            background: url(../assets/image/pitchon.png) no-repeat;
+            background-size: 100% 100%;
+            animation: alia 0.3s;
+        }
+        @keyframes alia {
+            0% {
+                transform: scale(0.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .agree {
+            height: 15px;
+            line-height: 17px;
+            color: #525566;
+            font-size: 10px;
+        }
+        .zhence {
+            font-size: 10px;
+            height: 15px;
+            line-height: 17px;
+            color: $theme;
+            text-align: center;
+        }
+    }
+}
+
+.loginsview {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.submit {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    width: 100%;
+    background: $theme;
+    border-radius: 25px;
+    color: #FFFFFF;
+    background: #D8D8D8;
+    font-size: 18px;
+    height: 50px;
+}
+
+.submit-active {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    width: 100%;
+    background: $theme;
+    border-radius: 25px;
+    color: #FFFFFF;
+    background: linear-gradient(270deg, rgba(73, 230, 197, 1) 0%, rgba(30, 199, 143, 1) 100%);
+    font-size: 18px;
+    height: 50px;
+}

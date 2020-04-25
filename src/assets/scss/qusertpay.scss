@@ -1,0 +1,263 @@
+@import './common.scss';
+.videoclasspanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    background-color: $bc;
+    padding-bottom: 50px;
+}
+
+.videoclasspanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.page {
+    float: left;
+    background-color: $bcf;
+    width: 100%;
+}
+
+.comli {
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 20px;
+    display: flex;
+    background-color: $bcf;
+    border-radius: 12px;
+    .compic {
+        width: 100px;
+        height: 100px;
+        border-radius: 12px;
+        position: relative;
+    }
+    .comdetail {
+        flex: 1;
+        margin-left: 15px;
+        position: relative;
+        .comname {
+            float: left;
+            width: 100%;
+            font-size: 16px;
+            color: $bt;
+            font-weight: bold;
+            line-height: 20px;
+            @include Two_lines;
+        }
+        .dianhua {
+            float: left;
+            width: 100%;
+            font-size: 12px;
+            color: $bt;
+            margin-top: 6px;
+            line-height: 18px;
+        }
+        .content {
+            float: left;
+            width: 100%;
+            font-size: 12px;
+            color: $bt;
+            margin-top: 6px;
+            line-height: 18px;
+        }
+        .price {
+            margin-top: 15px;
+            float: left;
+            width: 100%;
+            font-size: 16px;
+            color: $jg;
+            font-weight: bold;
+        }
+    }
+}
+
+.uploadingimgs {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.uploadrtext {
+    float: left;
+    color: $fz;
+    font-size: 12px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.doctor {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    margin-top: 20px;
+    display: flex;
+    .pic {
+        width: 55px;
+        height: 55px;
+        margin-right: 15px;
+    }
+    .detail {
+        flex: 1;
+        .nameview {
+            width: 100%;
+            float: left;
+            line-height: 15px;
+            .name {
+                float: left;
+                font-size: 16px;
+                color: $bt;
+                font-weight: bold;
+                margin-right: 10px;
+            }
+            .zhuzhi {
+                float: left;
+                font-size: 12px;
+                color: $bt;
+            }
+        }
+        .content {
+            float: left;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 12px;
+            color: $bt;
+            padding: 15px 10px;
+            line-height: 16px;
+            background-color: $bc;
+            border-radius: 6px;
+        }
+    }
+}
+
+.models {
+    float: left;
+    width: 100%;
+    padding: 0 20px;
+    .close {
+        width: 100%;
+        float: left;
+        margin-top: 15px;
+        .closepic {
+            float: right;
+            width: 24px;
+            height: 24px;
+            background: url("../assets/image/close.png");
+            background-size: 100% 100%;
+        }
+    }
+    .changepay {
+        width: 100%;
+        float: left;
+        font-size: 22px;
+        font-weight: bold;
+        color: $bt;
+    }
+}
+
+.pushchange {
+    width: 100%;
+    float: left;
+    margin-top: 40px;
+    padding: 0 20px;
+    .pushchanges {
+        padding: 0;
+        background-color: transparent;
+        width: 100%;
+        float: left;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        .paypic {
+            float: left;
+            width: 30px;
+            height: 30px;
+            background: url("../assets/image/wx.png");
+            background-size: 100% 100%;
+        }
+        .paypics {
+            float: left;
+            width: 30px;
+            height: 30px;
+            background: url("../assets/image/zfb.png");
+            background-size: 100% 100%;
+        }
+        .paytext {
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: $bt;
+        }
+        .changestyle {
+            margin-left: auto;
+            border-radius: 50%;
+            border: 1px solid #979797;
+            width: 24px;
+            height: 24px;
+        }
+        .changestyle-active {
+            margin-left: auto;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            background: url("../assets/image/pitchon.png");
+            background-size: 100% 100%;
+            animation: scale 0.3s;
+        }
+    }
+}
+
+.bottombtn {
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    height: 50px;
+    bottom: 0;
+    .allpriceview {
+        float: left;
+        width: 40%;
+        height: 50px;
+        padding: 0;
+        background: $bcf;
+        display: flex;
+        justify-content: center;
+        div {
+            .alltext {
+                float: left;
+                color: $bt;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            .allprice {
+                float: left;
+                color: $jg;
+                font-size: 13px;
+                font-weight: bold;
+            }
+        }
+    }
+    .gobuy {
+        float: left;
+        width: 60%;
+        height: 50px;
+        padding: 0;
+        background: $theme;
+        color: $bcf;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.fromdatas {
+    display: none;
+}
+
+#pay_form {
+    display: none;
+}

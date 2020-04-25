@@ -1,0 +1,677 @@
+@import './common.scss';
+.allpage {
+    background-color: $bcf;
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.commontitles {
+    width: 100%;
+    position: fixed;
+    height: 50px;
+    z-index: 51;
+    top: 0px;
+    animation: scroll .3s;
+    background-color: $bcf;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(-60px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.commontitle {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.commonback {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.commonbackpic {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/back.png");
+    background-size: 100% 100%;
+}
+
+.commontitlename {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+    font-weight: bold;
+    line-height: 60px;
+}
+
+.paygrouppanelview {
+    width: 100%;
+    height: 100%;
+    top: 50px;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-bottom: 60px;
+}
+
+.paygrouppanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+    background-color: $bcf;
+}
+
+.titleimg {
+    float: left;
+    width: 100%;
+    height: 220px;
+    position: relative;
+    .paygroupback {
+        background: url("../assets/image/videoback.png");
+        background-size: 100% 100%;
+        border-radius: 50%;
+        position: absolute;
+    }
+}
+
+.hearder {
+    float: left;
+    width: 100%;
+    padding: 0 16px;
+    background-color: $bcf;
+    padding-bottom: 24px;
+    .title {
+        float: left;
+        width: 100%;
+        @include One_lines;
+        font-size: $bt;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 12px;
+        line-height: 18px;
+    }
+    .time {
+        float: left;
+        width: 100%;
+        color: $fz;
+        font-size: 12px;
+        margin-top: 10px;
+    }
+    .amount {
+        float: left;
+        width: 100%;
+        line-height: 16px;
+        margin-top: 8px;
+        .price {
+            float: left;
+            color: $jg;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .apply {
+            float: right;
+            color: #666666;
+            font-size: 12px;
+        }
+    }
+}
+
+.greyline {
+    float: left;
+    width: 100%;
+    height: 10px;
+    background: #F7F9FC;
+}
+
+.organization {
+    float: left;
+    width: 100%;
+    padding: 0 16px;
+    background-color: $bcf;
+    height: 44px;
+    line-height: 44px;
+    .organizationtable {
+        float: left;
+        color: $bt;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .organizationname {
+        float: right;
+        color: $bt;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+.contentdetail {
+    float: left;
+    width: 100%;
+    .tablechange {
+        float: left;
+        width: 100%;
+        border-bottom: 1px solid #EBEFF5;
+        padding-bottom: 1px;
+        padding-top: 5px;
+    }
+}
+
+.contenttext {
+    float: left;
+    width: 100%;
+    .contentview {
+        float: left;
+        width: 100%;
+        padding-top: 13px;
+        .intro {
+            float: left;
+            width: 100%;
+            color: #666666;
+            font-size: 13px;
+            padding: 0 16px;
+            line-height: 17px;
+        }
+        .introimg {
+            float: left;
+            width: 100%;
+            margin-top: 13px;
+        }
+        .mgbt{
+            float: left;
+            width: 100%;
+            height: 250px;
+        }
+    }
+}
+
+.paybtn {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 6;
+    background: $bcf;
+    .zixunview {
+        float: left;
+        width: 35%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .zixun {
+            height: 24px;
+            .zixunpic {
+                width: 24px;
+                height: 24px;
+                background: url("../assets/image/zixun.png");
+                background-size: 100% 100%;
+                float: left;
+            }
+            .zixuntext {
+                height: 24px;
+                line-height: 24px;
+                margin-left: 3px;
+                font-size: 14px;
+                color: $bt;
+                float: left;
+            }
+        }
+    }
+    .pabtnview {
+        float: left;
+        width: 65%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-right: 16px;
+        .nowpay {
+            width: 100%;
+            height: 44px;
+            background: $theme;
+            padding: 0;
+            color: $bcf;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
+    .jinqun {
+        width: 100%;
+        height: 44px;
+        background: $theme;
+        padding: 0;
+        color: $bcf;
+        font-size: 14px;
+        line-height: 44px;
+        font-weight: bold;
+    }
+}
+
+.biaoqian {
+    width: 40px;
+    height: 22px;
+    background: #E9F5F1;
+    color: #21C891;
+    font-size: 14px;
+    border-radius: 40%;
+    text-align: center;
+    line-height: 22px;
+    margin-left: 5px;
+    margin-top: 3px;
+    ;
+}
+
+.commentul {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    padding: 0 20px;
+    li {
+        width: 100%;
+        float: left;
+        .user {
+            width: 100%;
+            float: left;
+            display: flex;
+            height: 30px;
+            line-height: 30px;
+            .pices {
+                float: left;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+            .nameview {
+                float: left;
+                margin: 0 10px;
+                flex: 1;
+                .name {
+                    width: 100%;
+                    @include One_lines;
+                    color: $bt;
+                    font-size: 14px;
+                    margin-top: -10px;
+                }
+            }
+            .time {
+                font-size: 12px;
+                margin-top: -10px;
+                // float: right;
+                color: $fz;
+            }
+        }
+        .text {
+            width: 100%;
+            float: left;
+            margin-top: 15px;
+            color: $bt;
+            font-size: 13px;
+            line-height: 18px;
+        }
+    }
+}
+
+.nocntetview {
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .nocontent {
+        float: left;
+        width: 100%;
+        .nocontentpicview {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .nocontentpic {
+                float: left;
+                width: 103px;
+                height: 100.5px;
+            }
+        }
+        .nocontenttext {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            color: $fz;
+            margin-top: 30px;
+        }
+    }
+}
+
+.commentview {
+    height: 50px;
+    position: fixed;
+    border-top: 1px solid #EBEFF5;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 6;
+    bottom: 0;
+    background-color: $bcf;
+    .commentipnut {
+        float: left;
+        flex: 1;
+        height: 40px;
+        background-color: #F7F9FC;
+        border-radius: 6px;
+        margin-left: 20px;
+    }
+    .send {
+        float: left;
+        width: 70px;
+        height: 40px;
+        border-radius: 6px;
+        background-color: $theme;
+        color: $bcf;
+        font-size: 16px;
+        margin: 0 20px;
+        padding: 0px;
+    }
+}
+
+.cometntdiv {
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.dialogwxview {
+    position: fixed;
+    background: rgb(37, 38, 45, 0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: op .3s;
+    .dialogwxviews {
+        float: left;
+        width: 100%;
+        .dialogviewimgs {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            animation: scales .3s;
+            img {
+                border-radius: 6px;
+                width: 200px;
+                height: 200px;
+            }
+        }
+        .dialogtext {
+            margin-top: 20px;
+            float: left;
+            width: 100%;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+        }
+    }
+}
+
+@keyframes scales {
+    0% {
+        transform: scale(0.7);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.vanttab {
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+
+::v-deep .van-tab {
+    font-size: 14px;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tab--active {
+    font-size: 14px;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tabs__line {
+    border-radius: 1px;
+}
+
+::v-deep .cube-pullup-wrapper {
+    height: 50px;
+    .before-trigger {
+        span {
+            font-size: 13px;
+            color: #999999;
+        }
+    }
+}
+
+ ::v-deep .van-popup--bottom.van-popup--round {
+    border-radius: 12px 12px 0 0;
+}
+
+.mengmiantu {
+    width: 100%;
+    float: left;
+    height: 217px;
+    position: relative;
+    .heimengceng {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(0, 0, 0, 0.2);
+        .mengmiantuplay {
+            background-color: transparent;
+            width: 40px;
+            height: 40px;
+            background: url("../assets/image/play.png");
+            background-size: 100% 100%;
+        }
+    }
+}
+.sphei {
+    width: 100%;
+    float: left;
+    height: 0px;
+    display: none;
+}
+
+.sphei-active {
+    width: 100%;
+    float: left;
+    height: 217px;
+}
+
+.slide2 {
+    padding: 0 20px;
+    margin-bottom: 50px;
+}
+.audiolistdiv {
+    width: 100%;
+    float: left;
+    display: flex;
+    height: 72px;
+    padding-top: 15px;
+}
+.audiolist {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    li {
+        width: 100%;
+        float: left;
+        .listenstate {
+            float: left;
+            width: 20px;
+            height: 100%;
+            margin-right: 15px;
+            overflow: hidden;
+            position: relative;
+            .img {
+                position: absolute;
+                top: -43px;
+                left: -40px;
+                width: 100px;
+                height: 100px;
+            }
+            .imgs {
+                width: 15px;
+                height: 15px;
+                background: url("../assets/image/playon.png");
+                background-size: 100% 100%;
+            }
+            .imgses {
+                width: 15px;
+                height: 15px;
+                background: url("../assets/image/playoff.png");
+                background-size: 100% 100%;
+            }
+        }
+        .listdetail {
+            float: left;
+            flex: 1;
+            .nameview {
+                width: 100%;
+                float: left;
+                height: 16px;
+                display: flex;
+                .name {
+                    float: left;
+                    flex: 1;
+                    font-size: 14px;
+                    color: $bt;
+                    height: 16px;
+                    line-height: 16px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    word-break: break-all;
+                }
+                .trylistenview {
+                    float: left;
+                    margin-left: auto;
+                    border-radius: 4px;
+                    border: 1px solid $theme;
+                    height: 24px;
+                    color: $theme;
+                    font-size: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 60px;
+                    white-space: nowrap;
+                    margin-left: 10px;
+                    .trylisten {
+                        font-size: 12px;
+                    }
+                }
+                .nolistenprice {
+                    font-size: 13px;
+                    font-weight: bold;
+                    white-space: nowrap;
+                    color: $jg;
+                    line-height: 16px;
+                    margin-left: auto;
+                }
+            }
+            .listtime {
+                width: 100%;
+                float: left;
+                height: 11px;
+                margin-top: 10px;
+                .timepic {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/time.png");
+                    background-size: 100% 100%;
+                }
+                .timepics {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/times.png");
+                    background-size: 100% 100%;
+                }
+                .timetext {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 5px;
+                }
+                .watchnum {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+}
+.moreclass {
+    padding: 0;
+    float: right;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    width: auto;
+    background-color: transparent;
+    .moreclasstext {
+        float: left;
+        height: 100%;
+        font-size: 13px;
+        color: $theme;
+    }
+    .moreclasspic {
+        float: left;
+        width: 11px;
+        height: 7px;
+        margin-left: 4px;
+        background: url("../assets/image/triangle.png");
+        background-size: 100% 100%;
+    }
+}
+.disable {
+    color: #BFBFBF !important;
+}

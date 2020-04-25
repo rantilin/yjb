@@ -1,0 +1,1177 @@
+@import './common.scss';
+.classpanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 90px;
+    padding-bottom: 50px;
+}
+
+.classpanelviews {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    padding-bottom: 50px;
+}
+
+.classpanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+    background-color: $bcf;
+}
+
+.videoview {
+    width: 100%;
+    float: left;
+}
+
+.audiolistdiv {
+    width: 100%;
+    float: left;
+    display: flex;
+    height: 72px;
+    padding-top: 15px;
+}
+
+.audiolist {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    li {
+        width: 100%;
+        float: left;
+        .listenstate {
+            float: left;
+            width: 20px;
+            height: 100%;
+            margin-right: 15px;
+            overflow: hidden;
+            position: relative;
+            .img {
+                position: absolute;
+                top: -43px;
+                left: -40px;
+                width: 100px;
+                height: 100px;
+            }
+            .imgs {
+                width: 15px;
+                height: 15px;
+                background: url("../assets/image/playon.png");
+                background-size: 100% 100%;
+            }
+            .imgses {
+                width: 15px;
+                height: 15px;
+                background: url("../assets/image/playoff.png");
+                background-size: 100% 100%;
+            }
+        }
+        .listdetail {
+            float: left;
+            flex: 1;
+            .nameview {
+                width: 100%;
+                float: left;
+                height: 16px;
+                display: flex;
+                .name {
+                    float: left;
+                    flex: 1;
+                    font-size: 14px;
+                    color: $bt;
+                    height: 16px;
+                    line-height: 16px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    word-break: break-all;
+                }
+                .trylistenview {
+                    float: left;
+                    margin-left: auto;
+                    border-radius: 4px;
+                    border: 1px solid $theme;
+                    height: 24px;
+                    color: $theme;
+                    font-size: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 60px;
+                    white-space: nowrap;
+                    margin-left: 10px;
+                    .trylisten {
+                        font-size: 12px;
+                    }
+                }
+                .nolistenprice {
+                    font-size: 13px;
+                    font-weight: bold;
+                    white-space: nowrap;
+                    color: $jg;
+                    line-height: 16px;
+                    margin-left: auto;
+                }
+            }
+            .listtime {
+                width: 100%;
+                float: left;
+                height: 11px;
+                margin-top: 10px;
+                .timepic {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/time.png");
+                    background-size: 100% 100%;
+                }
+                .timepics {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/times.png");
+                    background-size: 100% 100%;
+                }
+                .timetext {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 5px;
+                }
+                .watchnum {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+}
+
+.disable {
+    color: #BFBFBF !important;
+}
+
+.bottombtn {
+    position: fixed;
+    z-index: 3;
+    bottom: 0px;
+    height: 50px;
+    width: 100%;
+    .share {
+        float: left;
+        width: 60%;
+        height: 100%;
+        background-color: #FFC34D;
+        padding: 0;
+        .shareone {
+            width: 100%;
+            text-align: center;
+            color: $bcf;
+            font-size: 13px;
+        }
+        .sharetwo {
+            margin-top: 6px;
+            width: 100%;
+            text-align: center;
+            color: $bcf;
+            font-size: 13px;
+        }
+    }
+    .buy {
+        float: left;
+        width: 40%;
+        height: 100%;
+        color: $bcf;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: $theme;
+    }
+    .selectionsbuy {
+        float: left;
+        width: 100%;
+        height: 100%;
+        color: $bcf;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: $theme;
+    }
+}
+
+.videock {
+    width: 100%;
+    float: left;
+}
+
+.sphei {
+    width: 100%;
+    float: left;
+    height: 0px;
+    display: none;
+}
+
+.sphei-active {
+    width: 100%;
+    float: left;
+    height: 217px;
+}
+
+.mengmiantu {
+    width: 100%;
+    float: left;
+    height: 217px;
+    position: relative;
+    .heimengceng {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(0, 0, 0, 0.2);
+        .mengmiantuplay {
+            background-color: transparent;
+            width: 40px;
+            height: 40px;
+            background: url("../assets/image/play.png");
+            background-size: 100% 100%;
+        }
+    }
+}
+
+.content {
+    width: 100%;
+    float: left;
+    .titleview {
+        width: 100%;
+        float: left;
+        display: flex;
+        margin-top: 20px;
+        padding: 0 20px;
+        margin-bottom: 2px;
+        .title {
+            flex: 1;
+            font-size: 16px;
+            color: $bt;
+            font-weight: bold;
+            line-height: 24px;
+        }
+        .pic {
+            width: 24px;
+            height: 24px;
+            float: right;
+            margin-left: 10px;
+            background: url("../assets/image/staroff.png");
+            background-size: 100% 100%;
+        }
+        .pic-active {
+            width: 24px;
+            height: 24px;
+            float: right;
+            margin-left: 10px;
+            background: url("../assets/image/star.png");
+            background-size: 100% 100%;
+            animation: scale .3s;
+        }
+    }
+    .num {
+        padding: 0 20px;
+        width: 100%;
+        float: left;
+        height: 10px;
+        line-height: 10px;
+        margin-top: 12px;
+        .pirce {
+            float: left;
+            font-size: 16px;
+            color: $jg;
+            font-weight: bold;
+            line-height: 10px;
+        }
+        .watch {
+            float: left;
+            font-size: 12px;
+            line-height: 10px;
+            color: $fz;
+            margin-left: 20px;
+        }
+    }
+}
+
+.optionbar {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #EBEFF5;
+    padding-bottom: 1px;
+}
+
+.contentdetail {
+    width: 100%;
+    float: left;
+    .slide {
+        width: 100%;
+        float: left;
+    }
+}
+
+.nrtext {
+    width: 100%;
+    font-size: 14px;
+    color: $bt;
+    line-height: 17px;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.nrpic {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.slide2 {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.cometntdiv {
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.commentul {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.commentdv {
+    width: 100%;
+    float: left;
+}
+
+.biaoqian {
+    width: 40px;
+    height: 22px;
+    background: #E9F5F1;
+    color: #21C891;
+    font-size: 14px;
+    border-radius: 40%;
+    text-align: center;
+    line-height: 22px;
+    margin-left: 5px;
+    margin-top: 3px;
+    ;
+}
+
+li {
+    width: 100%;
+    float: left;
+    // border-bottom: 1px solid #EBEFF5;
+    .user {
+        width: 100%;
+        float: left;
+        display: flex;
+        height: 30px;
+        line-height: 30px;
+        .pices {
+            float: left;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .nameview {
+            float: left;
+            margin: 0 10px;
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            .name {
+                width: 100%;
+                @include One_lines;
+                color: $bt;
+                font-size: 14px;
+                margin-top: -10px;
+            }
+        }
+        .time {
+            font-size: 12px;
+            // float: right;
+            color: $fz;
+            margin-top: -10px;
+        }
+    }
+    .text {
+        width: 85%;
+        float: left;
+        margin-top: 15px;
+        color: $bt;
+        font-size: 13px;
+        line-height: 18px;
+        margin-left: 35px;
+    }
+}
+
+.commentview {
+    height: 50px;
+    position: fixed;
+    border-top: 1px solid #EBEFF5;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 6;
+    bottom: 0;
+    background-color: $bcf;
+    .commentipnut {
+        float: left;
+        flex: 1;
+        height: 40px;
+        background-color: #F7F9FC;
+        border-radius: 6px;
+        margin-left: 20px;
+    }
+    .send {
+        float: left;
+        width: 70px;
+        height: 40px;
+        border-radius: 6px;
+        background-color: $theme;
+        color: $bcf;
+        font-size: 16px;
+        margin: 0 20px;
+        padding: 0px;
+    }
+}
+
+.moreclass {
+    padding: 0;
+    float: right;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    width: auto;
+    background-color: transparent;
+    .moreclasstext {
+        float: left;
+        height: 100%;
+        font-size: 13px;
+        color: $theme;
+    }
+    .moreclasspic {
+        float: left;
+        width: 11px;
+        height: 7px;
+        margin-left: 4px;
+        background: url("../assets/image/triangle.png");
+        background-size: 100% 100%;
+    }
+}
+
+.listviews {
+    float: left;
+    width: 100%;
+}
+
+.opntextwarn {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    color: $jg;
+    text-align: center;
+    font-size: 13px;
+    line-height: 30px;
+    background: #ffffff;
+}
+
+.modelbottombtn {
+    width: 100%;
+    position: absolute;
+    float: left;
+    background-color: $bcf;
+    border-radius: 12px 12px 0 0;
+    bottom: 0px;
+    .allpriceview {
+        float: left;
+        width: 40%;
+        height: 50px;
+        padding: 0;
+        background: $bcf;
+        display: flex;
+        justify-content: center;
+        div {
+            .alltext {
+                float: left;
+                color: $bt;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            .allprice {
+                float: left;
+                color: $jg;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            .zhprice{
+                text-decoration:line-through;
+            }
+        }
+    }
+    .gobuy {
+        float: left;
+        width: 60%;
+        height: 50px;
+        padding: 0;
+        background: $theme;
+        color: $bcf;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.selections {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.mengceng {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, 0.7);
+    .mengcengview {
+        width: 100%;
+        height: 100%;
+        float: left;
+        position: relative;
+        .mengcengviews {
+            width: 100%;
+            height: 280px;
+            background: $bcf;
+            border-radius: 12px 12px 0 0;
+        }
+    }
+}
+
+.nocntetview {
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .nocontent {
+        float: left;
+        width: 100%;
+        .nocontentpicview {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .nocontentpic {
+                float: left;
+                width: 103px;
+                height: 100.5px;
+            }
+        }
+        .nocontenttext {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            color: $fz;
+            margin-top: 30px;
+        }
+    }
+}
+
+.zjbt {
+    float: left;
+    width: 100%;
+    color: #666666;
+    font-size: 14px;
+    height: 15px;
+    line-height: 17px;
+    padding: 0 20px;
+    margin: 5px 0;
+    @include One_lines;
+}
+
+.btsses {
+    float: left;
+    width: 100%;
+    margin-top: 22px;
+}
+
+.btss {
+    float: left;
+    width: 51px;
+    height: 51px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.ctxtli {
+    float: left;
+    background: #f7f9fc;
+    width: 51px;
+    height: 51px;
+    border-radius: 6px;
+    padding: 0;
+    text-align: center;
+    float: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+    .btnviews {
+        float: left;
+        width: 100%;
+        .btn1 {
+            float: left;
+            width: 100%;
+            text-align: center;
+            color: #BFBFBF;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .btn2 {
+            margin-top: 1px;
+            float: left;
+            width: 100%;
+            text-align: center;
+            text-align: center;
+            color: #BFBFBF;
+            font-size: 10px;
+            margin-top: 3px;
+        }
+    }
+}
+
+.ctxtlis {
+    float: left;
+    background: #21c891;
+    width: 51px;
+    height: 51px;
+    border-radius: 6px;
+    padding: 0;
+    text-align: center;
+    float: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+    .btnviews {
+        float: left;
+        width: 100%;
+        .btn1 {
+            float: left;
+            width: 100%;
+            text-align: center;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .btn2 {
+            margin-top: 1px;
+            float: left;
+            width: 100%;
+            text-align: center;
+            text-align: center;
+            color: #ffffff;
+            font-size: 10;
+            transform: scale(0.83, 0.83);
+        }
+    }
+}
+
+.cks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 5;
+}
+
+.offjinyong {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.jinyong {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #D8D8D8;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    .btnviewse {
+        float: left;
+        width: 100%;
+        .btn1e {
+            float: left;
+            width: 100%;
+            text-align: center;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .btn2e {
+            margin-top: 1px;
+            float: left;
+            width: 100%;
+            text-align: center;
+            text-align: center;
+            color: #ffffff;
+            font-size: 10;
+            transform: scale(0.83, 0.83);
+        }
+    }
+}
+
+.opntextwarnpic {
+    float: left;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    li {
+        // height: 50px;
+        float: left;
+        display: flex;
+        align-items: center;
+        // margin-left: 20px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        .quanview {
+            float: left;
+            display: flex;
+            margin-right: 15px;
+            .quanpic {
+                float: left;
+                width: 14px;
+                height: 11px;
+                background: url("../assets/image/quan.png");
+                background-size: 100% 100%;
+            }
+            .quantext {
+                font-size: 13px;
+                color: #999999;
+                float: left;
+                margin-left: 6px;
+            }
+        }
+    }
+    li:first-child {
+        margin-left: 0px;
+    }
+}
+
+.quanxuan {
+    width: 100%;
+    float: left;
+    height: 40px;
+    padding: 0 15px;
+}
+
+.quanxuanview {
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+}
+
+.quanxuantext {
+    font-size: 14px;
+    float: left;
+    margin-right: 10px;
+}
+
+.xieyipic {
+    float: left;
+    height: 20px;
+    width: 20px;
+    background-size: 100% 100%;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid rgb(172, 175, 191);
+}
+
+.xieyipic-active {
+    margin-left: auto;
+    height: 20px;
+    width: 20px;
+    background-size: 100% 100%;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: none;
+    background: url(../assets/image/pitchon.png) no-repeat;
+    background-size: 100% 100%;
+    animation: alia 0.3s;
+}
+
+@keyframes alia {
+    0% {
+        transform: scale(0.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pricemianfei {
+    float: left;
+    line-height: 8px;
+    font-size: 14px;
+    color: $theme;
+}
+
+.geryline {
+    float: left;
+    width: 100%;
+    height: 10px;
+    background: #F7F9FC;
+    margin-top: 0.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.vanttab {
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+
+::v-deep .van-tab {
+    font-size: 14px;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tab--active {
+    font-size: 14px;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tabs__line {
+    border-radius: 1px;
+}
+
+::v-deep .cube-pullup-wrapper {
+    height: 50px;
+    .before-trigger {
+        span {
+            font-size: 13px;
+            color: #999999;
+        }
+    }
+}
+
+ ::v-deep .van-popup--bottom.van-popup--round {
+    border-radius: 12px 12px 0 0;
+}
+
+.commontitles {
+    width: 100%;
+    position: fixed;
+    z-index: 51;
+    background-color: #ffffff;
+    height: 60px;
+    top: 0px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.commonbackpic {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/back.png");
+    background-size: 100% 100%;
+}
+
+.backindex {
+    margin-left: auto;
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/backindex.png");
+    background-size: 100% 100%;
+}
+
+.notice {
+    float: left;
+    background: #FAFAFA;
+    border-radius: 4px;
+    height: 30px;
+    position: fixed;
+    z-index: 6;
+    top: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    .noticeview {
+        height: 100%;
+        float: left;
+        flex: 1;
+        margin-right: 6px;
+        padding: 0 10px;
+    }
+    .xx {
+        float: left;
+        width: 24px;
+        height: 24px;
+        background: url("../assets/image/xx.png");
+        background-size: 100% 100%;
+    }
+}
+
+.marquee {
+    width: 100%;
+    font-size: 13px;
+    color: rgb(217, 33, 33);
+    height: 30px;
+    line-height: 33px;
+}
+
+.commonswiper {
+    width: 100%;
+    float: left;
+    padding-left: 15px;
+}
+
+.tuijianvideo {
+    width: 100%;
+}
+
+.videotitle {
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-top: 3rem;
+}
+
+.swiperviewerke {
+    float: left;
+    width: 260px;
+    // margin-top: 16px;
+}
+
+.commonswiper .swiper-slide:last-child .swiperviewerke {
+    margin-right: 16px;
+}
+
+.indexpanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.tuijiandoctor {
+    z-index: 999;
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    top: 290px;
+    right: 0;
+}
+
+.img-box {
+    width: 100px;
+    height: 60px;
+    margin-left: 5px;
+    z-index: -2;
+    img {
+        z-index: -2;
+        width: 55px;
+        height: 55px;
+        border-radius: 140px;
+    }
+}
+
+.btn11 {
+    background-image: url("../assets/image/wys.png");
+    background-size: 100% 100%;
+    width: 90px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    border-radius: 30px;
+    margin-top: -28px;
+    position: absolute;
+    right: 3px;
+}
+
+.tuiview {
+    display: flex;
+}
+
+.tuiimage {
+    background-image: url("../assets/image/tui.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.tuitext {
+    color: #999999;
+    font-size: 13px;
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
+.gzwechat {
+    float: left;
+    background: #F7F9FC;
+    border-radius: 4px;
+    height: 30px;
+    position: fixed;
+    z-index: 6;
+    top: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 13px 16px 10px 20px;
+    font-size: 13px;
+    .icon {
+        background-image: url("../assets/image/wechatlogo.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 24px;
+        height: 24px;
+        float: left;
+        margin-right: 15px;
+    }
+    .text {
+        width: 65%;
+        line-height: 20px;
+        float: left;
+    }
+    .gz {
+        width: 44px;
+        height: 22px;
+        float: left;
+        background: #21C891;
+        color: #ffffff;
+        line-height: 24px;
+        text-align: center;
+        border-radius: 3px;
+        margin-right: 10px;
+    }
+    .xx {
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: url("../assets/image/xx.png");
+        background-size: 100% 100%;
+    }
+}
+
+.wxpop {
+    width: 230px;
+    height: 273px;
+    padding: 20px 10px;
+    background: #ffffff;
+    .wxewm {
+        width: 180px;
+        height: 180px;
+        margin: auto;
+    }
+    .wxewm img {
+        width: 100%;
+    }
+    .wxtext {
+        margin-top: 10px;
+        line-height: 20px;
+        font-size: 14px;
+        color: #666666;
+        text-align: center;
+    }
+}
+.InvitationCode{
+    width: 100%;
+    height: 30px;
+    padding: 5px 15px;
+    margin: auto;
+    .icon{
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: url("../assets/image/yqcode.png");
+        background-size: 100% 100%;
+    }
+    .text{
+        width: 80%;
+        font-size: 14px;
+        float: left;
+        color: #666666;
+        line-height: 22px;
+        text-indent: 10px;
+    }
+    .yhm_select{
+        width: 6%;
+        float: right;
+    }
+  
+}
+.codeInput{
+    width: 100%;
+    padding: 0 20px;
+    margin:10px auto;
+    float: left;
+    .code{
+        width: 100%;
+        height: 30px;
+        background: #F7F9FC;
+        padding: 4px 0;
+    }
+    .code input{
+        background: #F7F9FC;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+        float: left;
+        width: 90%;
+    }
+    .code .onstate{
+        float: right;
+        width: 20px;
+        height: 20px;
+        background: url("../assets/image/pass.png") no-repeat center/100%;
+    }
+    .code .offstate{
+        float: right;
+        width: 20px;
+        height: 20px;
+        background: url("../assets/image/nopass.png") no-repeat center/100%;
+    }
+}

@@ -1,0 +1,144 @@
+.tabbars {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background: #ffffff;
+    height: 49px;
+    border-top: 1px solid #edf5f5;
+    display: flex;
+    .tabbarslide {
+        flex: 1;
+        .tabbarpicview {
+            margin-top: 6px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .tabbarpic {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        .tabbartext {
+            margin-top: 3px;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: #999999;
+            transform: scale(0.83, 0.83);
+        }
+        .tabbartext-active {
+            margin-top: 3px;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: #1EC78F;
+            transform: scale(0.83, 0.83);
+        }
+    }
+}
+
+.Router {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+    opacity: 0;
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+    opacity: 0;
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+}
+
+.botnavswicth {
+    width: 100%;
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.msgnumber {
+    height: 15px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: c;
+    border-radius: 7.5px;
+    background: #FF4D4D;
+    position: fixed;
+    z-index: 101;
+    bottom: 32px;
+    right: 120px;
+    div {
+        font-size: 10px;
+        color: #ffffff;
+        transform: scale(0.83, 0.83);
+    }
+}
+
+.studyon {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/studyon.png");
+    background-size: 100% 100%;
+}
+
+.studyoff {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/studyoff.png");
+    background-size: 100% 100%;
+}
+
+.specialiston {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/specialiston.png");
+    background-size: 100% 100%;
+}
+
+.specialistoff {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/specialistoff.png");
+    background-size: 100% 100%;
+}
+
+.msgon {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/msgon.png");
+    background-size: 100% 100%;
+}
+
+.msgoff {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/msgoff.png");
+    background-size: 100% 100%;
+}
+
+.mineon {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/mineon.png");
+    background-size: 100% 100%;
+}
+
+.mineoff {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/mineoff.png");
+    background-size: 100% 100%;
+}

@@ -1,0 +1,197 @@
+@import './common.scss';
+.babytopanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    background: $bcf;
+}
+
+.titleview {
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+    padding: 0 20px;
+    display: flex;
+    .qlpic {
+        float: left;
+        width: 75px;
+        height: 75px;
+        margin-right: 10px;
+    }
+    .qldetail {
+        float: left;
+        flex: 1;
+        .qlbt {
+            float: left;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            color: $bt;
+            margin-top: 6px;
+        }
+        .qlnum {
+            float: left;
+            width: 100%;
+            font-size: 14px;
+            color: $bt;
+            margin-top: 10px;
+            span {
+                color: $theme;
+            }
+        }
+    }
+}
+
+.yabesses {
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.list-wrapper {
+    padding: 0 20px;
+    height: 40px;
+    .list-item:last-child {
+        margin-right: 0;
+    }
+}
+
+.list-item {
+    width: auto;
+    margin-right: 20px;
+    height: 35px;
+    position: relative;
+    .bartext {
+        width: 100%;
+        float: left;
+        height: 40px;
+        margin-top: -20px;
+        text-align: center;
+        color: $bt;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .barlineview {
+        position: absolute;
+        top: 27px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .barline {
+            border-radius: 1.5px;
+            width: 20px;
+            height: 3px;
+            background: $theme;
+            animation: scale 0.3s;
+        }
+    }
+}
+
+.lanmulist {
+    margin-top: 15px;
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    li {
+        width: 100%;
+        float: left;
+    }
+}
+
+.zijilist {
+    width: 100%;
+    float: left;
+}
+
+.zjdetailes {
+    width: 100%;
+    white-space: nowrap;
+    .zjdetail {
+        width: auto;
+        height: 34px;
+        padding: 0 10px;
+        border-radius: 17px;
+        background-color: #EDF2F1;
+        color: #999999;
+        font-size: 13px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    .zjdetail-active {
+        display: inline-block;
+        width: auto;
+        height: 34px;
+        padding: 0 10px;
+        border-radius: 17px;
+        background-color: #D5F2E9;
+        color: #1EC891;
+        font-size: 13px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+.weweimatu {
+    float: left;
+    position: fixed;
+    z-index: 40;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background: #ffffff;
+    top: 270px;
+    .erweima {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+.erweimatext {
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 13px;
+    text-align: center;
+    color: $fz;
+    margin-top: 180px;
+    margin-bottom: 20px;
+}
+
+.vanttab {
+    float: left;
+    height: 100%;
+}
+
+::v-deep .van-tab {
+    font-size: 14px;
+    width: auto;
+    padding: 0;
+    margin-right: 20px;
+    min-width: auto;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tab--active {
+    font-size: 14px;
+    width: auto;
+    padding: 0;
+    margin-right: 20px;
+    min-width: auto;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tabs__line {
+    border-radius: 1px;
+}

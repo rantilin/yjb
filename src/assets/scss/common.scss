@@ -1,0 +1,48 @@
+$theme: #21C891; //主题色 
+$bt: #333333; //标题
+$fz: #999999; //辅助
+$jg: #FF6633;
+$bcf:#ffffff;
+$bc:#F7F9FC;
+* {
+    box-sizing: border-box;
+}
+
+@mixin One_lines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    word-break: break-all;
+}
+
+@mixin Two_lines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-break: break-all;
+}
+
+@mixin Three_lines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    word-break: break-all;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(0.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.clear{
+    clear: both;
+}

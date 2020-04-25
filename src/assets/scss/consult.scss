@@ -1,0 +1,463 @@
+@import './common.scss';
+.commontitles {
+    width: 100%;
+    position: fixed;
+    z-index: 52;
+    background-color: #ffffff;
+    height: 60px;
+    max-width: 768px;
+    min-width: 320px;
+    top: 0px;
+}
+
+.commontitle {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.commonback {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.submitview {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.submit {
+    width: 66px;
+    height: 33px;
+    background: linear-gradient(270deg, rgba(73, 230, 197, 1) 0%, rgba(30, 199, 143, 1) 100%);
+    border-radius: 17px;
+    padding: 0;
+    color: $bcf;
+    font-size: 13px;
+}
+
+.commonbackpic {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/back.png");
+    background-size: 100% 100%;
+}
+
+.commontitlename {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+}
+
+.consultpanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 3;
+    padding-top: 60px;
+    background-color: $bcf;
+}
+
+.consultpanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.consultpic {
+    width: 100%;
+    float: left;
+    height: 150px;
+}
+
+.consultshow {
+    width: 100%;
+    float: left;
+}
+
+.consultpriceview {
+    width: 100%;
+    float: left;
+    margin-top: 22px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    .pic {
+        float: left;
+        width: 27px;
+        height: 27px;
+        background: url("../assets/image/consulttext.png");
+        background-size: 100% 100%;
+    }
+    .pics {
+        float: left;
+        width: 27px;
+        height: 27px;
+        background: url("../assets/image/consult_one.png");
+        background-size: 100% 100%;
+    }
+    .name {
+        float: left;
+        color: $bt;
+        font-weight: bold;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+    .price {
+        margin-left: auto;
+        color: #FF6633;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+.consultipnutview {
+    float: left;
+    width: 100%;
+    padding: 0 20px;
+    height: 39px;
+    line-height: 39px;
+    margin-top: 20px;
+    display: flex;
+    span {
+        float: left;
+        font-size: 16px;
+        color: $bt;
+        font-weight: bold;
+    }
+    .consultipnut {
+        flex: 1;
+        height: 39px;
+        line-height: 39px;
+        float: right;
+        text-align: right;
+        width: 150px;
+        color: #999999;
+        font-size: 13px;
+        background: transparent;
+        margin-left: 5px;
+    }
+}
+
+.consultipnut:focus {
+    outline: none;
+}
+
+.problem {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    margin-top: 20px;
+    .problemtitle {
+        width: 100%;
+        float: left;
+        font-weight: bold;
+        font-size: 16px;
+        color: $bt;
+    }
+    .textarea {
+        width: 100%;
+        float: left;
+        border: none;
+        border-bottom: 1px solid #EBEFF5;
+        height: 70px;
+        resize: none;
+        font-size: 13px;
+        color: $fz;
+        margin-top: 20px;
+        background-color: transparent;
+        line-height: 17px;
+    }
+    .textmun {
+        width: 100%;
+        float: left;
+        text-align: right;
+        color: #999999;
+        font-size: 12px;
+        margin-top: 13px;
+    }
+}
+
+.uploadpic {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    margin-top: 20px;
+    .uploadtitle {
+        width: 100%;
+        float: left;
+        font-weight: bold;
+        font-size: 16px;
+        color: $bt;
+        margin-bottom: 20px;
+    }
+}
+
+.uploadpicview {
+    width: 70px;
+    height: 70px;
+    background: #F7F9FC;
+    float: left;
+    border-radius: 6px;
+    .uppicview {
+        width: 100%;
+        float: left;
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        div {
+            width: 24px;
+            height: 24px;
+            background: url("../assets/image/uploadpic.png");
+            background-size: 100% 100%;
+        }
+    }
+    .uptext {
+        margin-top: 8px;
+        width: 100%;
+        float: left;
+        color: $fz;
+        font-size: 10px;
+        transform: scale(0.83, 0.83);
+        text-align: center;
+    }
+}
+
+.uploadingimgs {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.uploadrtext {
+    float: left;
+    color: $fz;
+    font-size: 12px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.doctor {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    margin-top: 20px;
+    display: flex;
+    .pic {
+        width: 55px;
+        height: 55px;
+        margin-right: 15px;
+    }
+    .detail {
+        flex: 1;
+        .nameview {
+            width: 100%;
+            float: left;
+            line-height: 15px;
+            .name {
+                float: left;
+                font-size: 16px;
+                color: $bt;
+                font-weight: bold;
+                margin-right: 10px;
+            }
+            .zhuzhi {
+                float: left;
+                font-size: 12px;
+                color: $bt;
+            }
+        }
+        .content {
+            float: left;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 12px;
+            color: $bt;
+            padding: 15px 10px;
+            line-height: 16px;
+            background-color: $bc;
+            border-radius: 6px;
+        }
+    }
+}
+
+.models {
+    float: left;
+    width: 100%;
+    padding: 0 20px;
+    .close {
+        width: 100%;
+        float: left;
+        margin-top: 15px;
+        .closepic {
+            float: right;
+            width: 24px;
+            height: 24px;
+            background: url("../assets/image/close.png");
+            background-size: 100% 100%;
+        }
+    }
+    .changepay {
+        width: 100%;
+        float: left;
+        font-size: 22px;
+        font-weight: bold;
+        color: $bt;
+    }
+}
+
+.pushchange {
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+    .pushchanges {
+        padding: 0;
+        background-color: transparent;
+        width: 100%;
+        float: left;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        .paypic {
+            float: left;
+            width: 30px;
+            height: 30px;
+            background: url("../assets/image/wx.png");
+            background-size: 100% 100%;
+        }
+        .paypics {
+            float: left;
+            width: 30px;
+            height: 30px;
+            background: url("../assets/image/zfb.png");
+            background-size: 100% 100%;
+        }
+        .paytext {
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: $bt;
+        }
+        .changestyle {
+            margin-left: auto;
+            border-radius: 50%;
+            border: 1px solid #979797;
+            width: 24px;
+            height: 24px;
+        }
+        .changestyle-active {
+            margin-left: auto;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            background: url("../assets/image/pitchon.png");
+            background-size: 100% 100%;
+            animation: scale 0.3s;
+        }
+    }
+}
+
+.immediatelybay {
+    float: left;
+    width: 100%;
+    padding: 0;
+    background: $theme;
+    color: $bcf;
+    font-weight: 16px;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 6px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.fromdatas {
+    display: none;
+}
+
+#pay_form {
+    display: none;
+}
+
+::v-deep .van-uploader {
+    float: left;
+}
+
+::v-deep .van-uploader__input-wrapper {
+    width: 70px;
+    height: 70px;
+}
+
+::v-deep .van-uploader__preview {
+    margin-right: 15px;
+}
+
+::v-deep .van-uploader__preview-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+::v-deep .van-uploader__preview-delete {
+    font-size: 17px;
+    border-bottom-right-radius: 6px;
+}
+
+::v-deep .van-popup--bottom.van-popup--round {
+    border-radius: 12px 12px 0 0;
+}
+.siberian{
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    background: #F7F9FC;
+    padding: 5px 0 5px 20px;
+    border-radius: 5px;
+    .siberipunt{
+        width: 70%;
+        float: left;
+        background: #F7F9FC;
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+    }
+    .jihuo{
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        float: right;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffffff;
+        background: #21C891;
+    }
+}
+.paykami {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background: url("../assets/image/kami.png");
+    background-size: 100% 100%;
+}

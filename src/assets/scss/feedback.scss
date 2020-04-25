@@ -1,0 +1,196 @@
+@import './common.scss';
+.babytopanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.babytopanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+    background: $bcf;
+}
+
+.page {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+}
+
+.xgwttitle {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: $bt;
+}
+
+.wtul {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+
+.wtlist {
+    color: $fz;
+    font-size: 13px;
+    background: #EDF2F1;
+    border-radius: 17px;
+    height: 34px;
+    width: auto;
+    padding: 0 10px;
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.wtlist-active {
+    color: $theme;
+    font-size: 13px;
+    background: #D5F2E9;
+    border-radius: 17px;
+    height: 34px;
+    width: auto;
+    padding: 0 10px;
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.textarea {
+    width: 100%;
+    float: left;
+    border: 1px solid #C8CCCB;
+    border-radius: 6px;
+    padding: 10px;
+    height: 170px;
+    resize: none;
+    font-size: 13px;
+    color: $fz;
+    margin-top: 15px;
+    background-color: transparent;
+    line-height: 17px;
+}
+
+.textmun {
+    width: 100%;
+    float: left;
+    text-align: right;
+    color: #999999;
+    font-size: 12px;
+    margin-top: 13px;
+    margin-bottom: 15px;
+}
+
+.dianhua {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+
+.dianhuas {
+    height: 50px;
+}
+
+.miaoshu {
+    width: 100%;
+    float: left;
+    color: $fz;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.btnview {
+    position: fixed;
+    padding: 10px 20px 0 20px;
+    z-index: 2;
+    bottom: 0px;
+    width: 100%;
+    height: 80px;
+    background-color: $bcf;
+    .tijbtn {
+        width: 100%;
+        float: left;
+        background: #00B377;
+        border-radius: 6px;
+        font-size: 18px;
+        font-weight: bold;
+        color: $bcf;
+        padding: 0;
+        height: 50px;
+    }
+}
+
+.uploadpicview {
+    width: 70px;
+    height: 70px;
+    background: #F7F9FC;
+    float: left;
+    border-radius: 6px;
+    .uppicview {
+        width: 100%;
+        float: left;
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        div {
+            width: 24px;
+            height: 24px;
+            background: url("../assets/image/uploadpic.png");
+            background-size: 100% 100%;
+        }
+    }
+    .uptext {
+        margin-top: 8px;
+        width: 100%;
+        float: left;
+        color: $fz;
+        font-size: 10px;
+        transform: scale(0.83, 0.83);
+        text-align: center;
+    }
+}
+
+::v-deep .uploadingimgs {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+::v-deep .van-uploader {
+    float: left;
+}
+
+::v-deep .van-uploader__input-wrapper {
+    width: 70px;
+    height: 70px;
+}
+
+::v-deep .van-uploader__preview {
+    margin-right: 15px;
+}
+
+::v-deep .van-uploader__preview-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+::v-deep .van-uploader__preview-delete {
+    font-size: 17px;
+    border-bottom-right-radius: 6px;
+}
+
+::v-deep .van-popup--bottom.van-popup--round {
+    border-radius: 12px 12px 0 0;
+}

@@ -1,0 +1,141 @@
+@import './common.scss';
+.videoclasspanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 110px;
+    padding-bottom: 80px;
+}
+
+.videoclasspanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+    background-color: $bcf;
+}
+
+.backdoctor {
+    position: fixed;
+    top: 60px;
+    z-index: 2;
+    width: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0 20px;
+    border-bottom: 1px solid #EBEFF5;
+    background: $bcf;
+    .name {
+        float: left;
+        font-size: 16px;
+        color: $bt;
+        font-weight: bold;
+        margin-right: 6px;
+    }
+    .zhuzhi {
+        float: left;
+        font-size: 12px;
+        color: $fz;
+    }
+    .arrows {
+        margin-left: auto;
+        width: 20px;
+        height: 20px;
+        background: url("../assets/image/back.png");
+        background-size: 100% 100%;
+        transform: rotate(180deg);
+    }
+}
+
+.btns {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: 2;
+    .warn {
+        width: 100%;
+        float: left;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 12px;
+        color: $bt;
+    }
+    .nowconsult {
+        width: 100%;
+        float: left;
+        height: 50px;
+        padding: 0;
+        background: $theme;
+        color: $bcf;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.pages {
+    width: 100%;
+    float: left;
+    padding: 0px 20px 30px 20px;
+}
+
+.user {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    .userdetail {
+        float: right;
+        .content {
+            float: left;
+            width: auto;
+            max-width: 220px;
+            padding: 10px;
+            color: $bt;
+            font-size: 13px;
+            line-height: 18px;
+            margin-right: 15px;
+            background: #DCFAF0;
+            border-radius: 12px 2px 12px 12px;
+        }
+        .pic {
+            float: left;
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
+
+.doctortext {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    .userdetail {
+        float: left;
+        .content {
+            float: left;
+            width: auto;
+            max-width: 220px;
+            padding: 10px;
+            color: $bt;
+            font-size: 13px;
+            line-height: 18px;
+            background: #F7F9FC;
+            border-radius: 2px 12px 12px 12px;
+        }
+        .pic {
+            float: left;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+    }
+}
+
+.chats {
+    width: 100%;
+    float: left;
+}

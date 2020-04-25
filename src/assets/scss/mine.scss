@@ -1,0 +1,197 @@
+@import './common.scss';
+.minepanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 3;
+    padding-bottom: 49px;
+    padding-top: 60px;
+}
+
+.minepanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 4;
+}
+
+.minebgname {
+    width: 100%;
+    color: $bcf;
+    font-size: 24px;
+    height: 60px;
+    font-weight: bold;
+    z-index: 3;
+    position: fixed;
+    padding-left: 20px;
+    line-height: 60px;
+    top: 0;
+    left: 0;
+    background: url("../assets/image/minetop.png");
+    background-size: 100% 100%;
+}
+
+.minebg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    float: left;
+    height: 200px;
+    background: url("../assets/image/minebg.png");
+    background-size: 100% 100%;
+}
+
+.mineuserview {
+    margin-top: 50px;
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    .minelogin {
+        width: 100%;
+        float: left;
+        border-radius: 12px;
+        background-color: $bcf;
+        padding: 20px;
+        position: relative;
+    }
+    .minepic {
+        position: absolute;
+        top: -20px;
+        left: 20px;
+        width: 70px;
+        height: 70px;
+    }
+    .mineusername {
+        width: 100%;
+        float: left;
+        font-size: 16px;
+        color: $bt;
+        font-weight: bold;
+        margin-top: 50px;
+    }
+    .signature {
+        width: 100%;
+        float: left;
+        font-size: 14px;
+        color: #666666;
+        margin-top: 10px;
+    }
+    .gologin {
+        float: left;
+        margin-top: 20px;
+        height: 40px;
+        background: linear-gradient(270deg, rgba(73, 230, 197, 1) 0%, rgba(30, 199, 143, 1) 100%);
+        border-radius: 20px;
+        padding: 0;
+        width: 90px;
+        color: $bcf;
+        font-size: 16px;
+    }
+}
+
+.minelist {
+    width: 100%;
+    float: left;
+    border-radius: 12px;
+    background-color: $bcf;
+    margin-top: 20px;
+    li {
+        float: left;
+        width: 100%;
+        height: 50px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        .minelistpic {
+            float: left;
+            width: 24px;
+            height: 24px;
+        }
+        .minelistname {
+            float: left;
+            margin-left: 14.5px;
+            font-size: 14px;
+            color: $bt;
+        }
+        .minelistarrows {
+            margin-left: auto;
+            width: 12px;
+            height: 12px;
+            background: url("../assets/image/arrows.png");
+            background-size: 100% 100%;
+        }
+    }
+}
+
+.mineset {
+    width: 100%;
+    float: left;
+    border-radius: 12px;
+    background-color: $bcf;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0 20px;
+    .minesetpic {
+        float: left;
+        width: 24px;
+        height: 24px;
+        background: url("../assets/image/set.png") center / cover no-repeat;
+    }
+    .minelistname {
+        float: left;
+        margin-left: 14.5px;
+        font-size: 14px;
+        color: $bt;
+    }
+    .minelistarrows {
+        margin-left: auto;
+        width: 12px;
+        height: 12px;
+        background: url("../assets/image/arrows.png");
+        background-size: 100% 100%;
+    }
+}
+
+.msgnumber {
+    height: 15px;
+    width: 15px;
+    border-radius: 7.5px;
+    background: #FF4D4D;
+    z-index: 101;
+    position: absolute;
+    top: 215px;
+    left: 140px;
+    text-align: center;
+    line-height: 15px;
+    div {
+        font-size: 10px;
+        color: #ffffff;
+        transform: scale(0.83, 0.83);
+    }
+}
+
+.msgnumber1 {
+    height: 15px;
+    width: 15px;
+    border-radius: 7.5px;
+    background: #FF4D4D;
+    z-index: 101;
+    position: absolute;
+    top: 315px;
+    left: 140px;
+    text-align: center;
+    line-height: 15px;
+    div {
+        font-size: 10px;
+        color: #ffffff;
+        transform: scale(0.83, 0.83);
+    }
+}

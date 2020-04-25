@@ -1,0 +1,69 @@
+@import './common.scss';
+.babytopanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    background-color: $bcf;
+}
+
+.nocntetview {
+    width: 100%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .nocontent {
+        float: left;
+        width: 100%;
+        margin-top: -30px;
+        .nocontentpicview {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .nocontentpic {
+                float: left;
+                width: 100px;
+                height: 102.5px;
+                margin-left: 10px;
+            }
+        }
+        .tjcg {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: $bt;
+            margin-top: 30px;
+        }
+        .nocontenttext {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            color: $fz;
+            margin-top: 13px;
+        }
+        .gohrefs {
+            width: 100%;
+            float: left;
+            display: flex;
+            justify-content: center;
+            .gohref {
+                width: 100px;
+                color: #FFC44D;
+                font-size: 14px;
+                background-color: transparent;
+                padding: 0;
+                height: 40px;
+                margin-top: 20px;
+            }
+        }
+    }
+}

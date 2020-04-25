@@ -1,0 +1,531 @@
+@import './common.scss';
+.videoclasspanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+}
+
+.videoclasspanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.doctorviews {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+}
+
+.biaoqian {
+    width: 40px;
+    height: 22px;
+    background: #E9F5F1;
+    color: #21C891;
+    font-size: 14px;
+    border-radius: 40%;
+    text-align: center;
+    line-height: 22px;
+    margin-left: 5px;
+    margin-top: 3px;
+    ;
+}
+
+.doctorpage {
+    width: 100%;
+    float: left;
+    .doctorbg {
+        width: 100%;
+        float: left;
+        height: 125px;
+        background: url("../assets/image/doctor.png");
+        background-size: 100% 100%;
+    }
+    .doctorview {
+        width: 100%;
+        float: left;
+        padding: 20px;
+        margin-top: -50px;
+        position: relative;
+        border-radius: 6px;
+        background-color: $bcf;
+        .doctorpic {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            left: 20px;
+            top: -35px;
+        }
+        .doctordetail {
+            width: 100%;
+            float: left;
+            margin-top: 35px;
+            height: 12px;
+            line-height: 12px;
+            .doctorname {
+                float: left;
+                font-size: 16px;
+                font-weight: bold;
+                color: $bt;
+                line-height: 12px;
+                float: left;
+            }
+            .doctorzhuzhi {
+                font-size: 12px;
+                color: $bt;
+                float: left;
+                margin-left: 6px;
+                line-height: 12px;
+            }
+            .doctorstar {
+                float: right;
+                height: 12px;
+                line-height: 12px;
+                .starpic {
+                    float: left;
+                    width: 12px;
+                    height: 12px;
+                    background: url("../assets/image/star.png");
+                    background-size: 100% 100%;
+                }
+                span {
+                    margin-left: 5px;
+                    float: left;
+                    color: #FFC44D;
+                    line-height: 12px;
+                    font-size: 12px;
+                }
+            }
+        }
+        .doctoradd {
+            margin-top: 9px;
+            width: 100%;
+            float: left;
+            height: 12px;
+            line-height: 12px;
+            .doctoraddress {
+                font-size: 12px;
+                color: $bt;
+                float: left;
+                line-height: 12px;
+            }
+            .jiezhen {
+                float: right;
+                height: 12px;
+                line-height: 12px;
+                .text {
+                    font-size: 12px;
+                    color: $fz;
+                    float: left;
+                    line-height: 12px;
+                }
+                .num {
+                    float: left;
+                    margin-left: 5px;
+                    font-size: 12px;
+                    color: $bt;
+                    line-height: 12px;
+                }
+            }
+        }
+    }
+}
+
+.doctorcontent {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+}
+
+.doctortitle {
+    margin-top: 30px;
+    width: 100%;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: $bt;
+}
+
+.doctortitles {
+    margin-top: 30px;
+    width: 100%;
+    float: left;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    .zjjieanjie {
+        float: left;
+        font-size: 16px;
+        font-weight: bold;
+        color: $bt;
+    }
+    .zhankaiview {
+        margin-left: auto;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        .zhankai {
+            float: left;
+            color: $theme;
+            font-size: 12px;
+            transform: scale(0.83, 0.83);
+        }
+        .zhankaipiz {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            background: url("../assets/image/pull-down.png");
+            background-size: 100% 100%;
+        }
+        .zhankaipis {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-top: -2px;
+            background: url("../assets/image/pull-down.png");
+            background-size: 100% 100%;
+            animation: zhans 0.2s;
+            transform: rotate(180deg);
+        }
+    }
+}
+
+@keyframes zhans {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+.zixun {
+    width: 100%;
+    float: left;
+    li {
+        width: 100%;
+        float: left;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        height: 80px;
+        padding-left: 24px;
+        padding-right: 20px;
+        background-color: $bcf;
+        border-radius: 6px;
+        .zixunpic {
+            float: left;
+            width: 36px;
+            height: 36px;
+            background: url("../assets/image/consulttext.png");
+            background-size: 100% 100%;
+        }
+        .zixunpics {
+            float: left;
+            width: 36px;
+            height: 36px;
+            background: url("../assets/image/consult_one.png");
+            background-size: 100% 100%;
+        }
+        .zixundetail {
+            margin-left: 15px;
+            float: left;
+            flex: 1;
+            .zixunname {
+                float: left;
+                width: 100%;
+                font-size: 14px;
+                font-weight: bold;
+                color: $bt;
+            }
+            .zixuntext {
+                margin-top: 8px;
+                float: left;
+                width: 100%;
+                font-size: 12px;
+                color: $fz;
+            }
+        }
+        .zixunprice {
+            margin-left: auto;
+            font-size: 16px;
+            font-weight: bold;
+            color: $jg;
+        }
+    }
+}
+
+.jianjie {
+    width: 100%;
+    float: left;
+    color: #666666;
+    font-size: 13px;
+    line-height: 18px;
+    margin-top: 20px;
+    // letter-spacing: 1px;
+    word-break: break-all;
+    &.overflow-line {
+        // letter-spacing: 1px;
+        word-break: break-all;
+        width: 100%;
+        float: left;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        color: #666666;
+        font-size: 13px;
+        line-height: 18px;
+    }
+}
+
+.doctoranswer {
+    width: 100%;
+    float: left;
+}
+
+.hotissues {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+
+.hotissue {
+    width: 100%;
+    float: left;
+    padding: 15px;
+    background-color: $bcf;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    .hotissueview {
+        width: 100%;
+        float: left;
+        display: flex;
+        .hotissuepic {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: url("../assets/image/problem.png");
+            background-size: 100% 100%;
+            border-radius: 50%;
+        }
+        .hotissuetext {
+            float: left;
+            flex: 1;
+            margin-left: 12px;
+            color: #666666;
+            font-size: 13px;
+            line-height: 18px;
+            @include Two_lines;
+        }
+    }
+    .hotissuedoctor {
+        width: 100%;
+        float: left;
+        margin-top: 20px;
+        margin-bottom: 9px;
+        padding-left: 32px;
+        .hotissuedoctorview {
+            width: 100%;
+            float: left;
+            .hcvdoctorpic {
+                float: left;
+                width: 40px;
+                height: 40px;
+            }
+            .hcvdoctoranswer {
+                float: left;
+                margin-left: 15px;
+                height: 40px;
+                width: auto;
+                padding: 0 16px;
+                border-radius: 12px 12px 12px 0px;
+                background: #EDF2F1;
+                color: $theme;
+                font-size: 13px;
+            }
+        }
+        .hotissuedoctordetail {
+            width: 100%;
+            float: left;
+            line-height: 15px;
+            margin-top: 17px;
+            .hcvdoctor {
+                float: left;
+                font-size: 13px;
+                font-weight: bold;
+                color: $bt;
+            }
+            .hcvaddress {
+                float: left;
+                font-size: 12px;
+                color: $fz;
+                margin-left: 10px;
+            }
+            .hcvzhuzhidoctor {
+                float: left;
+                font-size: 12px;
+                color: $fz;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.nocntetview {
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    .nocontent {
+        float: left;
+        width: 100%;
+        .nocontentpicview {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .nocontentpic {
+                float: left;
+                width: 103px;
+                height: 100.5px;
+            }
+        }
+        .nocontenttext {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            color: $fz;
+            margin-top: 30px;
+        }
+    }
+}
+
+.morebtnview {
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    .morebtn {
+        width: 132px;
+        height: 35px;
+        background: #EDF2F1;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        justify-content: center;
+        div {
+            height: 20px;
+            display: flex;
+            align-items: center;
+            .morebtntext {
+                font-size: 13px;
+                color: $theme;
+            }
+            .morebtnpic {
+                margin-left: 5px;
+                width: 11px;
+                height: 7px;
+                background: url("../assets/image/triangle.png");
+                background-size: 100% 100%;
+            }
+        }
+    }
+}
+
+.yonghpl {
+    margin-top: 10px;
+    width: 100%;
+    float: left;
+    .yhpltitle {
+        width: 100%;
+        float: left;
+        font-size: 16px;
+        font-weight: bold;
+        color: $bt;
+    }
+}
+
+.commentul {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    li {
+        width: 100%;
+        float: left;
+        .user {
+            width: 100%;
+            float: left;
+            display: flex;
+            height: 30px;
+            line-height: 30px;
+            .pices {
+                float: left;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+            .nameview {
+                float: left;
+                margin: 0 10px;
+                flex: 1;
+                .name {
+                    width: 100%;
+                    @include One_lines;
+                    color: $bt;
+                    font-size: 14px;
+                    margin-top: -10px;
+                }
+            }
+            .time {
+                font-size: 12px;
+                // float: right;
+                margin-top: -10px;
+                color: $fz;
+            }
+        }
+        .text {
+            width: 100%;
+            float: left;
+            margin-top: 15px;
+            color: $bt;
+            font-size: 13px;
+            line-height: 18px;
+        }
+    }
+}
+
+.cometntdiv {
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.jiezhensc {
+    width: 100%;
+    float: left;
+    color: #666666;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+::v-deep .cube-pullup-wrapper {
+    height: 50px;
+    .before-trigger {
+        span {
+            font-size: 13px;
+            color: #999999;
+        }
+    }
+}

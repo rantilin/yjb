@@ -1,0 +1,92 @@
+@import './common.scss';
+.videoclasspanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+}
+
+.videoclasspanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.comul {
+    float: left;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 20px;
+    .comli {
+        float: left;
+        width: 100%;
+        padding: 15px;
+        display: flex;
+        background-color: $bcf;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        .compic {
+            width: 130px;
+            height: 100.5px;
+            border-radius: 12px;
+        }
+        .comdetail {
+            flex: 1;
+            margin-left: 15px;
+            .comname {
+                float: left;
+                width: 100%;
+                font-size: 16px;
+                color: $bt;
+                font-weight: bold;
+                line-height: 20px;
+                @include Two_lines;
+            }
+            .text {
+                float: left;
+                font-size: 13px;
+                height: 15;
+                line-height: 17px;
+                color: $fz;
+                @include One_lines;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+.nocntetview {
+    width: 100%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .nocontent {
+        float: left;
+        width: 100%;
+        margin-top: -30px;
+        .nocontentpicview {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .nocontentpic {
+                float: left;
+                width: 132px;
+                height: 94px;
+            }
+        }
+        .nocontenttext {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            color: $fz;
+            margin-top: 30px;
+        }
+    }
+}

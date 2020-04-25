@@ -1,0 +1,621 @@
+@import './common.scss';
+.classpanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 90px;
+    padding-bottom: 50px;
+}
+
+.classpanelviews {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    padding-bottom: 50px;
+}
+
+.classpanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+    background-color: $bcf;
+}
+
+.videoview {
+    width: 100%;
+    float: left;
+}
+
+.audioview {
+    width: 100%;
+    float: left;
+    padding: 0 20px;
+    .picview {
+        width: 100%;
+        float: left;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        .pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 12px;
+            position: relative;
+            .time {
+                background: rgb(0, 0, 0, 0.4);
+                border-radius: 7.5px;
+                width: auto;
+                height: 15px;
+                padding: 0 6px;
+                position: absolute;
+                left: 6px;
+                bottom: 6px;
+                .headset {
+                    float: left;
+                    margin-top: 2.2px;
+                    width: 11px;
+                    height: 10px;
+                    background: url("../assets/image/headset.png");
+                    background-size: 100% 100%;
+                }
+                .shuliang {
+                    float: left;
+                    height: 15px;
+                    line-height: 17px;
+                    margin-left: 2px;
+                    color: $bcf;
+                    font-size: 10px;
+                    transform: scale(0.83, 0.83);
+                }
+            }
+        }
+    }
+    .title {
+        float: left;
+        width: 100%;
+        font-size: 16px;
+        color: $bt;
+        font-weight: bold;
+        line-height: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .numview {
+        float: left;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+        .num {
+            float: left;
+            line-height: 10px;
+            .pirce {
+                float: left;
+                color: $jg;
+                font-size: 16px;
+                font-weight: bold;
+                margin-right: 20px;
+            }
+            .listen {
+                float: left;
+                color: $fz;
+                font-size: 12px;
+            }
+        }
+    }
+    .progress {
+        float: left;
+        margin: 48px 0;
+        width: 100%;
+        height: 2px;
+        background-color: #EFEFEF;
+        border-radius: 1px;
+        position: relative;
+        .line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(270deg, rgba(73, 230, 197, 1) 0%, rgba(30, 199, 143, 1) 100%);
+            border-radius: 1px;
+        }
+        .dot {
+            position: absolute;
+            left: 200px;
+            top: -10px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 10px;
+            color: $bt;
+            padding: 0 10px;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.06);
+            border-radius: 10px;
+        }
+    }
+    .playview {
+        float: left;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .playviewoption {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            .prve {
+                width: 30px;
+                height: 30px;
+                background: url("../assets/image/next.png");
+                background-size: 100% 100%;
+                transform: rotate(180deg);
+            }
+            .prveoff {
+                width: 30px;
+                height: 30px;
+                background: url("../assets/image/prve.png");
+                background-size: 100% 100%;
+            }
+            .play {
+                width: 50px;
+                height: 50px;
+                margin: 0 40px;
+                border-radius: 50px;
+                background: linear-gradient(270deg, rgba(73, 230, 197, 1) 0%, rgba(30, 199, 143, 1) 100%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                padding-left: 2px;
+                .playpicoff {
+                    width: 24px;
+                    height: 24px;
+                    background: url("../assets/image/audioplay.png");
+                    background-size: 100% 100%;
+                }
+                .playpicon {
+                    width: 24px;
+                    height: 24px;
+                    margin-left: -2px;
+                    background: url("../assets/image/pause.png");
+                    background-size: 100% 100%;
+                }
+            }
+            .next {
+                width: 30px;
+                height: 30px;
+                background: url("../assets/image/next.png");
+                background-size: 100% 100%;
+            }
+            .nextoff {
+                width: 30px;
+                height: 30px;
+                background: url("../assets/image/prve.png");
+                background-size: 100% 100%;
+                transform: rotate(180deg);
+            }
+        }
+        .collectview {
+            position: absolute;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            top: 0;
+            right: 0;
+            .collect {
+                width: 24px;
+                height: 24px;
+                background: url("../assets/image/staroff.png");
+                background-size: 100% 100%;
+            }
+            .collect-active {
+                width: 24px;
+                height: 24px;
+                background: url("../assets/image/star.png");
+                background-size: 100% 100%;
+                animation: scale .3s;
+            }
+        }
+    }
+    .audiolisttitle {
+        font-size: 16px;
+        font-weight: bold;
+        color: $bt;
+        width: 100%;
+        float: left;
+        margin-top: 55px;
+    }
+}
+
+.audiolistdiv {
+    width: 100%;
+    float: left;
+    display: flex;
+    height: 72px;
+    padding-top: 15px;
+}
+
+.audiolist {
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    li {
+        width: 100%;
+        float: left;
+        .listenstate {
+            float: left;
+            width: 20px;
+            height: 100%;
+            margin-right: 15px;
+            overflow: hidden;
+            position: relative;
+            .img {
+                position: absolute;
+                top: -43px;
+                left: -40px;
+                width: 100px;
+                height: 100px;
+            }
+            .imgs {
+                width: 15px;
+                height: 15px;
+                background: url("../assets/image/playon.png");
+                background-size: 100% 100%;
+            }
+            .imgses {
+                width: 15px;
+                height: 15px;
+                background: url("../assets/image/playoff.png");
+                background-size: 100% 100%;
+            }
+        }
+        .listdetail {
+            float: left;
+            flex: 1;
+            .nameview {
+                width: 100%;
+                float: left;
+                height: 16px;
+                display: flex;
+                .name {
+                    float: left;
+                    flex: 1;
+                    font-size: 14px;
+                    color: $bt;
+                    height: 16px;
+                    line-height: 16px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    word-break: break-all;
+                }
+                .trylistenview {
+                    float: left;
+                    margin-left: auto;
+                    border-radius: 4px;
+                    border: 1px solid $theme;
+                    height: 24px;
+                    color: $theme;
+                    font-size: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 60px;
+                    white-space: nowrap;
+                    margin-left: 10px;
+                    .trylisten {
+                        font-size: 12px;
+                    }
+                }
+                .nolistenprice {
+                    font-size: 13px;
+                    font-weight: bold;
+                    white-space: nowrap;
+                    color: $jg;
+                    margin-left: 10px;
+                    line-height: 16px;
+                    margin-left: auto;
+                }
+            }
+            .listtime {
+                width: 100%;
+                float: left;
+                height: 11px;
+                margin-top: 10px;
+                .timepic {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/time.png");
+                    background-size: 100% 100%;
+                }
+                .timepics {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/times.png");
+                    background-size: 100% 100%;
+                }
+                .timetext {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 5px;
+                }
+                .watchnum {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+}
+
+.disable {
+    color: #BFBFBF !important;
+}
+
+.bottombtn {
+    position: fixed;
+    z-index: 3;
+    bottom: 0px;
+    height: 50px;
+    width: 100%;
+    .share {
+        float: left;
+        width: 60%;
+        height: 100%;
+        background-color: #FFC34D;
+        padding: 0;
+        .shareone {
+            width: 100%;
+            text-align: center;
+            color: $bcf;
+            font-size: 13px;
+        }
+        .sharetwo {
+            margin-top: 6px;
+            width: 100%;
+            text-align: center;
+            color: $bcf;
+            font-size: 13px;
+        }
+    }
+    .buy {
+        float: left;
+        width: 40%;
+        height: 100%;
+        color: $bcf;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: $theme;
+    }
+    .selectionsbuy {
+        float: left;
+        width: 100%;
+        height: 100%;
+        color: $bcf;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: $theme;
+    }
+}
+
+.moreclass {
+    padding: 0;
+    float: right;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    width: auto;
+    background-color: transparent;
+    .moreclasstext {
+        float: left;
+        height: 100%;
+        font-size: 13px;
+        color: $theme;
+    }
+    .moreclasspic {
+        float: left;
+        width: 11px;
+        height: 7px;
+        margin-left: 4px;
+        background: url("../assets/image/triangle.png");
+        background-size: 100% 100%;
+    }
+}
+
+.listviews {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#myAudio {
+    width: 300px;
+    height: 200px;
+    position: fixed;
+    top: -9999px;
+    opacity: 0;
+}
+
+.zjbt {
+    float: left;
+    width: 100%;
+    color: #666666;
+    font-size: 14px;
+    padding: 0 20px;
+    margin: 5px 0;
+}
+
+.audiotd {
+    float: left;
+    width: 100%;
+    background: #f0f5f4;
+    border-radius: 1px;
+    position: relative;
+    height: 2px;
+    display: flex;
+    justify-content: center;
+    margin: 48px 0;
+}
+
+.audiomove {
+    position: relative;
+    height: 2px;
+}
+
+.audiodot {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    font-size: 10px;
+    color: #666;
+    line-height: 20px;
+    padding: 0 10px;
+    width: auto;
+    z-index: 6;
+}
+
+.audioline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 1px;
+    height: 2px;
+    z-index: 3;
+    background: $theme;
+}
+
+.yindao {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, 0.5);
+    z-index: 888;
+    .yindaoxian {
+        float: right;
+        width: 93.5px;
+        height: 95px;
+        background: url("../assets/image/xian.png");
+        background-size: 100% 100%;
+        margin-top: 15px;
+        margin-right: 20px;
+    }
+    .yindaotu {
+        float: left;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 60px;
+        .yindaopic {
+            width: 313.5px;
+            height: 57px;
+            background: url("../assets/image/neirong.png");
+            background-size: 100% 100%;
+        }
+    }
+    .yindaobtnview {
+        margin-top: 50px;
+        float: left;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .yindaobtn {
+            height: 40px;
+            border-radius: 34px;
+            width: 79px;
+            padding: 0 20px;
+            background-color: $theme;
+            font-size: 16px;
+            color: $bcf;
+            font-weight: bold;
+        }
+    }
+}
+
+.commontitles {
+    width: 100%;
+    position: fixed;
+    z-index: 51;
+    background-color: #ffffff;
+    height: 60px;
+    top: 0px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.commonbackpic {
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/back.png");
+    background-size: 100% 100%;
+}
+
+.backindex {
+    margin-left: auto;
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/backindex.png");
+    background-size: 100% 100%;
+}
+
+.notice {
+    float: left;
+    background: #FAFAFA;
+    border-radius: 4px;
+    height: 30px;
+    position: fixed;
+    z-index: 6;
+    top: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    .noticeview {
+        height: 100%;
+        float: left;
+        flex: 1;
+        margin-right: 6px;
+        padding: 0 10px;
+    }
+    .xx {
+        float: left;
+        width: 24px;
+        height: 24px;
+        background: url("../assets/image/xx.png");
+        background-size: 100% 100%;
+    }
+}
+
+.marquee {
+    width: 100%;
+    font-size: 13px;
+    color: rgb(217, 33, 33);
+    height: 30px;
+    line-height: 33px;
+}

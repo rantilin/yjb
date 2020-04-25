@@ -1,0 +1,368 @@
+@import './common.scss';
+.videoclasspanelview {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    padding-top: 110px;
+}
+
+.paneview {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.videoclasspanels {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
+
+.optionbar {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    z-index: 2;
+    top: 60px;
+    display: flex;
+    background-color: $bcf;
+}
+
+.bar {
+    flex: 1;
+    position: relative;
+    height: 30px;
+    float: left;
+    margin-top: 15px;
+}
+
+.bartext {
+    float: left;
+    width: 100%;
+    font-size: 16px;
+    color: $bt;
+    text-align: center;
+    line-height: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bartext-active {
+    float: left;
+    font-size: 16px;
+    color: $bt;
+    text-align: center;
+    line-height: 14px;
+    font-weight: bold;
+}
+
+.barlineview {
+    float: left;
+    position: absolute;
+    top: 28px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.barline {
+    float: left;
+    background: $theme;
+    height: 3px;
+    border-radius: 1.5px;
+    width: 20px;
+    height: 3px;
+    animation: scale 0.3s;
+}
+
+.consultlistul {
+    width: 100%;
+    padding: 0 20px;
+    float: left;
+    margin-top: 20px;
+}
+
+.consultlistli {
+    float: left;
+    width: 100%;
+    background-color: $bcf;
+    border-radius: 6px;
+    padding: 15px 15px 20px 15px;
+    margin-bottom: 20px;
+}
+
+.listtitle {
+    float: left;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+}
+
+.listtitlepic {
+    float: left;
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/textconsult.png");
+    background-size: 100% 100%;
+}
+
+.listtitlepics {
+    float: left;
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/phoneconsult.png");
+    background-size: 100% 100%;
+}
+
+.listtitlename {
+    float: left;
+    margin-left: 10px;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: bold;
+    color: $bt;
+}
+
+.listtitleview {
+    height: 24px;
+    float: right;
+}
+
+.listtitlemsg {
+    float: left;
+    height: 24px;
+    padding: 0 8px;
+    font-size: 14px;
+    color: $bcf;
+    background: #FF4D4D;
+    line-height: 24px;
+    border-radius: 12px;
+    margin-right: 10px;
+}
+
+.listtitledel {
+    float: left;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    background: url("../assets/image/delete.png");
+    background-size: 100% 100%;
+}
+
+.doctorview {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    display: flex;
+}
+
+.doctorpic {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.doctordetail {
+    flex: 1;
+    float: left;
+}
+
+.doctorname {
+    width: 100%;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: $bt;
+    margin-top: 5px;
+}
+
+.doctortime {
+    width: 100%;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    color: $fz;
+    margin-top: 8px;
+}
+
+.question {
+    float: left;
+    width: 100%;
+    font-size: 16px;
+    color: $bt;
+    font-weight: bold;
+    line-height: 20px;
+    @include Three_lines;
+    margin-top: 15px;
+}
+
+.questionlistview {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.questionlist {
+    float: left;
+    margin-right: 10px;
+}
+
+.questionlist:last-child {
+    margin-right: 0;
+}
+
+.doctorpics {
+    float: left;
+    width: 95px;
+    height: 95px;
+}
+
+.audit {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.hotissue {
+    width: 100%;
+    float: left;
+    padding: 15px;
+    background-color: $bcf;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    .hotissueview {
+        width: 100%;
+        float: left;
+        display: flex;
+        .hotissuepic {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: url("../assets/image/problem.png");
+            background-size: 100% 100%;
+            border-radius: 50%;
+        }
+        .hotissuetext {
+            float: left;
+            flex: 1;
+            margin-left: 12px;
+            color: #666666;
+            font-size: 13px;
+            line-height: 18px;
+            @include Two_lines;
+        }
+    }
+    .hotissuedoctor {
+        width: 100%;
+        float: left;
+        margin-top: 20px;
+        margin-bottom: 9px;
+        padding-left: 32px;
+        .hotissuedoctorview {
+            width: 100%;
+            float: left;
+            .hcvdoctorpic {
+                float: left;
+                width: 40px;
+                height: 40px;
+            }
+            .hcvdoctoranswer {
+                float: left;
+                margin-left: 15px;
+                height: 40px;
+                width: auto;
+                padding: 0 16px;
+                border-radius: 12px 12px 12px 0px;
+                background: #EDF2F1;
+                color: $theme;
+                font-size: 13px;
+            }
+        }
+        .hotissuedoctordetail {
+            width: 100%;
+            float: left;
+            line-height: 15px;
+            margin-top: 17px;
+            .hcvdoctor {
+                float: left;
+                font-size: 13px;
+                font-weight: bold;
+                color: $bt;
+            }
+            .hcvaddress {
+                float: left;
+                font-size: 12px;
+                color: $fz;
+                margin-left: 10px;
+            }
+            .hcvzhuzhidoctor {
+                float: left;
+                font-size: 12px;
+                color: $fz;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.nocntetview {
+    width: 100%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .nocontent {
+        float: left;
+        width: 100%;
+        margin-top: -55px;
+        .nocontentpicview {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .nocontentpic {
+                float: left;
+                width: 132px;
+                height: 94px;
+            }
+        }
+        .nocontenttext {
+            width: 100%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            color: $fz;
+            margin-top: 30px;
+        }
+    }
+}
+
+.vanttab {
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+
+::v-deep .van-tab {
+    font-size: 16px;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tab--active {
+    font-size: 16px;
+    .van-ellipsis {
+        font-weight: bold;
+    }
+}
+
+::v-deep .van-tabs__line {
+    border-radius: 1.5px;
+}

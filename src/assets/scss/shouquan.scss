@@ -1,0 +1,88 @@
+$theme: #21C891; //主题色 
+$rba2: rgba(0, 204, 170, 0.2);
+$rba5: rgba(0, 204, 170, 0.5);
+$rba7: rgba(0, 204, 170, 0.7);
+$num: 8px; //loading放大倍数
+$p1: -2.6*$num;
+$p2: -1.8*$num;
+$p3: 1.8*$num;
+$p4: 2.5*$num;
+$p5: 1.75*$num;
+.loadingdv {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    z-index: 888;
+    min-width: 320px;
+    max-width: 780px;
+}
+
+.loadre {
+    width: 100%;
+}
+
+.loads {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.loadtxt {
+    width: 100%;
+    text-align: center;
+    color: #999999;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.load {
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.load .loader {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    text-indent: -9999em;
+    -webkit-animation: load 1.1s infinite ease;
+    animation: load 1.1s infinite ease;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+@keyframes load {
+    0%,
+    100% {
+        box-shadow: 0px $p1 0px 0px $theme, $p3 $p2 0 0px $rba2, $p4 0px 0 0px $rba2, $p5 $p5 0 0px $rba2, 0px $p4 0 0px $rba2, $p2 $p3 0 0px $rba2, $p1 0px 0 0px $rba5, $p2 $p2 0 0px $rba7;
+    }
+    12.5% {
+        box-shadow: 0px $p1 0px 0px $rba7, $p3 $p2 0 0px $theme, $p4 0px 0 0px $rba2, $p5 $p5 0 0px $rba2, 0px $p4 0 0px $rba2, $p2 $p3 0 0px $rba2, $p1 0px 0 0px $rba2, $p2 $p2 0 0px $rba5;
+    }
+    25% {
+        box-shadow: 0px $p1 0px 0px $rba5, $p3 $p2 0 0px $rba7, $p4 0px 0 0px $theme, $p5 $p5 0 0px $rba2, 0px $p4 0 0px $rba2, $p2 $p3 0 0px $rba2, $p1 0px 0 0px $rba2, $p2 $p2 0 0px $rba2;
+    }
+    37.5% {
+        box-shadow: 0px $p1 0px 0px $rba2, $p3 $p2 0 0px $rba5, $p4 0px 0 0px $rba7, $p5 $p5 0 0px $theme, 0px $p4 0 0px $rba2, $p2 $p3 0 0px $rba2, $p1 0px 0 0px $rba2, $p2 $p2 0 0px $rba2;
+    }
+    50% {
+        box-shadow: 0px $p1 0px 0px $rba2, $p3 $p2 0 0px $rba2, $p4 0px 0 0px $rba5, $p5 $p5 0 0px $rba7, 0px $p4 0 0px $theme, $p2 $p3 0 0px $rba2, $p1 0px 0 0px $rba2, $p2 $p2 0 0px $rba2;
+    }
+    62.5% {
+        box-shadow: 0px $p1 0px 0px $rba2, $p3 $p2 0 0px $rba2, $p4 0px 0 0px $rba2, $p5 $p5 0 0px $rba5, 0px $p4 0 0px $rba7, $p2 $p3 0 0px $theme, $p1 0px 0 0px $rba2, $p2 $p2 0 0px $rba2;
+    }
+    75% {
+        box-shadow: 0px $p1 0px 0px $rba2, $p3 $p2 0 0px $rba2, $p4 0px 0 0px $rba2, $p5 $p5 0 0px $rba2, 0px $p4 0 0px $rba5, $p2 $p3 0 0px $rba7, $p1 0px 0 0px $theme, $p2 $p2 0 0px $rba2;
+    }
+    87.5% {
+        box-shadow: 0px $p1 0px 0px $rba2, $p3 $p2 0 0px $rba2, $p4 0px 0 0px $rba2, $p5 $p5 0 0px $rba2, 0px $p4 0 0px $rba2, $p2 $p3 0 0px $rba5, $p1 0px 0 0px $rba7, $p2 $p2 0 0px $theme;
+    }
+}
