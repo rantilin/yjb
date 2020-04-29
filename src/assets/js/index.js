@@ -401,6 +401,11 @@ export default {
                     if (this.shouquankey) {
                         var dataes = { value: this.shouquankey, expirse: new Date().getTime() + 7 * 24 * 3600 * 1000 };
                         window.localStorage.setItem('key', JSON.stringify(dataes));
+                        this.$router.push({
+                            path: localStorage.getItem('souquanpath'),
+                            query: JSON.parse(localStorage.getItem('souquanquery'))
+                        });
+                        
                     }
                 }
                 this.list1();

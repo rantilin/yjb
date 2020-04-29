@@ -36,7 +36,7 @@ function share_yp(key, goods_id, title, shareimg, desc, url, present) {
                         if (err.message.includes('timeout')) {
                             errmsg = "请检查网络再刷新重试"
                         }
-                        msgtip(errmsg);
+                        //msgtip(errmsg);
                     });
                 }
             },
@@ -75,7 +75,7 @@ function share_yp(key, goods_id, title, shareimg, desc, url, present) {
             if (err.message.includes('timeout')) {
                 errmsg = "请检查网络再刷新重试"
             }
-            msgtip(errmsg);
+            //msgtip(errmsg);
         }
     });
 

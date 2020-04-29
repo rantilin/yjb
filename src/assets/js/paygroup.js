@@ -89,7 +89,7 @@ export default {
                 zjid: '',
                 gm: false,
             },
-            sharename: '2020家长都在给孩子用的运动高法',
+            sharename: '2020家长都在给孩子用的运动增高法',
             desc: "在家做这些运动，帮助孩子猛长5cm",
             url: process.env.VUE_APP_SERVICE_URLS,
             present: process.env.VUE_APP_SERVICE_URLS + "#/paygroup?id=" + this.$route.query.id + "",
@@ -225,11 +225,18 @@ export default {
                     }
                     this.msglen = this.msglen + 1;
                     this.msglists = arr.concat(this.msglists);
-                    this.vantab.list = [
-                        "详情介绍",
-                        "课程目录(" + this.complimentary.comnum + ")",
-                        "评价(" + this.msglen + ")",
-                    ]
+                    if (this.complimentary.comnum > 0) {
+                        this.vantab.list = [
+                            "详情介绍",
+                            "课程目录(" + this.complimentary.comnum + ")",
+                            "评价(" + this.msglen + ")",
+                        ]
+                    } else {
+                        this.vantab.list = [
+                            "详情介绍",
+                            "评价(" + this.msglen + ")",
+                        ]
+                    }
                     this.$refs.scroll.refresh();
                 }).catch(err => {
                     if (err.message != "interrupt") {
@@ -237,7 +244,7 @@ export default {
                         if (err.message.includes('timeout')) {
                             errmsg = "请检查网络再刷新重试"
                         }
-                        this.toast(errmsg);
+                        //this.toast(errmsg);
                     }
                 });
                 this.value = ''
@@ -263,9 +270,9 @@ export default {
                     this.applicant = true
                 }
                 this.loding = false;
-                
+
                 let zeng = res.data.datas.zeng;
-                
+
                 if (Object.keys(zeng).length != 0) {
                     this.complimentary.videolist = res.data.datas.zeng;
                     this.complimentary.comnum = res.data.datas.zeng.length;
@@ -273,18 +280,25 @@ export default {
                     this.complimentary.zjtext = this.complimentary.videolist[this.complimentary.playindex].courseware;
                     this.complimentary.zjid = this.complimentary.videolist[this.complimentary.playindex].vo_id;
                 }
-                this.vantab.list = [
-                    "详情介绍",
-                    "课程目录(" + this.complimentary.comnum + ")",
-                    "评价(" + this.msglen + ")",
-                ]
+                if (this.complimentary.comnum > 0) {
+                    this.vantab.list = [
+                        "详情介绍",
+                        "课程目录(" + this.complimentary.comnum + ")",
+                        "评价(" + this.msglen + ")",
+                    ]
+                } else {
+                    this.vantab.list = [
+                        "详情介绍",
+                        "评价(" + this.msglen + ")",
+                    ]
+                }
             }).catch(err => {
                 if (err.message != "interrupt") {
                     let errmsg = '请求失败';
                     if (err.message.includes('timeout')) {
                         errmsg = "请检查网络再刷新重试"
                     }
-                    this.toast(errmsg);
+                    //this.toast(errmsg);
                 }
             });
         },
@@ -317,11 +331,18 @@ export default {
                     this.msglists = null;
                     this.msglen = 0
                 }
-                this.vantab.list = [
-                    "详情介绍",
-                    "课程目录(" + this.complimentary.comnum + ")",
-                    "评价(" + this.msglen + ")",
-                ];
+                if (this.complimentary.comnum > 0) {
+                    this.vantab.list = [
+                        "详情介绍",
+                        "课程目录(" + this.complimentary.comnum + ")",
+                        "评价(" + this.msglen + ")",
+                    ]
+                } else {
+                    this.vantab.list = [
+                        "详情介绍",
+                        "评价(" + this.msglen + ")",
+                    ]
+                }
                 this.list5();
             }).catch(err => {
                 console.log(err)
@@ -330,7 +351,7 @@ export default {
                     if (err.message.includes('timeout')) {
                         errmsg = "请检查网络再刷新重试"
                     }
-                    this.toast(errmsg);
+                    //this.toast(errmsg);
                 }
             });
         },
@@ -351,7 +372,7 @@ export default {
                     if (err.message.includes('timeout')) {
                         errmsg = "请检查网络再刷新重试"
                     }
-                    this.toast(errmsg);
+                    //this.toast(errmsg);
                 }
             });
         },
@@ -367,7 +388,7 @@ export default {
                     if (err.message.includes('timeout')) {
                         errmsg = "请检查网络再刷新重试"
                     }
-                    this.toast(errmsg);
+                    //this.toast(errmsg);
                 }
             });
         },
@@ -394,6 +415,13 @@ export default {
                 document.getElementById("myVideo").play();
             }
 
+        },
+        morenbofang(){
+            if(this.complimentary.videosrc!=''){
+                this.complimentary.sphei = true;
+                this.complimentary.yipics = true;
+            }
+            document.getElementById("myVideo").play();
         },
         listbtn(index) {
             this.complimentary.index = index;
@@ -457,6 +485,7 @@ export default {
 
     },
     mounted() {
+
         this.$nextTick(() => {
             this.$refs.scroll.refresh();
         });

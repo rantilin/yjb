@@ -482,6 +482,10 @@ export default {
             }
 
         },
+        morenbofang(){
+            this.sphei = true;
+            document.getElementById("myVideo").play();
+        },
         listbtn(index) {
             this.index1 = index;
             if (this.videolist[index].freession == 0 && this.videolist[index].gm != 1) {
@@ -855,7 +859,6 @@ export default {
             this.list2();
             this.list3();
             this.list7();
-            
             let _this = this;
             document.onkeydown = function (event) {
                 if (event.keyCode == 13) {

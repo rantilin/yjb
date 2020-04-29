@@ -59,6 +59,7 @@
           >
             <div class="heimengceng">
               <cube-button class="mengmiantuplay" @click="bofang"></cube-button>
+              <div class="progress"><img src="../assets/image/progress.png" alt=""></div>
             </div>
           </div>
           <div class="content">
@@ -155,7 +156,8 @@
             <!--        optionbar-->
             <div class="contentdetail">
               <div class="slide" v-show="0==currentTab">
-                <div class="nrtext">{{introduction}}</div>
+                <div class="nrtext" v-if="introduction!=''">{{introduction}}</div>
+                <div class="nrtext" v-else><img src="../assets/image/xiahua.png" alt=""></div>
                 <van-image class="nrpic" v-if="goods_images!=''" fit="contain" :src="goods_images" />
               </div>
               <div class="slide slide2" v-show="1==currentTab">

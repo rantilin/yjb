@@ -68,7 +68,7 @@ export default {
                     if (common.validateTel(this.value)) {
                         const _this = this;
                         _this.yzmdis = true,
-                            times = setInterval(function() {
+                            times = setInterval(function () {
                                 time--;
                                 _this.yzmtext = "(" + time + ")s后可重新发送"
                                 if (time <= 0) {
@@ -113,49 +113,55 @@ export default {
                                 if (flag) {
                                     //去登陆  获取保存key
                                     loginapi.onreg(this.value).then(reson => {
-                                            if (reson.data.datas.error == null) {
-                                                var dataes = { value: reson.data.datas.key, expirse: new Date().getTime() + 7 * 24 * 3600 * 10000 };
-                                                window.localStorage.setItem('key', JSON.stringify(dataes));
-                                                //判断是否由参数
-                                                const toast = this.$createToast({
-                                                    txt: '登录成功',
-                                                    type: 'correct',
-                                                    time: 2000,
-                                                    $events: {
-                                                        timeout: () => {
-                                                            this.logindis = false;
-                                                            if (this.$route.query.redirect) {
+                                        if (reson.data.datas.error == null) {
+                                            var dataes = {
+                                                value: reson.data.datas.key,
+                                                expirse: new Date().getTime() + 7 * 24 * 3600 * 10000
+                                            };
+                                            window.localStorage.setItem('key', JSON.stringify(dataes));
+                                            //判断是否由参数
+                                            const toast = this.$createToast({
+                                                txt: '登录成功',
+                                                type: 'correct',
+                                                time: 2000,
+                                                $events: {
+                                                    timeout: () => {
+                                                        this.logindis = false;
+                                                        if (this.$route.query.redirect) {
+                                                            this.$router.replace({
+                                                                path: this.$route.query.redirect
+                                                            })
+                                                        }
+                                                        if (this.$route.query.back) {
+                                                            this.$router.go(-1);
+                                                        } else {
+                                                            if (this.$route.query.redirect == undefined) {
                                                                 this.$router.replace({
-                                                                    path: this.$route.query.redirect
+                                                                    path: '/'
                                                                 })
                                                             }
-                                                            if (this.$route.query.back) {
-                                                                this.$router.go(-1);
-                                                            } else {
-                                                                if (this.$route.query.redirect == undefined) {
-                                                                    this.$router.replace({
-                                                                        path: '/'
-                                                                    })
-                                                                }
-                                                            }
-
                                                         }
+
                                                     }
-                                                })
-                                                toast.show()
-                                            } else {
-                                                this.toast = this.$createToast({
-                                                    txt: reson.data.datas.error,
-                                                    type: 'txt'
-                                                })
-                                                this.toast.show()
-                                            }
-                                        })
-                                        //去注册  获取保存key
+                                                }
+                                            })
+                                            toast.show()
+                                        } else {
+                                            this.toast = this.$createToast({
+                                                txt: reson.data.datas.error,
+                                                type: 'txt'
+                                            })
+                                            this.toast.show()
+                                        }
+                                    })
+                                    //去注册  获取保存key
                                 } else {
                                     loginapi.offreg(this.value).then(resoff => {
                                         if (resoff.data.datas.error == null) {
-                                            var dataes = { value: resoff.data.datas.key, expirse: new Date().getTime() + 7 * 24 * 3600 * 1000 };
+                                            var dataes = {
+                                                value: resoff.data.datas.key,
+                                                expirse: new Date().getTime() + 7 * 24 * 3600 * 1000
+                                            };
                                             window.localStorage.setItem('key', JSON.stringify(dataes));
                                             //判断是否由参数
                                             const toast = this.$createToast({
@@ -287,6 +293,28 @@ export default {
                 path: "/shouquan"
             });
         }
+
+    },
+    beforeRouteEnter(to, from, next) {
+        if (window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger') {
+            localStorage.setItem('souquanpath', from.path);
+            localStorage.setItem('souquanquery', JSON.stringify(from.query));
+        }
+         
+        //console.log(localStorage.getItem('souquanpath'));
+        //console.log(localStorage.getItem('souquanquery'));
+        // console.log('beforeRouteEnter第一个参数to',to);
+        // console.log('beforeRouteEnter第二个参数from',from.path);
+        //  console.log('beforeRouteEnter第三个参数next',next);
+        // 如果是从添加乘客页面跳转过来，则从缓存中取乘客数据，如果是从选择航班页面过来，则清除乘客缓存
+        // if(from.name === 'CabinList'){
+        //     sessionStorage.removeItem('passengerList')
+        // }
+        next(vm => {
+            //因为当钩子执行前，组件实例还没被创建
+            // vm 就是当前组件的实例相当于上面的 this，所以在 next 方法里你就可以把 vm 当 this 来用了。
+            //当前组件的实例
+        });
     },
     mounted() {},
     beforeDestroy() {

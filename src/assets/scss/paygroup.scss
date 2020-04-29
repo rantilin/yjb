@@ -178,7 +178,6 @@
     .contentview {
         float: left;
         width: 100%;
-        padding-top: 13px;
         .intro {
             float: left;
             width: 100%;
@@ -186,6 +185,10 @@
             font-size: 13px;
             padding: 0 16px;
             line-height: 17px;
+            img{
+                width: 100%;
+                margin: auto;
+            }
         }
         .introimg {
             float: left;
@@ -492,13 +495,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: rgb(0, 0, 0, 0.2);
+        background: rgb(0, 0, 0, 0.4);
         .mengmiantuplay {
             background-color: transparent;
-            width: 40px;
-            height: 40px;
-            background: url("../assets/image/play.png");
+            width: 80px;
+            height: 80px;
+            background: url("../assets/image/play.gif");
             background-size: 100% 100%;
+        }
+    }
+    .progress{
+        position: absolute;
+        width: 90%;
+        margin: auto;
+        bottom: 10px;
+        img{
+            width: 100%;
         }
     }
 }

@@ -37,6 +37,7 @@
           <div v-show="!complimentary.sphei" class="mengmiantu" :style="{background:'url('+datas.goods_image+') center /cover no-repeat'}">
             <div class="heimengceng">
               <cube-button class="mengmiantuplay" @click="bofang"></cube-button>
+              <div class="progress"><img src="../assets/image/progress.png" alt=""></div>
             </div>
           </div>
         <!-- 视频结束 -->
@@ -79,11 +80,12 @@
           </div>
           <div class="contenttext">
             <div class="contentview" v-show="avtiveindex==0">
-              <div class="intro">{{datas.introduction}}</div>
+              <div class="intro" v-if="datas.introduction!=''">{{datas.introduction}}</div>
+              <div class="intro" v-else><img src="../assets/image/xiahua.png" alt=""></div>
               <img class="introimg" :src="datas.goods_images" />
               <div class="mgbt"></div>
             </div>
-            <div class="contentview slide2" v-show="avtiveindex==1">
+            <div class="contentview slide2" v-show="avtiveindex==1" v-if="complimentary.comnum > 0">
               <!-- 赠送视频 -->
                 <ul class="audiolist">
                   <li v-for="(item,index) in complimentary.videolist" :key="index" @click="listbtn(index)">
