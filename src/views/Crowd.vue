@@ -45,12 +45,19 @@
               class="horizontal-scroll-list-wrap zjdetails"
             >
               <div class="zjdetailes">
-                <cube-button
-                  v-for="(items,indexs) in xia_list"
-                  :key="indexs"
-                  @click="listbtn(indexs)"
-                  :class="[indexs==currentTabs?'zjdetail-active':'zjdetail']"
-                >{{items.gc_name}}</cube-button>
+                <swiper :options="swiperOption" >
+                  <swiper-slide
+                   class="swiper-slide"
+                      v-for="(items,indexs) in xia_list"
+                      :key="indexs"
+                      :name="indexs"
+                      @click.native="listbtn(indexs)"
+                      :class="[indexs==currentTabs?'zjdetail-active':'zjdetail']"
+                  >
+                  {{items.gc_name}}
+                  </swiper-slide>
+                </swiper>
+             
               </div>
             </cube-scroll>
           </div>
@@ -63,5 +70,5 @@
 </template>
 <script src='../assets/js/crowd'></script>
 <style lang="scss" scoped>
-@import "../assets/scss/crowd.scss";
+@import '../assets/scss/crowd.scss';
 </style>

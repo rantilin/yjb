@@ -132,7 +132,7 @@
                 </cube-button>
                  <!-- 赠送视频结束 -->
             </div>
-            <div class="contentview" v-show="avtiveindex==2">
+            <div class="contentview" v-show="avtiveindex==2 || isDiscuss">
               <ul class="commentul" v-if="msglists!=null">
                 <li v-if="msglistes!=null">
                   <div class="cometntdiv">
@@ -194,7 +194,7 @@
         </div>
       </cube-scroll>
     </div>
-    <div class="paybtn" v-show="avtiveindex==0 || avtiveindex==1" v-if="complimentary.gm==false">
+    <div class="paybtn" v-show="avtiveindex==0 || avtiveindex==1 && isDiscuss==false" v-if="complimentary.gm==false">
       <div class="zixunview" @click="consultbtn">
         <div class="zixun">
           <div class="zixunpic"></div>
@@ -208,7 +208,7 @@
     <div class="paybtn" v-show="avtiveindex==0 || avtiveindex==1" v-if="complimentary.gm==true">
          <cube-button class="jinqun" @click="consultbtn">加入班级群~</cube-button>
     </div>
-    <div class="commentview" v-show="avtiveindex==2">
+    <div class="commentview" v-show="avtiveindex==2 || isDiscuss">
       <cube-input
         class="commentipnut"
         v-model="value"

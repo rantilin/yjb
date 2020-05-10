@@ -5,6 +5,9 @@ import Lottie from "vue-lottie/src/lottie.vue";
 import musicAnim from "@/assets/json/playaudionew.json";
 import ComponentLoading from '@/components/ComponentLoading';
 import VueWechatTitle from 'vue-wechat-title';
+import {
+    Dialog
+} from 'vant';
 Vue.use(VueWechatTitle);
 import {
     Image,
@@ -20,6 +23,11 @@ export default {
     components: {
         Lottie,
         ComponentLoading
+    },
+    provide() {
+        return {
+            reload: this.reload
+        }
     },
     data() {
         return {
@@ -89,13 +97,18 @@ export default {
                 zjid: '',
                 gm: false,
             },
-            sharename: '2020家长都在给孩子用的运动增高法',
-            desc: "在家做这些运动，帮助孩子猛长5cm",
+            sharename: '',
+            desc: "一个帮爸妈养娃省心省力的平台，加入班级社群为您提供更贴心的服务",
             url: process.env.VUE_APP_SERVICE_URLS,
             present: process.env.VUE_APP_SERVICE_URLS + "#/paygroup?id=" + this.$route.query.id + "",
+            isRouterAlive: true,
+            isDiscuss: false
         }
     },
     methods: {
+        reloads() {
+            window.location.reload();
+        },
         back() {
             this.$router.push({
                 path: "/",
@@ -142,7 +155,23 @@ export default {
                                     })
                                 }
                             } else {
-                                this.toast("报名时间已过")
+                                if (this.datas.goods_url) {
+                                    var cs = this.datas.goods_url.split('?')[1];
+                                    var cs_arr = cs.split('&');
+                                    var cs = {};
+                                    for (var i = 0; i < cs_arr.length; i++) {
+                                        cs[cs_arr[i].split('=')[0]] = cs_arr[i].split('=')[1]
+                                    }
+                                    this.toast("报名时间已过，正在为您跳转链接");
+                                    setTimeout(() => {
+                                        window.location.href = "/#/paygroup?id=" + cs.id + "&index=2";
+                                    }, 2000)
+                                    // window.open("/#/paygroup?id="+cs.id+"&index=2");
+
+                                } else {
+                                    this.toast("报名时间已过");
+                                }
+
                             }
                         } else {
                             this.toast("报名时间还没到")
@@ -151,7 +180,23 @@ export default {
                         this.toast("您已报名过了")
                     }
                 } else {
-                    this.toast("报名人数已满")
+                    if (this.datas.goods_url) {
+                        var cs = this.datas.goods_url.split('?')[1];
+                        var cs_arr = cs.split('&');
+                        var cs = {};
+                        for (var i = 0; i < cs_arr.length; i++) {
+                            cs[cs_arr[i].split('=')[0]] = cs_arr[i].split('=')[1]
+                        }
+                        // window.open("/#/paygroup?id="+cs.id+"&index=2");
+
+                        this.toast("报名人数已满，正在为您跳转链接");
+                        setTimeout(() => {
+                            window.location.href = "/#/paygroup?id=" + cs.id + "&index=2";
+                        }, 2000)
+                    } else {
+                        this.toast("报名人数已满")
+                    }
+
                 }
             } else {
                 this.$router.push({
@@ -164,27 +209,51 @@ export default {
         },
         pitchtab(index) {
             this.avtiveindex = index;
-            switch (this.avtiveindex) {
-                case 0:
-                    this.options.pullUpLoad = false;
-                    break;
-                case 1:
-                    this.options.pullUpLoad = false;
-                    break;
-                case 2:
-                    if (this.msglists == null) {
+            if (this.complimentary.comnum > 0) {
+                switch (this.avtiveindex) {
+                    case 0:
                         this.options.pullUpLoad = false;
-                    } else {
-                        this.options.pullUpLoad = {
-                            threshold: 0,
-                            txt: {
-                                more: '上拉加载更多评论',
-                                noMore: '没有更多评论'
+                        break;
+                    case 1:
+                        this.options.pullUpLoad = false;
+                        break;
+                    case 2:
+                        if (this.msglists == null) {
+                            this.options.pullUpLoad = false;
+                        } else {
+                            this.options.pullUpLoad = {
+                                threshold: 0,
+                                txt: {
+                                    more: '上拉加载更多评论',
+                                    noMore: '没有更多评论'
+                                }
                             }
                         }
-                    }
-                    this.$refs.scroll.refresh();
-                    break;
+                        this.$refs.scroll.refresh();
+                        break;
+                }
+            } else {
+                switch (this.avtiveindex) {
+                    case 0:
+                        this.options.pullUpLoad = false;
+                        this.isDiscuss = false;
+                        break;
+                    case 1:
+                        this.isDiscuss = true;
+                        if (this.msglists == null) {
+                            this.options.pullUpLoad = false;
+                        } else {
+                            this.options.pullUpLoad = {
+                                threshold: 0,
+                                txt: {
+                                    more: '上拉加载更多评论',
+                                    noMore: '没有更多评论'
+                                }
+                            }
+                        }
+                        this.$refs.scroll.refresh();
+                        break;
+                }
             }
         },
         scroll(probeType) {
@@ -262,6 +331,7 @@ export default {
                 this.datas = res.data.datas;
                 this.goods_image = res.data.datas.goods_image;
                 this.comname = res.data.datas.goods_name;
+                this.sharename = res.data.datas.goods_name;
                 let applel = this.datas.applicant
                 let applicantnum = applel.split("/");
                 if (parseInt(applicantnum[0]) >= parseInt(applicantnum[1])) {
@@ -416,8 +486,8 @@ export default {
             }
 
         },
-        morenbofang(){
-            if(this.complimentary.videosrc!=''){
+        morenbofang() {
+            if (this.complimentary.videosrc != '') {
                 this.complimentary.sphei = true;
                 this.complimentary.yipics = true;
             }
@@ -485,7 +555,6 @@ export default {
 
     },
     mounted() {
-
         this.$nextTick(() => {
             this.$refs.scroll.refresh();
         });
@@ -496,5 +565,11 @@ export default {
         document.getElementById("myVideo").addEventListener('play', function () {
             that.complimentary.yipics = true;
         }, false);
+    },
+    watch: { //监听路由变化
+        $route(to, from) {
+            this.reloads();
+        }
     }
+
 }

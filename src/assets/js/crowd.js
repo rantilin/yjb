@@ -6,7 +6,14 @@ Vue.component('component-head', ComponentHead);
 import ComponentLoading from '@/components/ComponentLoading';
 Vue.use(ComponentLoading);
 Vue.component('component-loading', ComponentLoading);
-import { Image, Tab, Tabs } from 'vant';
+import {
+    Image,
+    Tab,
+    Tabs
+} from 'vant';
+import vueSwiper from 'vue-awesome-swiper';
+import 'swiper/dist/css/swiper.min.css';
+Vue.use(vueSwiper);
 Vue.use(Image).use(Tab).use(Tabs);
 export default {
     name: 'crowd',
@@ -40,9 +47,16 @@ export default {
                 border: false,
                 swipeable: true
             },
+            swiperOption: {
+                slidesPerView: "auto",
+                freeMode: true,
+                spaceBetween: 0,
+                loop:false
+            }
         }
     },
     methods: {
+       
         switchNav(index) {
             if (this.currentTab == index) {
                 return false;
