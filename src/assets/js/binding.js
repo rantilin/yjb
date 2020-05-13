@@ -65,10 +65,10 @@ export default {
             console.log(this.setid)
             if (this.setid == 1) {
                 this.title = '修改手机号',
-                    this.content = '吸引性话语填写'
+                    this.content = ''
             } else {
                 this.title = '绑定您的手机号',
-                    this.content = '绑定手机号获得更多优惠福利！'
+                    this.content = '根据《网络安全法》第三章第二十四条要求同时保障账号安全，请尽快完成手机号绑定验证，感谢理解！'
             }
         },
         huoquyzm() {

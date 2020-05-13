@@ -30,7 +30,7 @@
               ></cube-input>
               <button @click="huoquyzm" :disabled="yzmdis">{{yzmtext}}</button>
             </div>
-          </div>
+          </>
           <div class="xieyi">
             <div class="xieyiview">
               <div>
