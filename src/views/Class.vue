@@ -186,7 +186,14 @@
                           <div
                             class="nolistenprice"
                             v-if="item.freession==0&&item.gm!=1"
-                          >￥{{item.video_price}}</div>
+                          >
+                          <template v-if="allbuy==false">
+                          ￥{{item.video_price}}
+                          </template>
+                          <template v-else>
+                            <img class="lockicon" src="../assets/image/lock.png" alt="">
+                          </template>
+                          </div>
                           <div class="nolistenprice" v-if="item.gm==1">已购买</div>
                           <div class="trylistenview" v-if="item.freession==1">
                             <div class="trylisten">可试看</div>
@@ -272,7 +279,7 @@
       </cube-scroll>
     </div>
     <div class="bottombtn" v-show="2!=currentTab">
-      <cube-button class="selectionsbuy" @click="selectionsbuy" v-if="goods_price>0">选集购买</cube-button>
+      <cube-button :class="allbuystatic?'selectionsbuyoff':'selectionsbuy'" @click="selectionsbuy" v-if="goods_price>0" :disabled="allbuystatic">{{goods_buytext}}</cube-button>
       <cube-button class="selectionsbuy" v-else>限时观看</cube-button>
     </div>
     <!-- bottombtn -->
@@ -292,7 +299,7 @@
       <div class="mengcengview" @click.self="mengcengview()">
         
         <div class="modelbottombtn">
-          <cube-scroll class="mengcengviews" ref="scrolls">
+          <cube-scroll class="mengcengviews" ref="scrolls" v-show="allbuy==false">
           <div class="selections">
             <div class="btsses">
               <div class="btss" v-for="(item,index) in videolist" :key="index">
@@ -323,11 +330,22 @@
           </div>
         </cube-scroll>
         <div class="clear"></div>
-          <div class="quanxuan">
-            <div class="quanxuanview" @click="checkall">
+
+          <div class="quanxuan" v-show="allbuy==false">
+            <div class="quanxuanview" @click="checkall" >
               <div :class="[quanxuan?'xieyipic-active':'xieyipic']"></div>
               <div class="quanxuantext">全选</div>
             </div>
+          </div>
+          <div class="allbuy" v-show="allbuy">
+                <div class="leftimg">
+                  <img :src="goods_image" alt="">
+                </div>
+                <div class="rightext">
+                      <div class="itemtitle">{{goods_name}}</div>
+                      <div class="itemdetl">{{goods_jingle}}</div>
+                      <div class="itemprice">￥{{discountoption}}</div>
+                </div>
           </div>
           <div class="InvitationCode">
                <div class="icon"></div>

@@ -213,6 +213,15 @@
         font-weight: bold;
         background-color: $theme;
     }
+    .selectionsbuyoff{
+        float: left;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #d8d8d8;
+    }
 }
 
 .videock {
@@ -1187,4 +1196,43 @@ li {
         height: 20px;
         background: url("../assets/image/nopass.png") no-repeat center/100%;
     }
+}
+.allbuy{
+    padding: 20px 16px 20px 16px;
+    border-bottom: #EBEFF5 solid 1px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    zoom: 1;
+    .leftimg{
+        width: 140px;
+        height: 92px;
+        float: left;
+        img{
+            width: 100%;
+        }
+    }
+    .rightext{
+        width: 200px;
+        float: left;
+        padding-left: 12px;
+        .itemtitle{
+           color: #333333;
+           font-size: 16px;
+           margin: 4px 0 8px 0;
+           font-weight: bold;
+        }
+        .itemdetl{
+            color: #666666;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        .itemprice{
+            color: #FF6633;
+            font-size: 13px;
+        }
+    }
+}
+.lockicon{
+    width: 24px;
+    height: 24px;
 }

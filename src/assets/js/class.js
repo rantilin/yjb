@@ -61,6 +61,7 @@ export default {
             classid: this.$route.query.classid,
             goods_image: '',
             goods_name: '',
+            goods_jingle:'',
             goods_price: '',
             goods_click: '',
             introduction: '',
@@ -139,6 +140,10 @@ export default {
             zekou: 1,
             yjprice: '',
             remend: false,
+            allbuy: false,
+            allbuystatic: false,
+            goods_complete: 0,
+            goods_buytext: '选集购买',
         }
     },
     methods: {
@@ -285,6 +290,7 @@ export default {
                 classapi.loginvideodetail(this.key, this.classid).then(res => {
                     this.goods_image = res.data.datas.brief.goods_image;
                     this.goods_name = res.data.datas.brief.goods_name;
+                    this.goods_jingle = res.data.datas.brief.goods_jingle;
                     this.goods_price = res.data.datas.brief.goods_price;
                     this.goods_click = common.number(res.data.datas.brief.goods_click);
                     this.goods_discount = res.data.datas.brief.goods_discount;
@@ -299,8 +305,9 @@ export default {
                     this.zjid = this.videolist[this.playindex].vo_id
                     this.listdata = res.data.datas.brief.tuijian
                     var discounts = this.goods_discount.split(",");
-                    this.expert_image = res.data.datas.brief.expert_image
-
+                    this.expert_image = res.data.datas.brief.expert_image;
+                    this.goods_complete = res.data.datas.brief.goods_complete;
+                    
                     this.vantab.list = [
                         "课程介绍",
                         "课程目录(" + this.videolist.length + ")",
@@ -332,6 +339,21 @@ export default {
                     this.quan = quan;
                     this.list6();
                     this.recommend();
+                    if(parseInt(this.goods_complete) == 1){
+                          this.allbuy = true;
+                          this.goods_buytext = '立即购买';
+                          this.checkall();
+                          this.$nextTick(() => {
+                            if(this.discountoption == 0){
+                                this.goods_buytext = '已购买';
+                                this.allbuystatic = true;
+                             }
+                        });
+                    }else{
+                        this.allbuy = false;
+                        this.goods_buytext = '选集购买';
+                    }
+                    
                 }).catch(err => {
                     if (err.message != "interrupt") {
                         let errmsg = '请求失败';
