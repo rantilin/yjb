@@ -15,7 +15,27 @@ export default {
     alllist() {
         const req = request({
             method: 'get',
-            url: '/index.php?act=index_yjb_new&op=newindex',
+            url: '/index.php?act=index_yjb_new&op=new_index',
+            cancelToken: new axios.CancelToken(c => {
+                Vue.$httpRequestList.push(c);
+            }),
+        })
+        return req
+    },
+    realllist(item){  //改版后请求首页所有数据api
+        const req = request({
+            method: 'get',
+            url: `/index.php?act=index_yjb_new&op=${item}`,
+            cancelToken: new axios.CancelToken(c => {
+                Vue.$httpRequestList.push(c);
+            }),
+        })
+        return req
+    },
+    recomlist(item){  //推荐接口
+        const req = request({
+            method: 'get',
+            url: `/index.php?act=index_yjb_new&op=${item}`,
             cancelToken: new axios.CancelToken(c => {
                 Vue.$httpRequestList.push(c);
             }),

@@ -49,12 +49,13 @@
 
 .classifytitle {
     width: 100%;
-    float: left;
     padding: 0 16px;
     display: flex;
     height: 20px;
     align-items: center;
     margin-top: 27px;
+    overflow: hidden;
+    zoom: 1;
     .classifyname {
         float: left;
         color: $bt;
@@ -68,7 +69,7 @@
         align-items: center;
     }
     .moretext {
-        color: $fz;
+        color: #21C891;
         font-size: 12px;
         margin-right: 2px;
     }
@@ -76,9 +77,10 @@
         width: 12px;
         height: 12px;
         margin-top: -1px;
-        background: url("../assets/image/arrows.png");
+        background: url("../assets/image/grert.png");
         background-size: 100% 100%;
     }
+    
 }
 
 .commonswiper {

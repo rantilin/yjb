@@ -3,20 +3,28 @@ import common from "./common";
 import { share_yp } from './share';
 import ComponentLoading from '@/components/ComponentLoading';
 import Indexlayout from '@/components/Indexlayout';
+import classlist from '@/components/classlist';
+import recommend from '@/components/recommend';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.min.css';
 import Vue from "vue";
 import { Tab, Tabs } from "vant";
 Vue.use(Tab).use(Tabs);
+import vueSwiper from 'vue-awesome-swiper'
+Vue.use(vueSwiper)
 export default {
     name: 'index',
     components: {
         ComponentLoading,
         Indexlayout,
+        classlist,
+        recommend,
     },
     data() {
-        return {
+        return { 
             avtiveindex: 0,
+            indexdata:['new_index_one','new_index_two', '' , 'new_index_three'],
+            recomdata:['new_index_jktj',' new_index_yrtj'],
             shouquankey: this.$route.query.key,
             vantab: {
                 list: [
@@ -49,6 +57,7 @@ export default {
             swiperlist2: [],
             bjlist: [],
             listdata: [],
+            tjdata:[],
             loding: true,
             keyval: 1,
             sharename: '医教宝',
@@ -85,102 +94,18 @@ export default {
 
             });
         },
-        //普通儿科
-        swipererke() {
-            this.$nextTick(() => {
-                this.swiperek = new Swiper('.swipererke', {
-                    paginationClickable: true,
-                    autoplay: false,
-                    loop: false,
-                    slidesPerView: 'auto',
-                    spaceBetween: 12,
-                    autoplayDisableOnInteraction: false,
-                })
-            });
-        },
-        //成绩提升
-        swipergrade() {
-            this.$nextTick(() => {
-                this.swipercj = new Swiper('.swipergrade', {
-                    paginationClickable: true,
-                    autoplay: false,
-                    loop: false,
-                    slidesPerView: 'auto',
-                    spaceBetween: 12,
-                    autoplayDisableOnInteraction: false,
-                })
-            });
-        },
-        //宝宝看看
-        swiperbaby() {
-            this.$nextTick(() => {
-                this.swiperkk = new Swiper('.swiperbaby', {
-                    paginationClickable: true,
-                    autoplay: false,
-                    loop: false,
-                    slidesPerView: 'auto',
-                    spaceBetween: 12,
-                    autoplayDisableOnInteraction: false,
-                })
-            });
-        },
-        //宝宝听听
-        swiperlisten() {
-            this.$nextTick(() => {
-                this.swipertt = new Swiper('.swiperlisten', {
-                    paginationClickable: true,
-                    autoplay: false,
-                    loop: false,
-                    slidesPerView: 'auto',
-                    spaceBetween: 12,
-                    autoplayDisableOnInteraction: false,
-                })
-            });
-        },
-        //健康公开课
-        swiperhealthopenclass() {
-            this.$nextTick(() => {
-                this.swiperjk = new Swiper('.swiperhealthopenclass', {
-                    paginationClickable: true,
-                    autoplay: false,
-                    loop: false,
-                    slidesPerView: 'auto',
-                    spaceBetween: 12,
-                    autoplayDisableOnInteraction: false,
-                })
-            });
-        },
-        //育儿公开课
-        swiperbringopenclass() {
-            this.$nextTick(() => {
-                this.swiperye = new Swiper('.swiperbringopenclass', {
-                    paginationClickable: true,
-                    autoplay: false,
-                    loop: false,
-                    slidesPerView: 'auto',
-                    spaceBetween: 12,
-                    autoplayDisableOnInteraction: false,
-                })
-
-            });
-        },
+        
         avtivelist1() {
             this.swiperbanner();
-            this.swipererke();
         },
         avtivelist2() {
             this.swiperbanner();
-            this.swipergrade();
-            this.swiperbaby();
-            this.swiperlisten();
         },
         avtivelist3() {
             this.swiperbanner();
         },
         avtivelist4() {
             this.swiperbanner();
-            this.swiperhealthopenclass();
-            this.swiperbringopenclass();
         },
         activelist(avtiveindex) {
             switch (avtiveindex) {
@@ -241,12 +166,14 @@ export default {
             }
         },
         pitchtab(index) {
-            const toast = this.$createToast({
-                time: 0,
-                txt: '正在加载'
-            })
-            toast.show();
+            this.loding=true
+            // const toast = this.$createToast({
+            //     time: 0,
+            //     txt: '正在加载'
+            // })
+            //toast.show();
             setTimeout(() => {
+                
                 this.destroylist(this.avtiveindex);
                 this.avtiveindex = index;
                 if (this.avtiveindex == 0) this.swiperlist = this.swiperlist1
@@ -256,8 +183,9 @@ export default {
                 this.$nextTick(() => {
                     this.$refs.scroll.refresh();
                 });
+                this.list2()
                 this.$refs.scroll.scrollTo(0, 0);
-                toast.hide();
+                // toast.hide();
             }, 200)
 
         },
@@ -284,9 +212,8 @@ export default {
             });
         },
         list2() {
-            indexapi.alllist().then(res => {
+            indexapi.realllist(this.indexdata[this.avtiveindex]).then(res => {
                 this.listdata = res.data.datas;
-                this.swipererke();
                 this.loding = false;
                 this.p2 = true;
                 this.allapitrue();
@@ -299,6 +226,7 @@ export default {
                     this.toast(errmsg);
                 }
             });
+            
         },
         list3() {
             indexapi.classlist().then(res => {
@@ -314,6 +242,16 @@ export default {
                     this.toast(errmsg);
                 }
             });
+        },
+        list4() {
+            if (window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger') {
+                share_yp(this.keyval, 1, this.sharename, this.indexlogo, this.desc, this.url, this.present);
+            }
+        },
+        list5(){
+            indexapi.recomlist(this.recomdata[this.avtiveindex]).then(res=>{
+                this.recomdata = res.data.datas;
+            })
         },
         number(val) {
             return common.number(val);
@@ -363,11 +301,7 @@ export default {
                 }
             })
         },
-        list4() {
-            if (window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger') {
-                share_yp(this.keyval, 1, this.sharename, this.indexlogo, this.desc, this.url, this.present);
-            }
-        },
+        
         welfare(id) {
             this.$router.push({
                 name: 'welfare',
@@ -411,6 +345,7 @@ export default {
                 this.list1();
                 this.list2();
                 this.list3();
+                this.list5();
             }
             this.$nextTick(() => {
                 this.$refs.scroll.refresh();
