@@ -24,7 +24,7 @@ export default {
         return { 
             avtiveindex: 0,
             indexdata:['new_index_one','new_index_two', '' , 'new_index_three'],
-            recomdata:['new_index_jktj',' new_index_yrtj'],
+            recomdata:['new_index_jktj','new_index_yrtj'],
             shouquankey: this.$route.query.key,
             vantab: {
                 list: [
@@ -174,7 +174,7 @@ export default {
             //toast.show();
             setTimeout(() => {
                 
-                this.destroylist(this.avtiveindex);
+                //this.destroylist(this.avtiveindex);
                 this.avtiveindex = index;
                 if (this.avtiveindex == 0) this.swiperlist = this.swiperlist1
                 else this.swiperlist = this.swiperlist2
@@ -183,11 +183,29 @@ export default {
                 this.$nextTick(() => {
                     this.$refs.scroll.refresh();
                 });
-                this.list2()
+                let avtindex=this.avtiveindex
+                if( avtindex == 0 || avtindex == 1 || avtindex == 3){
+                    this.list2()
+                }
+                if(avtindex == 0 || avtindex == 1){
+                    this.list5()
+                }
+                if(avtindex == 2){
+                    this.loding = false
+                }
                 this.$refs.scroll.scrollTo(0, 0);
                 // toast.hide();
             }, 200)
 
+        },
+        moreteb(value){
+           if(value == 0){
+            this.avtiveindex=1
+            this.pitchtab(1)
+           }else{
+            this.avtiveindex=0
+            this.pitchtab(0)
+           }
         },
         gopage(url) {
             if (url != '') window.location.href = url
@@ -250,7 +268,7 @@ export default {
         },
         list5(){
             indexapi.recomlist(this.recomdata[this.avtiveindex]).then(res=>{
-                this.recomdata = res.data.datas;
+                this.tjdata = res.data.datas;
             })
         },
         number(val) {

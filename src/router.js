@@ -46,6 +46,15 @@ export default new Router({
             }
         },
         {
+            path: '/Courselist',
+            name: 'Courselist',
+            component: () =>
+                import ('./views/Courselist.vue'),
+            meta: {
+                title: '列表'
+            }
+        },
+        {
             path: '/knowledge',
             name: 'knowledge',
             component: () =>

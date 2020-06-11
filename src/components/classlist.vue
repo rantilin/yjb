@@ -8,7 +8,7 @@
       >
         <div
           class="moretext"
-          @click="popdata"
+          @click="classbtn(Classdata[0].column_id,3,avtiveindex)"
         >查看更多</div>
         <div class="morearrows"></div>
       </div>
@@ -73,7 +73,7 @@
             >￥{{item.goods_price}}</div>
           </Indexlayout>
         </div>
-        <div class="morebutn">
+        <div class="morebutn" @click="classbtn(Classdata[0].column_id,3,avtiveindex)">
            <div class="textmt10">查看更多</div>
            <div class="morearrows bpt10"></div>
         </div>
@@ -105,11 +105,9 @@ export default {
   },
   created() {},
   methods: {
-    popdata() {},
-    classlist() {},
     classbtn(val, num, index) {
       this.$router.push({
-        name: 'videoclass',
+        name: 'Courselist',
         query: {
           id: val,
           num: num,

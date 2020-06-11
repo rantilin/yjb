@@ -61,7 +61,7 @@
             :avtiveindex="avtiveindex"
           ></classlist>
           <div v-if="avtiveindex==0 || avtiveindex==1 ">
-            <recommend :recomdata="tjdata"></recommend>
+            <recommend :recomdata="tjdata.data" :avtiveindex="avtiveindex" @tjmore="moreteb"></recommend>
           </div>
 
         </div>
@@ -70,7 +70,29 @@
           class="contentdetailindex"
           v-if="avtiveindex==2"
         >
-
+         <div class="classifytitle">
+            <div class="classifyname">班级群</div>
+          </div>
+          <!-- classifytitle -->
+          <div class="theclass">
+            <div
+              class="theclassview"
+              v-for="(item,index) in  bjlist"
+              :key="index"
+              @click="group(item.goods_id,avtiveindex)"
+            >
+              <van-image class="theclassimg" fit="cover" :src="item.goods_image" radius="6px">
+                <div class="stheclasstime">{{item.start}}-{{item.end}}</div>
+              </van-image>
+              <div class="theclasstitle">{{item.goods_name}}</div>
+              <div class="theclassnum">
+                <div
+                  :class="[item.goods_price?'theclassprice':'theclassprices']"
+                >￥{{item.goods_price}}</div>
+                <div class="theclassnums">{{item.applicant}}人报名</div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- contentdetailindex -->
       </cube-scroll>

@@ -3,34 +3,66 @@
     <div class="classifytitle">
       <div class="classifyname">为你推荐</div>
     </div>
-    <div class="recommend">
+    <div class="recommend" v-for="(item,index) in recomdata" :key="index" @click="godetail(item.goods_id,item.room_state,avtiveindex)">
       <van-image
         class="picture"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        fit="cover" 
+        :src="item.goods_image"
       />
       <div class="rightext">
         <div class="rtitle">
-          你需要一个科学的饮食一个科学的饮食
+          {{item.goods_name}}
         </div>
         <div class="buttom">
-          <div class="price">￥9999.00</div>
-          <div class="watch">500人在看</div>
+          <div class="price">￥{{item.goods_price}}</div>
+          <div class="watch">{{number(item.goods_click)}}人在看</div>
         </div>
       </div>
     </div>
-    <div class="rmorebutn">
+    <div class="rmorebutn" @click="moreclick">
       <div class="textmt10">80%的妈妈都在看</div>
       <div class="morearrows bpt10"></div>
     </div>
   </div>
 </template>
 <script>
+import common from '@/assets/js/common'
 export default {
   name: 'recommend',
-  props: ['recomdata'],
+  props: ['recomdata','avtiveindex'],
   data() {
     return {
-      key: '1',
+      key: '',
+    }
+  },
+  created(){
+   
+  },
+  methods:{
+     moreclick(){
+        this.$emit('tjmore', this.avtiveindex)
+     },
+     number(val) {
+      return common.number(val)
+    },
+    godetail(id, item, index) {
+      if (item == 1) {
+        this.$router.push({
+                name: 'class',
+                query: {
+                    classid: id,
+                    index: index
+                }
+      })
+      } else {
+        this.$router.push({
+                name: 'audio',
+                query: {
+                    classid: id,
+                    index: index
+                }
+      })
+      }
     }
   }
 }
@@ -46,6 +78,7 @@ export default {
   overflow: hidden;
   box-sizing: border-box;
   zoom: 1;
+  margin-bottom: 16px;
   .classifyname {
     float: left;
     color: #333333;
@@ -56,7 +89,8 @@ export default {
 .recommend {
   width: 100%;
   box-sizing: border-box;
-  padding: 16px;
+  padding: 0 16px;
+  margin-bottom: 16px;
   display: flex;
   .picture {
     width: 150px;
