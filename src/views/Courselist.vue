@@ -1,65 +1,86 @@
 <template>
   <div class="context">
     <div class="topback">
-      <div class="commonbackpic"></div>
+      <div class="commonbackpic" @click="back"></div>
+      <div class="commontitlename">{{commontitlename}}</div>
     </div>
     <div class="navigation">
-      <div class="item on">宝宝疾病</div>
-      <div class="item">宝宝疾病</div>
-      <div class="item">宝宝疾病</div>
-      <div class="item">宝宝疾病</div>
-      <div class="item">宝宝疾病</div>
-      <div class="item">宝宝疾病</div>
-      <div class="item">宝宝疾病</div>
-      <div class="item">更多</div>
+      <div class="item" :class="cumindex==index?'on':''" v-for="(item, index) in cumlist" :key="index" @click="cumteb(index,item.id)">{{item.columnm}}</div>
+      <div class="itemlast" v-if="cumlist.length > 8">更多</div>
     </div>
-    <van-pull-refresh
-      v-model="refreshing"
-      @refresh="onRefresh"
-    >
-      <van-list
-        v-model="loading"
-        :finished="finished"
-        finished-text="没有更多了"
-        @load="onLoad"
-      >
     
-       
-      </van-list>
-    </van-pull-refresh>
+    <cube-scroll class="wviews" :options="options" @pulling-up="onLoad"  ref="scroll" >
+     <div class="recommend" v-for="(item,index) in yjblist" :key="index" @click="godetail(item.goods_id,item.room_state,avtiveindex)">
+      <van-image
+        class="picture"
+        fit="cover" 
+        :src="item.goods_image"
+      />
+      <div class="rightext">
+        <div class="rtitle">
+          {{item.goods_name}}
+        </div>
+        <div class="buttom">
+          <div class="price">￥{{item.goods_price}}</div>
+          <div class="watch">{{number(item.goods_click)}}人在看</div>
+        </div>
+      </div>
+    </div>
+     </cube-scroll>
+     <component-loading v-if="loding" />
   </div>
 </template>
 <script src='../assets/js/courselist'></script>
 <style lang="scss" scoped>
 .content {
+  width: 100%;
   background: #fff;
 }
 .topback {
   width: 100%;
-  height: 44px;
+  height: 60px;
   display: flex;
+  background: #fff;
+  align-items:center;
+  position: relative;
   .commonbackpic {
     width: 24px;
     height: 24px;
     background: url('../assets/image/back.png');
     background-size: 100% 100%;
-    margin: 10px 0 0 16px;
+    margin: 0 0 0 16px;
+    z-index: 99;
+  }
+  .commontitlename {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
   }
 }
 .navigation {
-  width: 95%;
+  width: 100%;
   margin: auto;
   display: flex;
   display: -webkit-flex; /* Safari */
   flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 0 10px;
+  background: #fff;
   .item {
     width: 25%;
     font-size: 14px;
     color: #333333;
     text-align: center;
     line-height: 30px;
+    font-weight: bold;
   }
-  .item:last-child {
+  .itemlast {
     width: 24.6%;
     font-size: 14px;
     color: #999999;
@@ -75,7 +96,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0 16px;
-  margin-bottom: 16px;
+  margin: 8px auto;
   display: flex;
   .picture {
     width: 150px;
@@ -84,6 +105,7 @@
     overflow: hidden;
   }
   .rightext {
+    width: 181px;
     margin-left: 12px;
     padding: 3px 0;
     .rtitle {
@@ -109,5 +131,12 @@
       }
     }
   }
+}
+.wviews{
+  width: 100%;
+  height: 100vh;
+  height: calc(100vh - 94px);
+  font-size: 12px;
+  background: #fff;
 }
 </style>

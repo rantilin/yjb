@@ -8,7 +8,7 @@
       >
         <div
           class="moretext"
-          @click="classbtn(Classdata[0].column_id,3,avtiveindex)"
+          @click="classbtn(Classdata[0].column_id,columnname,avtiveindex)"
         >查看更多</div>
         <div class="morearrows"></div>
       </div>
@@ -73,7 +73,7 @@
             >￥{{item.goods_price}}</div>
           </Indexlayout>
         </div>
-        <div class="morebutn" @click="classbtn(Classdata[0].column_id,3,avtiveindex)">
+        <div class="morebutn" @click="classbtn(Classdata[0].column_id,columnname,avtiveindex)">
            <div class="textmt10">查看更多</div>
            <div class="morearrows bpt10"></div>
         </div>
@@ -142,7 +142,6 @@ export default {
     //监听父组件传进来数据，由于异步加载太慢，只能监听
     Classdata(val, oldval) {
       if (val != oldval) {
-        this.listdata = this.Classdata
       }
     }
   }

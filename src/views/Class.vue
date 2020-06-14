@@ -161,20 +161,21 @@
                 <van-image class="nrpic" v-if="goods_images!=''" fit="contain" :src="goods_images" />
               </div>
               <div class="slide slide2" v-show="1==currentTab">
+                <chapter :cpdata="chapterlist" :morenum="morenum" :playindex="playindex" :allbuy="allbuy" :yipics="yipics" :musicoption="musicoption" :MusicAnimation="MusicAnimation" @tebtn="listbtn" v-if="parseInt(this.goodsStatezj) == 1"></chapter>
                 <ul class="audiolist">
-                  <li v-for="(item,index) in videolist" :key="index" @click="listbtn(index)">
+                  <li v-for="(item,index) in videolist" :key="index" @click="listbtn(index,item.freession,item.gm,item.video_address,item.courseware,item.vo_id)">
                     <div class="audiolistdiv" v-if="index<morenum">
                       <div class="listenstate">
-                        <div class="img" v-if="playindex==index&&yipics">
+                        <div class="img" v-if="playindex==item.vo_id&&yipics">
                           <Lottie :options="musicoption" @animCreated="MusicAnimation" />
                         </div>
                         <div
                           :class="[item.freession==1||item.gm==1?'imgs':'imgses']"
-                          v-if="playindex==index&&yipics==false"
+                          v-if="playindex==item.vo_id&&yipics==false"
                         ></div>
                         <div
                           :class="[item.freession==1||item.gm==1?'imgs':'imgses']"
-                          v-if="playindex!=index"
+                          v-if="playindex!=item.vo_id"
                         ></div>
                       </div>
                       <div class="listdetail">
@@ -393,6 +394,6 @@
   </div>
 </template>
 <script src='../assets/js/class'></script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../assets/scss/class.scss";
 </style>

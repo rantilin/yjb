@@ -5,6 +5,7 @@ import Lottie from "vue-lottie/src/lottie.vue";
 import musicAnim from "@/assets/json/playaudionew.json";
 import ComponentLoading from '@/components/ComponentLoading';
 import Indexlayout from '@/components/Indexlayout1';
+import chapter from '@/components/chapter';
 Vue.use(ComponentLoading);
 Vue.component('component-loading', ComponentLoading);
 import Swiper from 'swiper';
@@ -12,9 +13,11 @@ import 'swiper/dist/css/swiper.min.css'
 import {
     Image,
     Tab,
-    Tabs
+    Tabs,
+    Collapse,
+    CollapseItem
 } from 'vant';
-Vue.use(Image).use(Tab).use(Tabs);
+Vue.use(Image).use(Tab).use(Tabs).use(Collapse).use(CollapseItem);
 import {
     share_yp
 } from './share';
@@ -32,7 +35,8 @@ export default {
     name: 'class',
     components: {
         Lottie,
-        Indexlayout
+        Indexlayout,
+        chapter
     },
     data() {
         return {
@@ -67,6 +71,7 @@ export default {
             introduction: '',
             goods_images: '',
             videolist: '', //视频列表
+            chapterlist:'',//开启选集视频列表
             videosrc: "", //视频地址
             playindex: 0, //初始化默认播放下标为0
             xiabiao: 0,
@@ -75,6 +80,7 @@ export default {
             msglists: [], //评价列表
             msglistes: [],
             collectstate: '', //收藏状态
+            goodsStatezj:'',//是否开启章节
             goods_discount: '',
             zjtext: '',
             msglen: '',
@@ -296,23 +302,34 @@ export default {
                     this.goods_discount = res.data.datas.brief.goods_discount;
                     this.introduction = res.data.datas.brief.introduction;
                     this.goods_images = res.data.datas.brief.goods_images;
-                    this.videolist = res.data.datas.details;
+                    this.goodsStatezj = res.data.datas.brief.goods_state_zj;
+                    if(parseInt(this.goodsStatezj) == 0){
+                        this.videolist = res.data.datas.details;
+                        this.videosrc = this.videolist[0].video_address
+                        this.zjtext = this.videolist[0].courseware
+                        this.zjid = this.videolist[0].vo_id
+                        this.vantab.list = [
+                            "课程介绍",
+                            "课程目录(" + this.videolist.length + ")",
+                            "评论(" + this.msglen + ")",
+                        ];
+                     } else {
+                        this.chapterlist = res.data.datas.details.data
+                        this.videolist = res.data.datas.details.wu
+                        this.videosrc = this.chapterlist[0].chapter_text[0].video_address
+                        this.zjtext = this.chapterlist[0].chapter_text[0].courseware
+                        this.zjid = this.chapterlist[0].chapter_text[0].vo_id
+                        this.playindex = this.chapterlist[0].chapter_text[0].vo_id
+                     }
                     this.gm = res.data.datas.gm;
                     this.phone_num = res.data.datas.member_mobile;
                     this.doctorid = res.data.datas.brief.goods_expert;
-                    this.videosrc = this.videolist[this.playindex].video_address
-                    this.zjtext = this.videolist[this.playindex].courseware
-                    this.zjid = this.videolist[this.playindex].vo_id
                     this.listdata = res.data.datas.brief.tuijian
                     var discounts = this.goods_discount.split(",");
                     this.expert_image = res.data.datas.brief.expert_image;
                     this.goods_complete = res.data.datas.brief.goods_complete;
                     
-                    this.vantab.list = [
-                        "课程介绍",
-                        "课程目录(" + this.videolist.length + ")",
-                        "评论(" + this.msglen + ")",
-                    ];
+
                     var arrdis = '';
                     for (let i in discounts) {
                         arrdis += discounts[i].split("-") + ','
@@ -369,18 +386,27 @@ export default {
                     this.goods_name = res.data.datas.brief.goods_name;
                     this.goods_price = res.data.datas.brief.goods_price;
                     this.goods_click = common.number(res.data.datas.brief.goods_click);
+                    this.goodsStatezj = res.data.datas.brief.goods_state_zj;
+                    if(parseInt(this.goodsStatezj) == 0){
+                        this.videolist = res.data.datas.details;
+                        this.videosrc = this.videolist[this.playindex].video_address
+                        this.zjtext = this.videolist[this.playindex].courseware
+                        this.zjid = this.videolist[this.playindex].vo_id
+                        this.vantab.list = [
+                            "课程介绍",
+                            "课程目录(" + this.videolist.length + ")",
+                            "评论(" + this.msglen + ")",
+                        ];
+                     }else{
+                        this.chapterlist = res.data.datas.details.data
+                        this.videolist = res.data.datas.details.wu;
+                        
+                     }
                     this.introduction = res.data.datas.brief.introduction;
                     this.goods_images = res.data.datas.brief.goods_images;
                     this.goods_discount = res.data.datas.brief.goods_discount;
-                    this.videolist = res.data.datas.details;
-                    this.videosrc = this.videolist[this.playindex].video_address
-                    this.zjtext = this.videolist[this.playindex].courseware
-                    this.zjid = this.videolist[this.playindex].vo_id
-                    this.vantab.list = [
-                        "课程介绍",
-                        "课程目录(" + this.videolist.length + ")",
-                        "评论(" + this.msglen + ")",
-                    ];
+                    
+                   
                     this.list6();
                     this.recommend();
                 }).catch(err => {
@@ -508,9 +534,9 @@ export default {
             this.sphei = true;
             document.getElementById("myVideo").play();
         },
-        listbtn(index) {
+        listbtn(index, freession, gm, video_address, courseware, vo_id) {
             this.index1 = index;
-            if (this.videolist[index].freession == 0 && this.videolist[index].gm != 1) {
+            if (freession == 0 && gm != 1) {
 
                 this.toast("该章节需要购买才能继续学习哦");
                 this.selectionsbuy()
@@ -522,7 +548,7 @@ export default {
                         back: true
                     }
                 })
-            } else if (!common.validateTel(this.phone_num) && this.videolist[index].freession != 1) {
+            } else if (!common.validateTel(this.phone_num) && freession != 1) {
                 this.$router.push({
                     path: '/binding',
                     query: {
@@ -531,10 +557,10 @@ export default {
                 })
             }
 
-            this.playindex = index;
-            this.videosrc = this.videolist[this.playindex].video_address
-            this.zjtext = this.videolist[this.playindex].courseware
-            this.zjid = this.videolist[this.playindex].vo_id;
+            this.playindex = vo_id;
+            this.videosrc = video_address
+            this.zjtext = courseware
+            this.zjid = vo_id;
             this.$refs.myVideo.src = this.videosrc;
             this.sphei = true;
             this.$nextTick(() => {

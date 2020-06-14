@@ -6,7 +6,7 @@ export default {
   column(columnid) {
     const req = request({
       method: 'get',
-      url: '/index.php?act=yjb_course_info&op=newcolumnsp',
+      url: 'index.php?act=yjb_course_info&op=new_columnsp',
       cancelToken: new axios.CancelToken(c => {
         Vue.$httpRequestList.push(c);
       }),
@@ -16,16 +16,17 @@ export default {
     })
     return req
   },
-  newsplist(column_id, type_id) {
+  newsplist(column_id, type_id, curpage) {
     const req = request({
         method: 'get',
-        url: '/index.php?act=yjb_course_info&op=newsplist',
+        url: '/index.php?act=yjb_course_info&op=new_ysplist',
         cancelToken: new axios.CancelToken(c => {
             Vue.$httpRequestList.push(c);
         }),
         params: {
             "column_id": column_id,
             "type_id": type_id,
+            'curpage':curpage,
         },
     })
     return req
