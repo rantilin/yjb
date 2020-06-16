@@ -3,8 +3,8 @@ import qs from 'qs';
 import Vue from 'vue'
 import axios from 'axios'
 export default {
-    videodetail(id) {
-        const datas = { 'goods_id': id }
+    videodetail(id, classtype) {
+        const datas = { 'goods_id': id, 'room_state':classtype}
         const req = request({
             method: 'post',
             url: '/index.php?act=yjb_course_info&op=course_sp_details',
@@ -15,8 +15,8 @@ export default {
         })
         return req
     },
-    loginvideodetail(key, id) {
-        const datas = { "key": key, 'goods_id': id }
+    loginvideodetail(key, id, classtype) {
+        const datas = { "key": key, 'goods_id': id, 'room_state':classtype}
         const req = request({
             method: 'post',
             url: '/index.php?act=yjb_member_buy&op=course_sp_details ',

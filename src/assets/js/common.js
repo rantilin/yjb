@@ -62,4 +62,11 @@ export default {
     noban() {
         document.body.style.overflow = 'auto'
     },
+    consindx(val, item){
+      for (let index = 0; index < val.length; index++) {
+          if(val[index].sort == item){
+             return index
+          }
+      }
+    }
 }

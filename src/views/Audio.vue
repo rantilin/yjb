@@ -129,7 +129,7 @@
       </cube-button>
       <cube-button class="buy" @click="buyclass(classid)" :disabled="disabled">￥{{goods_price}} 购买</cube-button>
     </div>
-    <component-loading v-if="loding" />
+    <!-- <component-loading v-if="loding" /> -->
     <div class="yindao" v-show="shareshow">
       <div class="yindaoxian"></div>
       <div class="yindaotu">

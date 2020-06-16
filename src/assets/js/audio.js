@@ -427,7 +427,7 @@ export default {
             this.shareshow = false;
         },
         starts() {
-
+            
         },
         moves(e) {
             this.playfalg = false;

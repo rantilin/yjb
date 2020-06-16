@@ -6,6 +6,7 @@ import musicAnim from "@/assets/json/playaudionew.json";
 import ComponentLoading from '@/components/ComponentLoading';
 import Indexlayout from '@/components/Indexlayout1';
 import chapter from '@/components/chapter';
+import audioplay from '@/components/audioplay';
 Vue.use(ComponentLoading);
 Vue.component('component-loading', ComponentLoading);
 import Swiper from 'swiper';
@@ -36,7 +37,8 @@ export default {
     components: {
         Lottie,
         Indexlayout,
-        chapter
+        chapter,
+        audioplay
     },
     data() {
         return {
@@ -72,6 +74,8 @@ export default {
             goods_images: '',
             videolist: '', //视频列表
             chapterlist:'',//开启选集视频列表
+            allvideolist:'',//开启选集后数据列表
+            audiolist:'',//音频列表
             videosrc: "", //视频地址
             playindex: 0, //初始化默认播放下标为0
             xiabiao: 0,
@@ -82,6 +86,7 @@ export default {
             collectstate: '', //收藏状态
             goodsStatezj:'',//是否开启章节
             goods_discount: '',
+            chapterindex: 1,
             zjtext: '',
             msglen: '',
             zjid: '',
@@ -131,10 +136,11 @@ export default {
             doctorid: '',
             phone_num: '',
             gm: '',
+            duration:'', //音频时间
             videoalltime: '',
             videonowtime: '',
             expert_image: '',
-            index1: '',
+            index1: 0,
             wechatshow: false,
             wechatdata: true,
             wximg: '',
@@ -201,13 +207,18 @@ export default {
                 this.$refs.scroll.refresh()
             });
             switch (this.currentTab) {
-                case '0':
+                case 0:
                     this.options.pullUpLoad = false;
                     break;
-                case '2':
-                    this.options.pullUpLoad = false;
+                case 1:
+                    this.options.pullUpLoad = {
+                        txt: {
+                          more: '上拉加载更多视频',
+                          noMore: '没有更多视频'
+                        }
+                      };
                     break;
-                case '3':
+                case 2:
                     if (this.msglists == null) {
                         this.options.pullUpLoad = false;
                     } else {
@@ -233,7 +244,9 @@ export default {
             if (this.key) {
                 this.show = true;
                 this.sphei = false;
+                if(this.classtype == 1){
                 document.getElementById("myVideo").pause();
+                }
                 this.$nextTick(() => {
                     this.$refs.scrolls.refresh();
                 });
@@ -256,12 +269,18 @@ export default {
             this.$nextTick(() => {
                 this.$refs.scroll.refresh()
             });
+            console.log(this.currentTab)
             switch (this.currentTab) {
                 case '1':
                     this.options.pullUpLoad = false;
                     break;
                 case '2':
-                    this.options.pullUpLoad = false;
+                    this.options.pullUpLoad = {
+                        txt: {
+                          more: '上拉加载更多视频',
+                          noMore: '没有更多视频'
+                        }
+                      };
                     break;
                 case '3':
                     if (this.msglists == null) {
@@ -281,19 +300,41 @@ export default {
 
         },
         onPullingUp() {
-            if (this.morenumpl < this.msglists.length) {
-                this.morenumpl = this.morenumpl + 8;
-                this.$refs.scroll.forceUpdate(true);
-                this.$refs.scroll.refresh();
-            } else {
-                this.$refs.scroll.forceUpdate();
-                this.$refs.scroll.refresh();
+            switch (this.currentTab) {
+                case 0:
+                    break;
+                case 1:
+                    if(this.morenum < this.allvideolist.length){
+                      setTimeout(() => {
+                        this.morenum += this.morenum;
+                        this.$refs.scroll.forceUpdate(true);
+                        this.$refs.scroll.refresh();
+                      }, 1500); 
+                     
+                    }else{
+                        this.$refs.scroll.forceUpdate();
+                        this.$refs.scroll.refresh();
+                    }
+                    break;
+                case 2:
+                    if (this.morenumpl < this.msglists.length) {
+                        this.morenumpl = this.morenumpl + 8;
+                        this.$refs.scroll.forceUpdate(true);
+                        this.$refs.scroll.refresh();
+                    } else {
+                        this.$refs.scroll.forceUpdate();
+                        this.$refs.scroll.refresh();
+                    }
+                    break;
+                default:
+                    break;
             }
+            
         },
         list1() {
             if (this.key) {
 
-                classapi.loginvideodetail(this.key, this.classid).then(res => {
+                classapi.loginvideodetail(this.key, this.classid,this.classtype).then(res => {
                     this.goods_image = res.data.datas.brief.goods_image;
                     this.goods_name = res.data.datas.brief.goods_name;
                     this.goods_jingle = res.data.datas.brief.goods_jingle;
@@ -304,22 +345,40 @@ export default {
                     this.goods_images = res.data.datas.brief.goods_images;
                     this.goodsStatezj = res.data.datas.brief.goods_state_zj;
                     if(parseInt(this.goodsStatezj) == 0){
-                        this.videolist = res.data.datas.details;
+                        this.videolist = res.data.datas.details
+                        this.allvideolist = this.videolist
                         this.videosrc = this.videolist[0].video_address
                         this.zjtext = this.videolist[0].courseware
                         this.zjid = this.videolist[0].vo_id
+                        this.videoalltime = this.videolist[0].durations
+                        this.duration = this.videolist[0].duration
                         this.vantab.list = [
                             "课程介绍",
                             "课程目录(" + this.videolist.length + ")",
                             "评论(" + this.msglen + ")",
                         ];
+                        this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      } else {
                         this.chapterlist = res.data.datas.details.data
-                        this.videolist = res.data.datas.details.wu
                         this.videosrc = this.chapterlist[0].chapter_text[0].video_address
                         this.zjtext = this.chapterlist[0].chapter_text[0].courseware
                         this.zjid = this.chapterlist[0].chapter_text[0].vo_id
                         this.playindex = this.chapterlist[0].chapter_text[0].vo_id
+                        this.videoalltime = this.chapterlist[0].chapter_text[0].durations
+                        this.duration = this.chapterlist[0].chapter_text[0].duration
+                        this.allvideolist = res.data.datas.details.wu
+                        
+                        for (let iterator of this.chapterlist) {
+                            this.videolist=[...this.videolist,...iterator.chapter_text]
+                        }
+                        this.videolist=[...this.videolist,...this.allvideolist]
+                        this.morenum = 4
+                        this.vantab.list = [
+                            "课程介绍",
+                            "课程目录(" + this.videolist.length + ")",
+                            "评论(" + this.msglen + ")",
+                        ];
+                        this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      }
                     this.gm = res.data.datas.gm;
                     this.phone_num = res.data.datas.member_mobile;
@@ -381,26 +440,47 @@ export default {
                     }
                 });
             } else {
-                classapi.videodetail(this.classid).then(res => {
+                classapi.videodetail(this.classid,this.classtype).then(res => {
                     this.goods_image = res.data.datas.brief.goods_image;
                     this.goods_name = res.data.datas.brief.goods_name;
                     this.goods_price = res.data.datas.brief.goods_price;
                     this.goods_click = common.number(res.data.datas.brief.goods_click);
                     this.goodsStatezj = res.data.datas.brief.goods_state_zj;
                     if(parseInt(this.goodsStatezj) == 0){
-                        this.videolist = res.data.datas.details;
-                        this.videosrc = this.videolist[this.playindex].video_address
-                        this.zjtext = this.videolist[this.playindex].courseware
-                        this.zjid = this.videolist[this.playindex].vo_id
+                        this.videolist = res.data.datas.details
+                        this.allvideolist = this.videolist
+                        this.videosrc = this.videolist[0].video_address
+                        this.zjtext = this.videolist[0].courseware
+                        this.zjid = this.videolist[0].vo_id
+                        this.videoalltime = this.videolist[0].durations
+                        this.duration = this.videolist[0].duration
                         this.vantab.list = [
                             "课程介绍",
                             "课程目录(" + this.videolist.length + ")",
                             "评论(" + this.msglen + ")",
                         ];
-                     }else{
+                        this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
+                     } else {
                         this.chapterlist = res.data.datas.details.data
-                        this.videolist = res.data.datas.details.wu;
+                        this.videosrc = this.chapterlist[0].chapter_text[0].video_address
+                        this.zjtext = this.chapterlist[0].chapter_text[0].courseware
+                        this.zjid = this.chapterlist[0].chapter_text[0].vo_id
+                        this.playindex = this.chapterlist[0].chapter_text[0].vo_id
+                        this.videoalltime = this.chapterlist[0].chapter_text[0].durations
+                        this.duration = this.chapterlist[0].chapter_text[0].duration
+                        this.allvideolist = res.data.datas.details.wu
                         
+                        for (let iterator of this.chapterlist) {
+                            this.videolist=[...this.videolist,...iterator.chapter_text]
+                        }
+                        this.videolist=[...this.videolist,...this.allvideolist]
+                        this.morenum = 4
+                        this.vantab.list = [
+                            "课程介绍",
+                            "课程目录(" + this.videolist.length + ")",
+                            "评论(" + this.msglen + ")",
+                        ];
+                        this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      }
                     this.introduction = res.data.datas.brief.introduction;
                     this.goods_images = res.data.datas.brief.goods_images;
@@ -514,7 +594,10 @@ export default {
             if (this.index1 != '') {
                 index = this.index1;
             }
-            this.videoalltime = this.videolist[index].durations;
+            let vodata=this.videolist;
+            let  alltime= vodata.filter(item=> item.vo_id == this.playindex)[0]
+            this.videoalltime = alltime.durations
+            this.duration = alltime.duration
         },
         bofang() {
             if (!this.key) {
@@ -527,17 +610,56 @@ export default {
             } else {
                 this.sphei = true;
                 document.getElementById("myVideo").play();
+                
             }
 
+        },
+        audioprve(index, src, courseware, vo_id, duration, durations){ //音频组件通讯
+            this.chapterindex = index
+            this.videosrc = src
+            this.$refs.myVideo.src = src
+            this.zjtext = courseware
+            this.zjid = vo_id
+            this.playindex = vo_id
+            this.duration = duration
+            this.durations = durations
+            this.$nextTick(() => {
+                this.$refs.myVideo.load();
+                document.getElementById('myVideo').play();
+                this.yipics = true
+           });
+           this.$refs.audiochild.chushi();
+           this.$refs.audiochild.xsroll();
+           
+        },
+        audionext(index, src, courseware, vo_id, duration, durations){ //音频组件通讯
+            this.chapterindex = index
+            this.videosrc = src
+            this.$refs.myVideo.src = src
+            this.zjtext = courseware
+            this.zjid = vo_id
+            this.playindex = vo_id
+            this.duration = duration
+            this.durations = durations
+            this.$nextTick(() => {
+                this.$refs.myVideo.load();
+                document.getElementById('myVideo').play();
+                this.yipics = true
+           });
+           this.$refs.audiochild.chushi();
+           this.$refs.audiochild.xsroll();
+        },
+        astate(item){  //音频播放状态
+           this.yipics = item
         },
         morenbofang(){
             this.sphei = true;
             document.getElementById("myVideo").play();
         },
         listbtn(index, freession, gm, video_address, courseware, vo_id) {
-            this.index1 = index;
+            this.chapterindex = index;
             if (freession == 0 && gm != 1) {
-
+                
                 this.toast("该章节需要购买才能继续学习哦");
                 this.selectionsbuy()
                 return false;
@@ -569,6 +691,10 @@ export default {
            });
             this.yipics = true;
             this.$refs.scroll.scrollTo(0, 0);
+            if(this.classtype == 2) {
+              this.$refs.audiochild.chushi();
+              this.$refs.audiochild.xsroll();
+            }
             this.list5();
             this.spalltime();
         },
@@ -644,7 +770,7 @@ export default {
                     this.disabled = true;
 
                     this.toast("订单正在提交中...");
-                    classapi.order(this.key, 2, 1, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount).then(res => {
+                    classapi.order(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount).then(res => {
                         this.disabled = false;
                         this.$router.push({
                             name: 'pay',
@@ -981,11 +1107,13 @@ export default {
             this.$refs.scroll.refresh();
             this.$refs.scrolls.refresh();
         }
+        if(this.classtype == 1){
         var that = this;
         document.getElementById("myVideo").addEventListener('play', function () {
             that.yipics = true;
         }, false);
         this.addEventListeners()
+        }
     },
     beforeDestroyed() {
         this.removeEventListeners()
