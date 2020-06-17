@@ -22,6 +22,8 @@ export default {
       commontitlename:this.$route.query.num,
       cumlist: [],
       cumindex: 0,
+      cumnum: 8,
+      morelength: 0,
       cumid: '',
       yjblist: [],
       curpage: 1,
@@ -62,8 +64,13 @@ export default {
     },
     initdata() {
       courselistapi.column(this.id).then(res => {
+        if(res.data.datas){
         this.cumlist = res.data.datas;
         this.cumid = this.cumlist[0].id;
+        this.morelength = this.cumlist.length;
+      }else{
+        this.cumlist = []
+      }
         this.onLoad()
       }).catch(err => {
         if (err.message != "interrupt") {
@@ -75,7 +82,11 @@ export default {
         }
       });
     },
-
+    culumore(){
+       if( this.cumnum < this.morelength){
+          this.cumnum= this.cumnum + 4
+       }
+    },
     number(val) {
       return common.number(val)
     },

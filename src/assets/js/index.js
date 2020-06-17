@@ -203,8 +203,9 @@ export default {
             this.avtiveindex=1
             this.pitchtab(1)
            }else{
-            this.avtiveindex=0
-            this.pitchtab(0)
+            this.$router.push({
+                name: 'specialist',
+            })
            }
         },
         gopage(url) {

@@ -211,12 +211,21 @@ export default {
                     this.options.pullUpLoad = false;
                     break;
                 case 1:
+                    if(this.classtype == 1){
                     this.options.pullUpLoad = {
                         txt: {
                           more: '上拉加载更多视频',
                           noMore: '没有更多视频'
                         }
                       };
+                    }else{
+                        this.options.pullUpLoad = {
+                            txt: {
+                              more: '上拉加载更多视频',
+                              noMore: '没有更多音频'
+                            }
+                          };
+                    }
                     break;
                 case 2:
                     if (this.msglists == null) {

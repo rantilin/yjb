@@ -11,9 +11,10 @@ export default {
             key: this.$store.state.key.value,
             stateapi: false,
             chatlistlength: '',
-            num: ''
+            num: '',
         };
     },
+    
     methods: {
         switchNav(index) {
             if (this.currentTab == index) {
@@ -89,7 +90,7 @@ export default {
             });
         },
     },
-
+    
     created() {
         switch (this.$route.path) {
             case "/botnav/index":
@@ -118,5 +119,24 @@ export default {
         //     this.list1();
         //     this.list2()
         // }, 300000)
+    },
+    watch:{
+        '$route' (to, from){
+            switch (to.path) {
+                case "/botnav/index":
+                    this.currentTab = 0
+                    break;
+                case "/botnav/specialist":
+                    this.currentTab = 1
+                    break;
+                case "/botnav/message":
+                    this.currentTab = 2
+                    break;
+                case "/botnav/mine":
+                    this.currentTab = 3
+                    break;
+            }
+           
+        },
     }
 };

@@ -5,8 +5,8 @@
       <div class="commontitlename">{{commontitlename}}</div>
     </div>
     <div class="navigation">
-      <div class="item" :class="cumindex==index?'on':''" v-for="(item, index) in cumlist" :key="index" @click="cumteb(index,item.id)">{{item.columnm}}</div>
-      <div class="itemlast" v-if="cumlist.length > 8">更多</div>
+      <div class="item" :class="cumindex==index?'on':''" v-for="(item, index) in cumlist" :key="index" @click="cumteb(index,item.id)" v-show="index < cumnum-1">{{item.columnm}}</div>
+      <div class="itemlast" v-if="morelength > 7" @click="culumore">更多</div>
     </div>
     
     <cube-scroll class="wviews" :options="options" @pulling-up="onLoad"  ref="scroll" >

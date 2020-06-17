@@ -46,23 +46,14 @@ export default {
       return common.number(val)
     },
     godetail(id, item, index) {
-      if (item == 1) {
-        this.$router.push({
+      this.$router.push({
                 name: 'class',
                 query: {
                     classid: id,
-                    index: index
+                    index: index,
+                    state: item 
                 }
       })
-      } else {
-        this.$router.push({
-                name: 'audio',
-                query: {
-                    classid: id,
-                    index: index
-                }
-      })
-      }
     }
   }
 }
