@@ -23,9 +23,9 @@
             </div>
           </li>
           <li class="msglistli">
-            <label>年级</label>
+            <label>性别</label>
             <div class="inputview">
-              <input placeholder="请输入年级" @blur="blur" v-model="valgrade" />
+              <input placeholder="请输入性别" @blur="blur" v-model="valgrade" />
             </div>
           </li>
           <li class="msglistli">
@@ -35,7 +35,7 @@
             </div>
           </li>
         </ul>
-        <p class="proof">以上信息是你进群的唯一凭证，请确保信息真实有效</p>
+        <p class="proof">以上信息是报名的唯一凭证，请确保信息真实有效</p>
         <div class="clear"></div>
         <div style="width: 85%;margin: auto;margin-top: 10px;">
           <DisCode :discountoption="price" @coreprice="discoucode"></DisCode>
