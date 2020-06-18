@@ -1123,8 +1123,16 @@ export default {
         }, false);
         this.addEventListeners()
         }
+        if (window.history && window.history.pushState) {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', this.back, false);
+          }
+        
     },
     beforeDestroyed() {
         this.removeEventListeners()
-    }
+    },
+    destroyed(){
+        window.removeEventListener('popstate', this.back, false);//false阻止默认事件
+    },
 }

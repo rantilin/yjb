@@ -383,5 +383,10 @@ export default {
         window.onresize = () => {
             this.$refs.scroll.refresh();
         }
+    },
+    watch:{
+        $route (to, from){
+            console.log(from)
+        }
     }
 };
