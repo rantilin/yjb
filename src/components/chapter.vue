@@ -49,12 +49,18 @@
                             <div class="trylisten">可试看</div>
                           </div>
                         </div>
-                        <div class="listtime">
+                        <div :class="item.timedisplay == 0 ? 'listeye': 'listtime'">
                           <div :class="[item.freession==1||item.gm==1?'timepic':'timepics']"></div>
                           <div
                             class="timetext"
-                            :class="[item.freession==1||item.gm==1?'':'disable']"
+                            :class="[item.freession==1||item.gm==1?'':'disable']" v-if="item.timedisplay == 0"
                           >{{item.playnum}}已学习</div>
+                          <div  
+                            class="timetext"
+                            :class="[item.freession==1||item.gm==1?'':'disable']"
+                            v-else>
+                            {{item.duration}}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -255,6 +261,44 @@ export default {
                     float: left;
                     width: 11px;
                     height: 11px;
+                    background: url("../assets/image/time.png");
+                    background-size: 100% 100%;
+                }
+
+                .timepics {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/times.png");
+                    background-size: 100% 100%;
+                }
+                .timetext {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 5px;
+                }
+                .watchnum {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 15px;
+                }
+            }
+            .listeye {
+                width: 100%;
+                float: left;
+                height: 11px;
+                margin-top: 10px;
+                
+                .timepic {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
                     background: url("../assets/image/eye.png");
                     background-size: 100% 100%;
                 }
@@ -266,6 +310,7 @@ export default {
                     background: url("../assets/image/eyeoff.png");
                     background-size: 100% 100%;
                 }
+
                 .timetext {
                     float: left;
                     color: $bt;
@@ -274,6 +319,7 @@ export default {
                     line-height: 12px;
                     margin-left: 5px;
                 }
+
                 .watchnum {
                     float: left;
                     color: $bt;

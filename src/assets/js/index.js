@@ -72,6 +72,11 @@ export default {
             scrollEvents: ['before-scroll-start'],
             fromflag: true,
             tjpage: 1, //推荐分页
+            tjispage: true,
+            options: {
+                pullDownRefresh:false,
+                pullUpLoad: true,
+             },
         };
     },
     methods: {
@@ -188,9 +193,7 @@ export default {
                 if( avtindex == 0 || avtindex == 1 || avtindex == 3){
                     this.list2()
                 }
-                if(avtindex == 0 || avtindex == 1){
-                    this.list5()
-                }
+                
                 if(avtindex == 2){
                     this.loding = false
                 }
@@ -269,10 +272,25 @@ export default {
             }
         },
         list5(){
+            let _this = this;
+            if(_this.tjispage){
             indexapi.recomlist(this.recomdata[this.avtiveindex], this.tjpage).then(res=>{
-                this.tjdata = res.data.datas;
+                let _list = res.data.datas.data
+                _this.tjdata = [..._this.tjdata, ..._list]
+                if(_this.tjpage < res.data.datas.setTotal){
+                    _this.$refs.scroll.forceUpdate(true);
+                    _this.tjpage = parseInt(_this.tjpage) + 1
+                    _this.tjispage = true
+                }else{
+                    _this.tjispage = false
+                    _this.$refs.scroll.forceUpdate(false);
+                }
             })
+          }else{
+              _this.$refs.scroll.forceUpdate(false);
+          }
         },
+        
         number(val) {
             return common.number(val);
         },
@@ -385,5 +403,20 @@ export default {
             this.$refs.scroll.refresh();
         }
     },
+    watch:{
+        avtiveindex(val,oldval){
+            if(val!=oldval){
+                if(val == 0 || val == 1){
+                    this.tjdata = []
+                    this.tjpage = 1
+                    this.tjispage = true
+                    this.options.pullUpLoad = true;
+                    this.list5()
+                }else{
+                    this.options.pullUpLoad = false;
+                }
+            }
+        }
+    }
 
 };

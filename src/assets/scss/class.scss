@@ -142,7 +142,47 @@
                 float: left;
                 height: 11px;
                 margin-top: 10px;
+                
+                .timepic {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/time.png");
+                    background-size: 100% 100%;
+                }
 
+                .timepics {
+                    float: left;
+                    width: 11px;
+                    height: 11px;
+                    background: url("../assets/image/times.png");
+                    background-size: 100% 100%;
+                }
+
+                .timetext {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 5px;
+                }
+
+                .watchnum {
+                    float: left;
+                    color: $bt;
+                    font-size: 12px;
+                    height: 11px;
+                    line-height: 12px;
+                    margin-left: 15px;
+                }
+            }
+            .listeye {
+                width: 100%;
+                float: left;
+                height: 11px;
+                margin-top: 10px;
+                
                 .timepic {
                     float: left;
                     width: 11px;
@@ -177,6 +217,7 @@
                     margin-left: 15px;
                 }
             }
+            
         }
     }
 }

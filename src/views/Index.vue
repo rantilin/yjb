@@ -27,7 +27,9 @@
       <cube-scroll
         class="indexpanels"
         ref="scroll"
+        :options="options"
         :scrollEvents="scrollEvents"
+        @pulling-up="list5"
         @before-scroll-start="scrollnow"
       >
         <div class="swiper">
@@ -61,7 +63,7 @@
             :avtiveindex="avtiveindex"
           ></classlist>
           <div v-if="avtiveindex==0 || avtiveindex==1 ">
-            <recommend :recomdata="tjdata.data" :avtiveindex="avtiveindex" @tjmore="moreteb"></recommend>
+            <recommend :recomdata="tjdata" :avtiveindex="avtiveindex" @tjmore="moreteb"></recommend>
           </div>
 
         </div>

@@ -1,6 +1,8 @@
 import request from '@/utils/request'
 import Vue from 'vue'
 import axios from 'axios'
+import qs from 'qs'
+
 export default {
     swiperlist() {
         const req = request({
@@ -32,17 +34,19 @@ export default {
         })
         return req
     },
-    recomlist(item, page){  //推荐接口
-        const datas = { 'curpage': page}
+    recomlist(item, curpage){  //推荐接口
         const req = request({
             method: 'get',
             url: `/index.php?act=index_yjb_new&op=${item}`,
             cancelToken: new axios.CancelToken(c => {
                 Vue.$httpRequestList.push(c);
             }),
-            data: qs.stringify(datas)
+            params: {
+                "curpage": curpage,
+            },
         })
         return req
+        
     },
     classlist() {
         const req = request({
