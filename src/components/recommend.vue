@@ -20,7 +20,8 @@
       </div>
     </div>
     <div class="rmorebutn" @click="moreclick">
-      <div class="textmt10">80%的妈妈都在看</div>
+      <div class="textmt10" v-if="avtiveindex == 0">80%的妈妈都在看</div>
+       <div class="textmt10" v-if="avtiveindex == 1">还有疑问？点击咨询专家</div>
       <div class="morearrows bpt10"></div>
     </div>
   </div>

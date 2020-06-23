@@ -30,10 +30,12 @@ export default {
       total: 1,
       cummore: true,
       options: {
+        pullDownRefresh:false,
         pullUpLoad: {
+          stop: 0,
           txt: {
-            more: '上拉加载更多视频',
-            noMore: '没有更多视频'
+            more: '努力刷新中~',
+            noMore: '已经滑到底啦~'
           }
         }
       },
@@ -90,10 +92,9 @@ export default {
     number(val) {
       return common.number(val)
     },
-    ceshi() {
-      console.log(123);
-    },
+   
     cumteb(index, itemid) {
+      this.$refs.scroll.forceUpdate(true)
       this.loding = true
       this.$nextTick(() => {
         this.$refs.scroll.scrollTo(0, 0);
@@ -111,20 +112,22 @@ export default {
       if (_this.cummore) {
         courselistapi.newsplist(_this.id, _this.cumid, _this.curpage).then(res => {
           let _list = res.data.datas.list
-          _this.loding = false
           if (_list[0].setTotal) {
             _this.total = _list[0].setTotal
           }
           _this.yjblist = [..._this.yjblist, ..._list]
-          _this.$refs.scroll.refresh();
           if (_this.total > _this.curpage) {
+            this.$refs.scroll.forceUpdate(true)
             _this.curpage = parseInt(_this.curpage) + 1
             _this.cummore = true
           } else {
             _this.$refs.scroll.forceUpdate();
-            _this.$refs.scroll.refresh();
             _this.cummore = false
           }
+          _this.$nextTick(() => {
+            _this.$refs.scroll.refresh()
+          });
+          _this.loding = false
         }).catch(err => {
           if (err.message != "interrupt") {
             let errmsg = '请求失败';
@@ -136,7 +139,6 @@ export default {
         });
       } else {
         _this.$refs.scroll.forceUpdate();
-        _this.$refs.scroll.refresh();
       }
       
     },

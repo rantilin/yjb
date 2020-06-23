@@ -32,13 +32,15 @@ export default {
         })
         return req
     },
-    recomlist(item){  //推荐接口
+    recomlist(item, page){  //推荐接口
+        const datas = { 'curpage': page}
         const req = request({
             method: 'get',
             url: `/index.php?act=index_yjb_new&op=${item}`,
             cancelToken: new axios.CancelToken(c => {
                 Vue.$httpRequestList.push(c);
             }),
+            data: qs.stringify(datas)
         })
         return req
     },

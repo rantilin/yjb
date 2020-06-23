@@ -60,6 +60,16 @@ export default {
             diseaseid: '',
             curpage: 1,
             setTotal: '',
+            options: {
+                pullDownRefresh:false,
+                pullUpLoad: {
+                  stop: 0,
+                  txt: {
+                    more: '上拉加载更多',
+                    noMore: '没有更多数据'
+                  }
+                }
+              },
             morebtntext: '点击加载更多',
             disableds: false,
             rmqusertlist: [],
@@ -358,8 +368,22 @@ export default {
                 share_yp(this.keyval, 1, this.sharename, this.indexlogo, this.desc, this.url, this.present);
             }
         },
+        upmore(){
+           switch (this.currentTab) {
+               case 0:
+                console.log(123)
+                this.morebtn()
+                
+                   break;
+               case 1:
+                this.morebtns()
+               default:
+                   break;
+           }
+        },
         morebtn() {
-            if (this.curpage < this.setTotal) {
+            if (this.curpage <= this.setTotal) {
+                this.$refs.scroll.forceUpdate(true)
                 this.disableds = true;
                 this.curpage++;
                 this.morebtntext = '正在加载中...'
@@ -381,10 +405,12 @@ export default {
                 });
             } else {
                 this.morebtntext = '暂无更多'
+                this.$refs.scroll.forceUpdate();
             }
         },
         morebtns() {
-            if (this.curpages < this.setTotals) {
+            if (this.curpages <= this.setTotals) {
+                this.$refs.scroll.forceUpdate(true)
                 this.disabledss = true;
                 this.curpages++;
                 this.morebtntexts = '正在加载中...'
@@ -405,6 +431,8 @@ export default {
                     }
                 });
             } else {
+                
+                this.$refs.scroll.forceUpdate();
                 this.morebtntexts = '暂无更多'
             }
         },

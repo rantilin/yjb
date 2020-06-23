@@ -8,8 +8,8 @@
       <div class="item" :class="cumindex==index?'on':''" v-for="(item, index) in cumlist" :key="index" @click="cumteb(index,item.id)" v-show="index < cumnum-1">{{item.columnm}}</div>
       <div class="itemlast" v-if="morelength > 7" @click="culumore">更多</div>
     </div>
-    
-    <cube-scroll class="wviews" :options="options" @pulling-up="onLoad"  ref="scroll" >
+   <div class="wviews">
+    <cube-scroll class="classpanels" :options="options" @pulling-up="onLoad"  ref="scroll" >
      <div class="recommend" v-for="(item,index) in yjblist" :key="index" @click="godetail(item.goods_id,item.room_state,avtiveindex)">
       <van-image
         class="picture"
@@ -26,7 +26,9 @@
         </div>
       </div>
     </div>
+  
      </cube-scroll>
+    </div>
      <component-loading v-if="loding" />
   </div>
 </template>
@@ -138,5 +140,12 @@
   height: calc(100vh - 94px);
   font-size: 12px;
   background: #fff;
+}
+.classpanels {
+    width: 100%;
+    height: 100%;
+}
+.before-trigger{
+  color: #999999;
 }
 </style>

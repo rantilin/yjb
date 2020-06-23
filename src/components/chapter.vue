@@ -54,7 +54,7 @@
                           <div
                             class="timetext"
                             :class="[item.freession==1||item.gm==1?'':'disable']"
-                          >{{item.duration}}</div>
+                          >{{item.playnum}}已学习</div>
                         </div>
                       </div>
                     </div>
@@ -255,14 +255,15 @@ export default {
                     float: left;
                     width: 11px;
                     height: 11px;
-                    background: url("../assets/image/time.png");
+                    background: url("../assets/image/eye.png");
                     background-size: 100% 100%;
                 }
+
                 .timepics {
                     float: left;
                     width: 11px;
                     height: 11px;
-                    background: url("../assets/image/times.png");
+                    background: url("../assets/image/eyeoff.png");
                     background-size: 100% 100%;
                 }
                 .timetext {
@@ -289,4 +290,8 @@ export default {
     width: 24px;
     height: 24px;
 }
+.disable {
+    color: #BFBFBF !important;
+}
+
 </style>

@@ -223,6 +223,7 @@
                   :swipe-threshold="vantab.swipethreshold"
                   :border="vantab.border"
                   :swipeable="vantab.swipeable"
+                  v-model="currentTab"
                   @click="pitchtab"
                 >
                   <van-tab
@@ -339,7 +340,7 @@
                           <div
                             class="timetext"
                             :class="[item.freession==1||item.gm==1?'':'disable']"
-                          >{{item.duration}}</div>
+                          >{{item.playnum}}已学习</div>
                         </div>
                       </div>
                     </div>
@@ -449,7 +450,7 @@
                         :src="nocontent"
                       />
                     </div>
-                    <div class="nocontenttext">暂无评论</div>
+                    <div class="nocontenttext">暂无笔记</div>
                   </div>
                 </div>
                 <!-- nocntetview -->

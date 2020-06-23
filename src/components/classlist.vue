@@ -73,9 +73,11 @@
             >￥{{item.goods_price}}</div>
           </Indexlayout>
         </div>
+        <div class="lastmore">
         <div class="morebutn" @click="classbtn(Classdata[0].column_id,columnname,avtiveindex)">
            <div class="textmt10">查看更多</div>
            <div class="morearrows bpt10"></div>
+        </div>
         </div>
       </div>
     </template>
@@ -271,5 +273,8 @@ export default {
     width: 165.5px;
     margin-bottom: 16px;
   }
+}
+.lastmore{
+  width: 100%;
 }
 </style>

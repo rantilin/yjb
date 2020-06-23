@@ -4,7 +4,7 @@
     <div class="jianbian"></div>
 
     <div class="specialistpanelview">
-      <cube-scroll class="specialistpanels" ref="scroll">
+      <cube-scroll class="specialistpanels" :options="options" @pulling-up="upmore" ref="scroll">
         <div class="noticeview" v-if="noticetext">
           <div class="trumpet"></div>
           <div class="notice">
@@ -146,14 +146,7 @@
                 </div>
               </div>
               <!-- specialistview -->
-              <div class="morebtnview">
-                <cube-button class="morebtn" @click="morebtn" :disabled="disableds">
-                  <div>
-                    <div class="morebtntext">{{morebtntext}}</div>
-                    <div class="morebtnpic"></div>
-                  </div>
-                </cube-button>
-              </div>
+             
               <!-- morebtnview -->
             </div>
             <!-- smcontent -->
@@ -210,14 +203,7 @@
                 </div>
               </div>
               <!-- hotissue -->
-              <div class="morebtnview">
-                <cube-button class="morebtn" @click="morebtns" :disabled="disabledss">
-                  <div>
-                    <div class="morebtntext">{{morebtntexts}}</div>
-                    <div class="morebtnpic"></div>
-                  </div>
-                </cube-button>
-              </div>
+              
               <!-- morebtnview -->
             </div>
             <!-- smcontent -->

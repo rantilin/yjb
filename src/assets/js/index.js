@@ -71,6 +71,7 @@ export default {
             stateapi: false,
             scrollEvents: ['before-scroll-start'],
             fromflag: true,
+            tjpage: 1, //推荐分页
         };
     },
     methods: {
@@ -268,7 +269,7 @@ export default {
             }
         },
         list5(){
-            indexapi.recomlist(this.recomdata[this.avtiveindex]).then(res=>{
+            indexapi.recomlist(this.recomdata[this.avtiveindex], this.tjpage).then(res=>{
                 this.tjdata = res.data.datas;
             })
         },
@@ -384,9 +385,5 @@ export default {
             this.$refs.scroll.refresh();
         }
     },
-    watch:{
-        $route (to, from){
-            console.log(from)
-        }
-    }
+
 };

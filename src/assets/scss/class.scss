@@ -147,7 +147,7 @@
                     float: left;
                     width: 11px;
                     height: 11px;
-                    background: url("../assets/image/time.png");
+                    background: url("../assets/image/eye.png");
                     background-size: 100% 100%;
                 }
 
@@ -155,7 +155,7 @@
                     float: left;
                     width: 11px;
                     height: 11px;
-                    background: url("../assets/image/times.png");
+                    background: url("../assets/image/eyeoff.png");
                     background-size: 100% 100%;
                 }
 
@@ -490,6 +490,7 @@ li {
         color: $bt;
         font-size: 13px;
         line-height: 18px;
+        letter-spacing: 1px;
         margin-left: 35px;
     }
 }

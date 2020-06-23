@@ -215,7 +215,12 @@ export default {
                         this.options.pullUpLoad = false;
                         break;
                     case 1:
-                        this.options.pullUpLoad = false;
+                        this.options.pullUpLoad = {
+                            txt: {
+                              more: '上拉加载更多视频',
+                              noMore: '没有更多视频'
+                            }
+                          };
                         break;
                     case 2:
                         if (this.msglists == null) {
@@ -270,6 +275,38 @@ export default {
             }, 10)
         },
         onPullingUp() {
+            if (this.complimentary.comnum > 0){
+            switch (this.avtiveindex) {
+                case 0:
+                    break;
+                case 1:
+                    if(this.morenum < this.complimentary.length){
+                      setTimeout(() => {
+                        this.morenum += this.morenum;
+                        this.$refs.scroll.forceUpdate(true);
+                        this.$refs.scroll.refresh();
+                      }, 1500); 
+                     
+                    }else{
+                        this.$refs.scroll.forceUpdate();
+                        this.$refs.scroll.refresh();
+                    }
+                    break;
+                case 2:
+                    if (this.morenumpl < this.msglists.length) {
+                        this.morenumpl = this.morenumpl + 8;
+                        this.$refs.scroll.forceUpdate(true);
+                        this.$refs.scroll.refresh();
+                    } else {
+                        this.$refs.scroll.forceUpdate();
+                        this.$refs.scroll.refresh();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+        }else{
             if (this.morenumpl < this.msglists.length) {
                 this.morenumpl = this.morenumpl + 8;
                 this.$refs.scroll.forceUpdate();
@@ -278,6 +315,7 @@ export default {
                 this.$refs.scroll.forceUpdate();
                 this.$refs.scroll.refresh();
             }
+        }
         },
         send() {
             if (this.key) {

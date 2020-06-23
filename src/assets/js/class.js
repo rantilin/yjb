@@ -106,7 +106,7 @@ export default {
                 list: [
                     "课程介绍",
                     "课程目录",
-                    "评论",
+                    "笔记",
                 ],
                 color: "#21C891",
                 background: "transparent",
@@ -214,15 +214,15 @@ export default {
                     if(this.classtype == 1){
                     this.options.pullUpLoad = {
                         txt: {
-                          more: '上拉加载更多视频',
-                          noMore: '没有更多视频'
+                          more: '努力刷新中~',
+                          noMore: '已经滑到底啦~'
                         }
                       };
                     }else{
                         this.options.pullUpLoad = {
                             txt: {
-                              more: '上拉加载更多视频',
-                              noMore: '没有更多音频'
+                              more: '努力刷新中~',
+                              noMore: '已经滑到底啦~'
                             }
                           };
                     }
@@ -234,8 +234,8 @@ export default {
                         this.options.pullUpLoad = {
                             threshold: 0,
                             txt: {
-                                more: '上拉加载更多评论',
-                                noMore: '没有更多评论'
+                                more: '上拉加载更多笔记',
+                                noMore: '没有更多笔记'
                             }
                         }
                     }
@@ -284,12 +284,16 @@ export default {
                     this.options.pullUpLoad = false;
                     break;
                 case '2':
+                    if(this.allvideolist.length > 1){
                     this.options.pullUpLoad = {
                         txt: {
-                          more: '上拉加载更多视频',
-                          noMore: '没有更多视频'
+                          more: '努力刷新中~',
+                          noMore: '已经滑到底啦~'
                         }
                       };
+                    }else{
+                    this.options.pullUpLoad = false;
+                    }
                     break;
                 case '3':
                     if (this.msglists == null) {
@@ -298,8 +302,8 @@ export default {
                         this.options.pullUpLoad = {
                             threshold: 0,
                             txt: {
-                                more: '上拉加载更多评论',
-                                noMore: '没有更多评论'
+                                more: '上拉加载更多笔记',
+                                noMore: '没有更多笔记'
                             }
                         }
                     }
@@ -364,7 +368,7 @@ export default {
                         this.vantab.list = [
                             "课程介绍",
                             "课程目录(" + this.videolist.length + ")",
-                            "评论(" + this.msglen + ")",
+                            "笔记(" + this.msglen + ")",
                         ];
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      } else {
@@ -385,7 +389,7 @@ export default {
                         this.vantab.list = [
                             "课程介绍",
                             "课程目录(" + this.videolist.length + ")",
-                            "评论(" + this.msglen + ")",
+                            "笔记(" + this.msglen + ")",
                         ];
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      }
@@ -466,7 +470,7 @@ export default {
                         this.vantab.list = [
                             "课程介绍",
                             "课程目录(" + this.videolist.length + ")",
-                            "评论(" + this.msglen + ")",
+                            "笔记(" + this.msglen + ")",
                         ];
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      } else {
@@ -487,17 +491,31 @@ export default {
                         this.vantab.list = [
                             "课程介绍",
                             "课程目录(" + this.videolist.length + ")",
-                            "评论(" + this.msglen + ")",
+                            "笔记(" + this.msglen + ")",
                         ];
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      }
                     this.introduction = res.data.datas.brief.introduction;
                     this.goods_images = res.data.datas.brief.goods_images;
                     this.goods_discount = res.data.datas.brief.goods_discount;
+                    this.goods_complete = res.data.datas.brief.goods_complete;
                     
-                   
                     this.list6();
                     this.recommend();
+                    if(parseInt(this.goods_complete) == 1){
+                        this.allbuy = true;
+                        this.goods_buytext = '立即购买';
+                        this.checkall();
+                        this.$nextTick(() => {
+                          if(this.discountoption == 0){
+                              this.goods_buytext = '已购买';
+                              this.allbuystatic = true;
+                           }
+                      });
+                  }else{
+                      this.allbuy = false;
+                      this.goods_buytext = '选集购买';
+                  }
                 }).catch(err => {
                     if (err.message != "interrupt") {
                         let errmsg = '请求失败';
@@ -543,7 +561,7 @@ export default {
                 this.vantab.list = [
                     "课程介绍",
                     "课程目录(" + this.videolist.length + ")",
-                    "评论(" + this.msglen + ")",
+                    "笔记(" + this.msglen + ")",
                 ];
                 this.loding = false;
             }).catch(err => {
@@ -619,9 +637,16 @@ export default {
             } else {
                 this.sphei = true;
                 document.getElementById("myVideo").play();
-                
+                if(this.classtype == 2) {
+                    this.audioclassimg()
+                }
             }
 
+        },
+        audioclassimg(){
+            this.$refs.scroll.scrollTo(0, -480,1000);
+            this.currentTab = 0
+            this.goods_images = this.videolist.filter(item=>item.sort == '1')[0].image
         },
         audioprve(index, src, courseware, vo_id, duration, durations){ //音频组件通讯
             this.chapterindex = index
@@ -666,7 +691,7 @@ export default {
             document.getElementById("myVideo").play();
         },
         listbtn(index, freession, gm, video_address, courseware, vo_id) {
-            this.chapterindex = index;
+           
             if (freession == 0 && gm != 1) {
                 
                 this.toast("该章节需要购买才能继续学习哦");
@@ -686,8 +711,8 @@ export default {
                         back: true
                     }
                 })
-            }
-
+            }else{
+            this.chapterindex = index;
             this.playindex = vo_id;
             this.videosrc = video_address
             this.zjtext = courseware
@@ -706,6 +731,7 @@ export default {
             }
             this.list5();
             this.spalltime();
+          }
         },
         morebtn() {
             this.morenum = this.morenum + 8;
@@ -731,7 +757,7 @@ export default {
                     this.list = [
                         "课程介绍",
                         "课程目录(" + this.videolist.length + ")",
-                        "评论(" + this.msglen + ")",
+                        "笔记(" + this.msglen + ")",
                     ];
                     this.$refs.scroll.refresh();
                 }).catch(err => {
