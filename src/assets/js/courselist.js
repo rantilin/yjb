@@ -83,6 +83,7 @@ export default {
           this.toast(errmsg);
         }
       });
+      document.title = this.$route.query.num
     },
     culumore(){
        if( this.cumnum < this.morelength){

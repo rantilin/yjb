@@ -377,7 +377,9 @@ export default {
                             path: localStorage.getItem('souquanpath'),
                             query: JSON.parse(localStorage.getItem('souquanquery'))
                         });
-                        
+                        //
+                    }else{
+                        localStorage.removeItem('souquanquery')
                     }
                 }
                 this.list1();

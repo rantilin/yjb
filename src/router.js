@@ -275,6 +275,26 @@ export default new Router({
             }
         },
         {
+            path: '/mywallet',
+            name: 'mywallet',
+            component: () =>
+                import ('./views/Mywallet.vue'),
+            meta: {
+                title: '我的钱包',
+                keepAlive: false
+            }
+        },
+        {
+            path: '/withdraw',
+            name: 'withdraw',
+            component: () =>
+                import ('./views/withdraw.vue'),
+            meta: {
+                title: '提现记录',
+                keepAlive: false
+            }
+        },
+        {
             path: '/information',
             name: 'information',
             component: () =>

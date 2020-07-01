@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="rmorebutn" @click="moreclick">
+    <div class="rmorebutn" @click="moreclick" v-if="loding==false">
       <div class="textmt10" v-if="avtiveindex == 0">80%的妈妈都在看</div>
        <div class="textmt10" v-if="avtiveindex == 1">还有疑问？点击咨询专家</div>
       <div class="morearrows bpt10"></div>
@@ -30,7 +30,7 @@
 import common from '@/assets/js/common'
 export default {
   name: 'recommend',
-  props: ['recomdata','avtiveindex'],
+  props: ['recomdata','avtiveindex','loding'],
   data() {
     return {
       key: '',

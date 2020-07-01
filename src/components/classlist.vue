@@ -4,7 +4,7 @@
       <div class="classifyname">{{columnname}}</div>
       <div
         class="morebtn"
-        v-if="classnum < 6"
+        v-if="classnum < 8"
       >
         <div
           class="moretext"

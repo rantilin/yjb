@@ -665,7 +665,7 @@
         </div>
       </div>
     </div>
-
+    <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :shareprice="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && !sharereception"></EarnShare>
     <component-loading v-if="loding" />
   </div>
 </template>

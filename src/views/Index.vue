@@ -63,7 +63,7 @@
             :avtiveindex="avtiveindex"
           ></classlist>
           <div v-if="avtiveindex==0 || avtiveindex==1 ">
-            <recommend :recomdata="tjdata" :avtiveindex="avtiveindex" @tjmore="moreteb"></recommend>
+            <recommend :recomdata="tjdata" :avtiveindex="avtiveindex" @tjmore="moreteb" :loding="tjispage"></recommend>
           </div>
 
         </div>

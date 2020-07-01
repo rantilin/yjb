@@ -275,14 +275,15 @@ export default {
             }, 10)
         },
         onPullingUp() {
-            if (this.complimentary.comnum > 0){
+            
             switch (this.avtiveindex) {
                 case 0:
                     break;
                 case 1:
+                  
                     if(this.morenum < this.complimentary.length){
                       setTimeout(() => {
-                        this.morenum += this.morenum;
+                        this.morenum = this.morenum + 4;
                         this.$refs.scroll.forceUpdate(true);
                         this.$refs.scroll.refresh();
                       }, 1500); 
@@ -293,8 +294,9 @@ export default {
                     }
                     break;
                 case 2:
+                    close.log(12);
                     if (this.morenumpl < this.msglists.length) {
-                        this.morenumpl = this.morenumpl + 8;
+                        this.morenumpl = this.morenumpl + 4;
                         this.$refs.scroll.forceUpdate(true);
                         this.$refs.scroll.refresh();
                     } else {
@@ -306,16 +308,6 @@ export default {
                     break;
             }
 
-        }else{
-            if (this.morenumpl < this.msglists.length) {
-                this.morenumpl = this.morenumpl + 8;
-                this.$refs.scroll.forceUpdate();
-                this.$refs.scroll.refresh();
-            } else {
-                this.$refs.scroll.forceUpdate();
-                this.$refs.scroll.refresh();
-            }
-        }
         },
         send() {
             if (this.key) {

@@ -66,7 +66,7 @@ export default {
                   stop: 0,
                   txt: {
                     more: '上拉加载更多',
-                    noMore: '没有更多数据'
+                    noMore: '更多专家即将入驻'
                   }
                 }
               },

@@ -11,6 +11,7 @@ export default {
         return {
             key: this.$store.state.key.value,
             minelist: [
+                { pic: require("../image/wallet.png"), name: "我的钱包" },
                 { pic: require("../image/order.png"), name: "我的订单" },
                 { pic: require("../image/class.png"), name: "我的课程" },
                 { pic: require("../image/consult.png"), name: "我的咨询" },
@@ -33,25 +34,30 @@ export default {
                 switch (index) {
                     case 0:
                         this.$router.push({
-                            path: '/myorder'
+                            path: '/Mywallet'
                         })
                         break;
                     case 1:
                         this.$router.push({
-                            path: '/mycourse'
+                            path: '/myorder'
                         })
                         break;
                     case 2:
                         this.$router.push({
-                            path: '/myconsult'
+                            path: '/mycourse'
                         })
                         break;
                     case 3:
                         this.$router.push({
-                            path: '/mycollect'
+                            path: '/myconsult'
                         })
                         break;
                     case 4:
+                        this.$router.push({
+                            path: '/mycollect'
+                        })
+                        break;
+                    case 5:
                         this.$router.push({
                             path: '/learningrecord'
                         })
@@ -88,7 +94,6 @@ export default {
 
                 this.loding = false;
                 this.stateapi = true;
-                console.log(this.tel)
                 window.localStorage.setItem('phone', this.tel)
             }).catch(err => {
                 if (err.message != "interrupt") {
@@ -99,6 +104,7 @@ export default {
                     this.toast(errmsg);
                 }
             });
+            
         },
         list2() {
             mineapi.order(this.key).then(res => {

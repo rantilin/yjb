@@ -7,6 +7,8 @@ import ComponentLoading from '@/components/ComponentLoading';
 import Indexlayout from '@/components/Indexlayout1';
 import chapter from '@/components/chapter';
 import audioplay from '@/components/audioplay';
+import EarnShare from '@/components/EarnShare';
+import { Loading } from 'vant';
 Vue.use(ComponentLoading);
 Vue.component('component-loading', ComponentLoading);
 import Swiper from 'swiper';
@@ -18,7 +20,7 @@ import {
     Collapse,
     CollapseItem
 } from 'vant';
-Vue.use(Image).use(Tab).use(Tabs).use(Collapse).use(CollapseItem);
+Vue.use(Image).use(Tab).use(Tabs).use(Collapse).use(CollapseItem).use(Loading);
 import {
     share_yp
 } from './share';
@@ -38,7 +40,8 @@ export default {
         Lottie,
         Indexlayout,
         chapter,
-        audioplay
+        audioplay,
+        EarnShare
     },
     data() {
         return {
@@ -72,6 +75,7 @@ export default {
             goods_click: '',
             introduction: '',
             goods_images: '',
+            mrgoodimg: '',
             videolist: '', //视频列表
             chapterlist:'',//开启选集视频列表
             allvideolist:'',//开启选集后数据列表
@@ -141,7 +145,15 @@ export default {
             videonowtime: '',
             expert_image: '',
             index1: 0,
-            wechatshow: false,
+            wechatshow: false,//二维码
+            shareimg: '',//分享佣金海报
+            share_images: '',//分享海报背景
+            shareheard:'',//分享用户头像
+            shareimgname:'',
+            shareuid: 0,
+            sharereception: this.$route.query.shareuid,//分享接受uid
+            share_price: 0,//分享获取佣金
+            share_cont: 0,
             wechatdata: true,
             wximg: '',
             DiscountsCode: false,
@@ -268,50 +280,8 @@ export default {
                 })
             }
         },
-        switchNav(event) {
-            var cur = event.currentTarget.dataset.current;
-            if (this.currentTab == cur) {
-                return false;
-            } else {
-                this.currentTab = cur;
-            }
-            this.$nextTick(() => {
-                this.$refs.scroll.refresh()
-            });
-            console.log(this.currentTab)
-            switch (this.currentTab) {
-                case '1':
-                    this.options.pullUpLoad = false;
-                    break;
-                case '2':
-                    if(this.allvideolist.length > 1){
-                    this.options.pullUpLoad = {
-                        txt: {
-                          more: '努力刷新中~',
-                          noMore: '已经滑到底啦~'
-                        }
-                      };
-                    }else{
-                    this.options.pullUpLoad = false;
-                    }
-                    break;
-                case '3':
-                    if (this.msglists == null) {
-                        this.options.pullUpLoad = false;
-                    } else {
-                        this.options.pullUpLoad = {
-                            threshold: 0,
-                            txt: {
-                                more: '上拉加载更多笔记',
-                                noMore: '没有更多笔记'
-                            }
-                        }
-                    }
-                    this.$refs.scroll.refresh();
-                    break;
-            }
-
-        },
+        
+     
         onPullingUp() {
             switch (this.currentTab) {
                 case 0:
@@ -356,6 +326,7 @@ export default {
                     this.goods_discount = res.data.datas.brief.goods_discount;
                     this.introduction = res.data.datas.brief.introduction;
                     this.goods_images = res.data.datas.brief.goods_images;
+                    this.mrgoodimg = res.data.datas.brief.goods_images;
                     this.goodsStatezj = res.data.datas.brief.goods_state_zj;
                     if(parseInt(this.goodsStatezj) == 0){
                         this.videolist = res.data.datas.details
@@ -365,11 +336,6 @@ export default {
                         this.zjid = this.videolist[0].vo_id
                         this.videoalltime = this.videolist[0].durations
                         this.duration = this.videolist[0].duration
-                        this.vantab.list = [
-                            "课程介绍",
-                            "课程目录(" + this.videolist.length + ")",
-                            "笔记(" + this.msglen + ")",
-                        ];
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      } else {
                         this.chapterlist = res.data.datas.details.data
@@ -386,12 +352,15 @@ export default {
                         }
                         this.videolist=[...this.videolist,...this.allvideolist]
                         this.morenum = 4
-                        this.vantab.list = [
-                            "课程介绍",
-                            "课程目录(" + this.videolist.length + ")",
-                            "笔记(" + this.msglen + ")",
-                        ];
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
+                     }
+                     this.vantab.list = [
+                        "课程介绍",
+                        "课程目录(" + this.videolist.length + ")",
+                        "笔记(" + this.msglen + ")",
+                     ];
+                     if(this.classtype == 2){
+                         this.vantab.list[0]= '课程内容'
                      }
                     this.gm = res.data.datas.gm;
                     this.phone_num = res.data.datas.member_mobile;
@@ -400,8 +369,6 @@ export default {
                     var discounts = this.goods_discount.split(",");
                     this.expert_image = res.data.datas.brief.expert_image;
                     this.goods_complete = res.data.datas.brief.goods_complete;
-                    
-
                     var arrdis = '';
                     for (let i in discounts) {
                         arrdis += discounts[i].split("-") + ','
@@ -443,6 +410,14 @@ export default {
                         this.goods_buytext = '选集购买';
                     }
                     
+                    let shareis=res.data.datas.brief.goods_state_share //是否开启分享返现
+                    if(parseInt(shareis) == 1){
+                       this.share_images = res.data.datas.brief.share_images  //分享背景图片
+                       this.share_price = res.data.datas.brief.share_price  //分享佣金
+                       this.share_cont = res.data.datas.brief.share_reserve_price //金额上限分享
+                       this.getshareuid()
+                    }
+                    
                 }).catch(err => {
                     if (err.message != "interrupt") {
                         let errmsg = '请求失败';
@@ -452,9 +427,11 @@ export default {
                         this.toast(errmsg);
                     }
                 });
+                
             } else {
                 classapi.videodetail(this.classid,this.classtype).then(res => {
                     this.goods_image = res.data.datas.brief.goods_image;
+                    this.mrgoodimg = res.data.datas.brief.goods_images;
                     this.goods_name = res.data.datas.brief.goods_name;
                     this.goods_price = res.data.datas.brief.goods_price;
                     this.goods_click = common.number(res.data.datas.brief.goods_click);
@@ -467,11 +444,6 @@ export default {
                         this.zjid = this.videolist[0].vo_id
                         this.videoalltime = this.videolist[0].durations
                         this.duration = this.videolist[0].duration
-                        this.vantab.list = [
-                            "课程介绍",
-                            "课程目录(" + this.videolist.length + ")",
-                            "笔记(" + this.msglen + ")",
-                        ];
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      } else {
                         this.chapterlist = res.data.datas.details.data
@@ -488,13 +460,16 @@ export default {
                         }
                         this.videolist=[...this.videolist,...this.allvideolist]
                         this.morenum = 4
-                        this.vantab.list = [
-                            "课程介绍",
-                            "课程目录(" + this.videolist.length + ")",
-                            "笔记(" + this.msglen + ")",
-                        ];
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      }
+                     this.vantab.list = [
+                        "课程介绍",
+                        "课程目录(" + this.videolist.length + ")",
+                        "笔记(" + this.msglen + ")",
+                    ];
+                    if(this.classtype == 2){
+                        this.vantab.list[0]= '课程内容'
+                    }
                     this.introduction = res.data.datas.brief.introduction;
                     this.goods_images = res.data.datas.brief.goods_images;
                     this.goods_discount = res.data.datas.brief.goods_discount;
@@ -644,9 +619,15 @@ export default {
 
         },
         audioclassimg(){
+            this.options.pullUpLoad = false;
             this.$refs.scroll.scrollTo(0, -480,1000);
             this.currentTab = 0
-            this.goods_images = this.videolist.filter(item=>item.sort == '1')[0].image
+            if(this.videolist.filter(item=>item.vo_id == this.playindex)[0].image){
+            this.goods_images = this.videolist.filter(item=>item.vo_id == this.playindex)[0].image
+            }else{
+                this.goods_images = this.mrgoodimg
+            }
+            this.$refs.scroll.refresh();
         },
         audioprve(index, src, courseware, vo_id, duration, durations){ //音频组件通讯
             this.chapterindex = index
@@ -664,6 +645,7 @@ export default {
            });
            this.$refs.audiochild.chushi();
            this.$refs.audiochild.xsroll();
+           this.audioclassimg()
            
         },
         audionext(index, src, courseware, vo_id, duration, durations){ //音频组件通讯
@@ -682,6 +664,7 @@ export default {
            });
            this.$refs.audiochild.chushi();
            this.$refs.audiochild.xsroll();
+           this.audioclassimg()
         },
         astate(item){  //音频播放状态
            this.yipics = item
@@ -690,6 +673,7 @@ export default {
             this.sphei = true;
             document.getElementById("myVideo").play();
         },
+        //祖传代码请勿动
         listbtn(index, freession, gm, video_address, courseware, vo_id) {
            
             if (freession == 0 && gm != 1) {
@@ -728,6 +712,7 @@ export default {
             if(this.classtype == 2) {
               this.$refs.audiochild.chushi();
               this.$refs.audiochild.xsroll();
+              this.audioclassimg()
             }
             this.list5();
             this.spalltime();
@@ -803,27 +788,49 @@ export default {
                     this.toast('至少勾选一个章节！！！');
                 } else {
                     this.disabled = true;
-
                     this.toast("订单正在提交中...");
-                    classapi.order(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount).then(res => {
-                        this.disabled = false;
-                        this.$router.push({
-                            name: 'pay',
-                            query: {
-                                id: id,
-                                state: 1,
-                                pay_sn: res.data.datas.pay_sn,
+                     if(this.sharereception && parseInt(this.discountoption) > this.share_cont){
+                        classapi.shareorder(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount,this.sharereception).then(res => {
+                            this.disabled = false;
+                            this.$router.push({
+                                name: 'pay',
+                                query: {
+                                    id: id,
+                                    state: 1,
+                                    pay_sn: res.data.datas.pay_sn,
+                                }
+                            })
+                        }).catch(err => {
+                            if (err.message != "interrupt") {
+                                let errmsg = '请求失败';
+                                if (err.message.includes('timeout')) {
+                                    errmsg = "请检查网络再刷新重试"
+                                }
+                                this.toast(errmsg);
                             }
-                        })
-                    }).catch(err => {
-                        if (err.message != "interrupt") {
-                            let errmsg = '请求失败';
-                            if (err.message.includes('timeout')) {
-                                errmsg = "请检查网络再刷新重试"
+                        });
+                        
+                     }else{
+                        classapi.order(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount).then(res => {
+                            this.disabled = false;
+                            this.$router.push({
+                                name: 'pay',
+                                query: {
+                                    id: id,
+                                    state: 1,
+                                    pay_sn: res.data.datas.pay_sn,
+                                }
+                            })
+                        }).catch(err => {
+                            if (err.message != "interrupt") {
+                                let errmsg = '请求失败';
+                                if (err.message.includes('timeout')) {
+                                    errmsg = "请检查网络再刷新重试"
+                                }
+                                this.toast(errmsg);
                             }
-                            this.toast(errmsg);
-                        }
-                    });
+                        });
+                     }
                 }
             } else {
                 this.$router.push({
@@ -1047,6 +1054,54 @@ export default {
                      this.remend = true;
                 }
             }
+        },
+        getshareuid(){  //获取分享用户id
+            classapi.users(this.key).then(res=>{
+                this.shareuid = res.data.datas.member_info.member_id
+                this.shareheard = res.data.datas.member_info.avator
+             }).catch(err => {
+                 if (err.message != "interrupt") {
+                     let errmsg = '请求失败';
+                     if (err.message.includes('timeout')) {
+                         errmsg = "请检查网络再刷新重试"
+                     }
+                     this.toast(errmsg);
+                 }
+             });
+        },
+        onimgshare(path){  //分享组件处理
+            if(this.key){
+               if(!localStorage.getItem(`shareimg-${this.classid}`)){
+               let name_img = 'add'
+               classapi.sharbg(name_img, this.shareheard,this.share_images,path,this.key).then(res=>{
+                    this.shareimgname = res.data.datas
+                    this.shareimg=`http://www.yijiaobaozq.com/haibao/${res.data.datas}`
+                    localStorage.setItem(`shareimg-${this.classid}`,this.shareimg)
+               }).catch(err => {
+                if (err.message != "interrupt") {
+                    let errmsg = '请求失败';
+                    if (err.message.includes('timeout')) {
+                        errmsg = "请检查网络再刷新重试"
+                    }
+                    this.toast(errmsg);
+                }
+            });
+             }else{
+                this.shareimg = localStorage.getItem(`shareimg-${this.classid}`)
+             }
+            }else{
+                this.$router.push({
+                    path: '/login',
+                    query: {
+                        back: true
+                    }
+                })
+            }
+        },
+        removeshare(){
+            classapi.sharemove(this.shareimgname,this.key).then(res=>{
+                
+            })
         }
     },
     beforeCreate() {
@@ -1152,13 +1207,17 @@ export default {
         if (window.history && window.history.pushState) {
             history.pushState(null, null, document.URL);
             window.addEventListener('popstate', this.back, false);
-          }
+        }
         
     },
     beforeDestroyed() {
         this.removeEventListeners()
     },
     destroyed(){
+        if(this.key){
+            localStorage.removeItem(`shareimg-${this.classid}`)
+            this.removeshare()
+        }
         window.removeEventListener('popstate', this.back, false);//false阻止默认事件
     },
 }
