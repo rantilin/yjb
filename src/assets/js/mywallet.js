@@ -113,7 +113,7 @@ export default {
             promotion_id += this.datalist[i].id + ','
           }
          
-           mywalletapi.postdeposit(this.key,promotion_id.substring(0, promotion_id.length-1),this.parsetotal).then(res=>{
+          mywalletapi.postdeposit(this.key,promotion_id.substring(0, promotion_id.length-1),this.parsetotal).then(res=>{
                  if(res.data.datas == 1){
                     this.ispop = true
                     this.info()
