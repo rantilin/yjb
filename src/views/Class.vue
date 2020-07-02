@@ -271,6 +271,7 @@
                   :yipics="yipics"
                   :musicoption="musicoption"
                   :MusicAnimation="MusicAnimation"
+                  :classtype="classtype"
                   @tebtn="listbtn"
                   v-if="parseInt(this.goodsStatezj) == 1"
                 ></chapter>
@@ -332,7 +333,8 @@
                             class="trylistenview"
                             v-if="item.freession==1"
                           >
-                            <div class="trylisten">可试看</div>
+                            <div class="trylisten" v-if="classtype == 1">可试看</div>
+                            <div class="trylisten" v-if="classtype == 2">可试听</div>
                           </div>
                         </div>
                         
@@ -665,7 +667,8 @@
         </div>
       </div>
     </div>
-    <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :shareprice="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && !sharereception"></EarnShare>
+    <!-- 分享赚钱 -->
+    <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :share_price="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && !sharereception"></EarnShare>
     <component-loading v-if="loding" />
   </div>
 </template>

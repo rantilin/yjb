@@ -8,12 +8,12 @@
       >
         <div
           class="moretext"
-          @click="classbtn(Classdata[0].column_id,columnname,avtiveindex)"
+          @click="classbtn(Classdata[0].column_id, columnname, avtiveindex)"
         >查看更多</div>
         <div class="morearrows"></div>
       </div>
     </div>
-    <template v-if="classnum < 6">
+    <template v-if="classnum < 8">
       <div class="commonswiper">
         <swiper :options="swiperOption">
           <swiper-slide

@@ -46,7 +46,8 @@
                           </div>
                           <div class="nolistenprice" v-if="item.gm==1">已购买</div>
                           <div class="trylistenview" v-if="item.freession==1">
-                            <div class="trylisten">可试看</div>
+                            <div class="trylisten" v-if="classtype == 1">可试看</div>
+                            <div class="trylisten" v-if="classtype == 2">可试听</div>
                           </div>
                         </div>
                         <div :class="item.timedisplay == 0 ? 'listeye': 'listtime'">
@@ -75,7 +76,7 @@
 import Lottie from "vue-lottie/src/lottie.vue";
 export default {
   name: 'chapter',
-  props: ['cpdata','morenum','playindex','allbuy','yipics','musicoption','MusicAnimation'],
+  props: ['cpdata','morenum','playindex','allbuy','yipics','musicoption','MusicAnimation','classtype'],
   components:{
      Lottie
   },

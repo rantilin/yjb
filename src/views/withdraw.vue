@@ -3,25 +3,17 @@
      <div class="topback">
       <div class="commonbackpic" @click="back"></div>
     </div>
-    <div class="lesson">
+    <div class="lesson" v-for="(item, index) in datalist" :key="index">
           <div class="ltext">
-             <div class="title">提现</div>
+             <div class="title">{{item.tg_state_name}}</div>
              <div class="tgjx">
-              2020-05-20
+              {{item.create_time}}
              </div>
           </div>
-          <div class="rprice">-10</div>
+          <div class="rprice">-{{item.tx_price}}</div>
        </div>
-       <div class="lesson">
-          <div class="ltext">
-             <div class="title">提现</div>
-             <div class="tgjx">
-              2020-05-20
-             </div>
-          </div>
-          <div class="rprice">-10</div>
-       </div>
-       
+     
+       <component-loading v-if="loding" />
   </div>
 </template>
 <script src='../assets/js/withdraw'></script>
