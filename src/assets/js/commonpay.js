@@ -40,7 +40,7 @@ export default {
                         function(res) {
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 alert("微信支付成功！");
-                                window.location.href = process.env.VUE_APP_SERVICE_URLS + '/#/myorder'
+                                window.location.href = process.env.VUE_APP_SERVICE_URLS + '#/myorder'
                             } else if (res.err_msg == "get_brand_wcpay_request：cancel") {
                                 alert("支付失败");
                             } else {

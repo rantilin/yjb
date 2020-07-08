@@ -11,7 +11,7 @@ export default {
         return {
             key: this.$store.state.key.value,
             minelist: [
-                { pic: require("../image/wallet.png"), name: "我的钱包" },
+                // { pic: require("../image/wallet.png"), name: "我的钱包" },
                 { pic: require("../image/order.png"), name: "我的订单" },
                 { pic: require("../image/class.png"), name: "我的课程" },
                 { pic: require("../image/consult.png"), name: "我的咨询" },
@@ -32,32 +32,32 @@ export default {
         databtn(index) {
             if (this.key) {
                 switch (index) {
+                    // case 0:
+                    //     this.$router.push({
+                    //         path: '/Mywallet'
+                    //     })
+                    //     break;
                     case 0:
-                        this.$router.push({
-                            path: '/Mywallet'
-                        })
-                        break;
-                    case 1:
                         this.$router.push({
                             path: '/myorder'
                         })
                         break;
-                    case 2:
+                    case 1:
                         this.$router.push({
                             path: '/mycourse'
                         })
                         break;
-                    case 3:
+                    case 2:
                         this.$router.push({
                             path: '/myconsult'
                         })
                         break;
-                    case 4:
+                    case 3:
                         this.$router.push({
                             path: '/mycollect'
                         })
                         break;
-                    case 5:
+                    case 4:
                         this.$router.push({
                             path: '/learningrecord'
                         })

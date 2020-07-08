@@ -668,7 +668,7 @@
       </div>
     </div>
     <!-- 分享赚钱 -->
-    <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :share_price="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && !sharereception"></EarnShare>
+    <!-- <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :share_price="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && !sharereception"></EarnShare> -->
     <component-loading v-if="loding" />
   </div>
 </template>
