@@ -89,7 +89,7 @@
               <!-- 赠送视频 -->
                 <ul class="audiolist">
                   <li v-for="(item,index) in complimentary.videolist" :key="index" @click="listbtn(index)">
-                    <div class="audiolistdiv" v-if="index<complimentary.morenum">
+                    <div class="audiolistdiv" v-if="index < complimentary.morenum">
                       <div class="listenstate">
                         <div class="img" v-if="complimentary.playindex==index&&complimentary.yipics">
                           <Lottie :options="musicoption" @animCreated="MusicAnimation" />
@@ -126,10 +126,10 @@
                   </li>
                 </ul>
                 <!-- audiolist -->
-               <cube-button class="moreclass" v-if="complimentary.videolist.length>complimentary.morenum" @click="morebtn">
+               <!-- <cube-button class="moreclass" v-if="complimentary.videolist.length>complimentary.morenum" @click="morebtn">
                   <div class="moreclasstext">更多课时信息</div>
                   <div class="moreclasspic"></div>
-                </cube-button>
+                </cube-button> -->
                  <!-- 赠送视频结束 -->
             </div>
             <div class="contentview" v-show="avtiveindex==2 || isDiscuss">

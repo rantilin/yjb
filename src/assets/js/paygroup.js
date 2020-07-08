@@ -110,12 +110,22 @@ export default {
             window.location.reload();
         },
         back() {
-            this.$router.push({
-                path: "/",
-                query: {
-                    activeindex: this.$route.query.index
-                }
-            })
+            if (window.history.length <= 2) {
+                this.$router.push({
+                    path: '/',
+                    query: {
+                        activeindex: this.index,
+                    }
+                })
+            } else {
+                this.$router.push({
+                    path: '/',
+                    query: {
+                        activeindex: this.index,
+                    }
+                })
+            }
+            localStorage.removeItem('lanmuvals');
         },
         H5() {
             if (window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger') {
@@ -280,15 +290,16 @@ export default {
                 case 0:
                     break;
                 case 1:
-                  
-                    if(this.morenum < this.complimentary.length){
+                    if(this.complimentary.morenum < this.complimentary.comnum){
+                       
                       setTimeout(() => {
-                        this.morenum = this.morenum + 4;
+                        this.complimentary.morenum = this.complimentary.morenum + 4;
                         this.$refs.scroll.forceUpdate(true);
                         this.$refs.scroll.refresh();
                       }, 1500); 
                      
                     }else{
+                       
                         this.$refs.scroll.forceUpdate();
                         this.$refs.scroll.refresh();
                     }
