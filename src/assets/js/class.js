@@ -1109,6 +1109,9 @@ export default {
     },
     created() {
         var sharefrom = window.location.href;
+        if(!this.$route.query.state){
+            this.classtype = 1
+        }
         if (sharefrom.split("from=")[1]) {
             this.fromflag = false
             window.location.href = this.present

@@ -76,7 +76,7 @@ export default {
             options: {
                 pullDownRefresh:false,
                 pullUpLoad: true,
-             },
+            },
         };
     },
     methods: {
@@ -274,7 +274,9 @@ export default {
         list5(){
             let _this = this;
             if(_this.tjispage){
+             if(this.recomdata[this.avtiveindex]){ 
             indexapi.recomlist(this.recomdata[this.avtiveindex], this.tjpage).then(res=>{
+                
                 let _list = res.data.datas.data
                 _this.tjdata = [..._this.tjdata, ..._list]
                 if(_this.tjpage < res.data.datas.setTotal){
@@ -286,6 +288,7 @@ export default {
                     _this.$refs.scroll.forceUpdate(false);
                 }
             })
+           }
           }else{
               _this.$refs.scroll.forceUpdate(false);
           }

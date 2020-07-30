@@ -142,9 +142,10 @@ export default {
         goaudio(id) {
             if (this.opc) {
                 this.$router.push({
-                    name: 'audio',
+                    name: 'class',
                     query: {
                         classid: id,
+                        state: 2
                     }
                 })
             }
@@ -155,6 +156,7 @@ export default {
                     name: 'class',
                     query: {
                         classid: id,
+                        state: 1
                     }
                 })
             }

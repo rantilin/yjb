@@ -102,7 +102,8 @@ export default {
                 this.$router.push({
                     name: 'class',
                     query: {
-                        classid: id
+                        classid: id,
+                        state: 1
                     }
                 })
             } else {
@@ -110,6 +111,7 @@ export default {
                     name: 'audio',
                     query: {
                         classid: id,
+                        state: 2
                     }
                 })
             }

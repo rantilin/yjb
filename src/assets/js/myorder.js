@@ -173,15 +173,17 @@ export default {
                         name: 'class',
                         query: {
                             classid: goods_id,
+                            state: 1
                         }
                     })
                 }
                 //音频
                 if (class_order == 2) {
                     this.$router.push({
-                        name: 'audio',
+                        name: 'class',
                         query: {
                             classid: goods_id,
+                            state: 2
                         }
                     })
                 }
