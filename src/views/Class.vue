@@ -55,6 +55,38 @@
         </div>
       </div>
     </van-popup>
+    <!-- 咨询窗口 -->
+    <van-popup v-model="isconsult" v-if="goods_sample!=0">
+      <div class="consultpop" v-if="!allbuystatic">
+        <div class="title" >
+          {{consult.titles}}
+        </div>
+        <div class="wxewm">
+          <img
+            :src="consult.front_image"
+            alt=""
+          >
+        </div>
+        <div class="wxtext">
+             {{consult.describes}}
+        </div>
+      </div>
+      <div class="consultpop" v-else>
+           <div class="title" >
+          {{consult.after_titles}}
+        </div>
+        <div class="wxewm">
+          <img
+            :src="consult.after_image"
+            alt=""
+          >
+        </div>
+        <div class="wxtext">
+             {{consult.describes}}
+        </div>
+      </div>
+    </van-popup>
+    <!-- 咨询窗口 -->
     <div :class="[xxflag?'classpanelview':'classpanelviews']">
       <cube-scroll
         class="classpanels"
@@ -475,6 +507,7 @@
       class="bottombtn"
       v-show="2!=currentTab"
     >
+      <template v-if="goods_sample == 0">
       <cube-button
         :class="allbuystatic?'selectionsbuyoff':'selectionsbuy'"
         @click="selectionsbuy"
@@ -485,6 +518,27 @@
         class="selectionsbuy"
         v-else
       >限时观看</cube-button>
+       </template>
+       <template v-else>
+          <template v-if="!allbuystatic">
+           <div class="consultview">
+                <div class="consult" @click="consultclick">
+                      <div class="icon"></div>
+                      <div class="text">咨询</div>
+                </div>
+                <cube-button class="button"  @click="selectionsbuy">
+                  {{goods_buytext}}
+                </cube-button>
+           </div>
+         </template>
+         <template v-else>
+              <div class="clbumbutton">
+              <cube-button class="clbumbuy" @click="consultclick">
+                   加入家庭训练指导群
+              </cube-button>
+              </div>
+         </template>
+       </template>
     </div>
     <!-- bottombtn -->
 
@@ -515,11 +569,14 @@
       >
 
         <div class="modelbottombtn">
+          
+       
           <cube-scroll
             class="mengcengviews"
             ref="scrolls"
             v-show="allbuy==false"
           >
+           <template v-if="goodsStatezj == 0">  
             <div class="selections">
               <div class="btsses">
                 <div
@@ -567,7 +624,12 @@
                 </div>
               </div>
             </div>
+              </template>
+               <template v-else>
+                     <chapterbuy :listdata="chapterlist" :quanxuan="quanxuan" @section="section"></chapterbuy> 
+              </template>
           </cube-scroll>
+           
           <div class="clear"></div>
 
           <div
@@ -598,6 +660,27 @@
               <div class="itemprice">￥{{discountoption}}</div>
             </div>
           </div>
+
+          <!-- 赠送礼品 -->
+          <div class="goodsgift" v-if="goodsstategift!=0">
+               <div class="icon"></div>
+               <div class="text">精美赠品礼物</div>
+               <div class="yhm_select" @click="giftoff">
+                   <div :class="gift.isunfold?'giftdel':'giftadd'" ></div>
+               </div>
+          </div>
+            <div class="goodgiftvm" v-if="gift.isunfold">
+                   <img class="giftimg" :src="gift.conditiondata.adv_image" >
+                   <div class="giftcontent">
+                       <div class="giftitle">
+                          <div class="icon"></div>
+                          <div class="text">赠品</div>
+                       </div>
+                       <div class="content">{{gift.conditiondata.describes}}</div>
+                   </div>
+            </div>
+          <!-- 赠送礼品结束 -->
+
           <div class="InvitationCode">
             <div class="icon"></div>
             <div class="text">使用邀请码，没有可不填</div>
@@ -668,7 +751,7 @@
       </div>
     </div>
     <!-- 分享赚钱 -->
-    <!-- <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :share_price="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && !sharereception"></EarnShare> -->
+    <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :share_price="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && !sharereception"></EarnShare>
     <component-loading v-if="loding" />
   </div>
 </template>

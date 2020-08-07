@@ -6,6 +6,7 @@ import musicAnim from "@/assets/json/playaudionew.json";
 import ComponentLoading from '@/components/ComponentLoading';
 import Indexlayout from '@/components/Indexlayout1';
 import chapter from '@/components/chapter';
+import chapterbuy from '@/components/chapterbuy';
 import audioplay from '@/components/audioplay';
 import EarnShare from '@/components/EarnShare';
 import { Loading } from 'vant';
@@ -40,6 +41,7 @@ export default {
         Lottie,
         Indexlayout,
         chapter,
+        chapterbuy,
         audioplay,
         EarnShare
     },
@@ -88,7 +90,7 @@ export default {
             msglists: [], //评价列表
             msglistes: [],
             collectstate: '', //收藏状态
-            goodsStatezj:'',//是否开启章节
+            goodsStatezj: 0,//是否开启章节
             goods_discount: '',
             chapterindex: 1,
             zjtext: '',
@@ -168,6 +170,18 @@ export default {
             allbuystatic: false,
             goods_complete: 0,
             goods_buytext: '选集购买',
+            goods_sample: 0, //是否咨询
+            isconsult: false,
+            consult:{
+                titles:'',
+                describes:''
+            },//咨询数据
+            goodsstategift: 0,//是否开启送礼物
+            gift:{
+                isunfold: false,
+                datalist:[],
+                conditiondata: [], //满足条件
+            }
         }
     },
     methods: {
@@ -328,6 +342,10 @@ export default {
                     this.goods_images = res.data.datas.brief.goods_images;
                     this.mrgoodimg = res.data.datas.brief.goods_images;
                     this.goodsStatezj = res.data.datas.brief.goods_state_zj;
+                    this.goods_sample = res.data.datas.brief.goods_sample; //开启咨询
+                    this.consult = res.data.datas.brief.goods_sample_info;
+                    this.goodsstategift = parseInt(res.data.datas.brief.goods_state_gift);//开启礼物
+                    this.gift.datalist =  res.data.datas.brief.goods_state_gift_info;
                     if(parseInt(this.goodsStatezj) == 0){
                         this.videolist = res.data.datas.details
                         this.allvideolist = this.videolist
@@ -338,6 +356,7 @@ export default {
                         this.duration = this.videolist[0].duration
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      } else {
+                        this.goods_buytext = '章节购买';
                         this.chapterlist = res.data.datas.details.data
                         this.videosrc = this.chapterlist[0].chapter_text[0].video_address
                         this.zjtext = this.chapterlist[0].chapter_text[0].courseware
@@ -407,7 +426,6 @@ export default {
                         });
                     }else{
                         this.allbuy = false;
-                        this.goods_buytext = '选集购买';
                     }
                     
                     let shareis=res.data.datas.brief.goods_state_share //是否开启分享返现
@@ -436,6 +454,12 @@ export default {
                     this.goods_price = res.data.datas.brief.goods_price;
                     this.goods_click = common.number(res.data.datas.brief.goods_click);
                     this.goodsStatezj = res.data.datas.brief.goods_state_zj;
+
+                    this.goods_sample = res.data.datas.brief.goods_sample; //开启咨询
+                    this.consult = res.data.datas.brief.goods_sample_info;
+                    
+                    this.goodsstategift = res.data.datas.brief.goods_state_gift;//开启礼物
+                    this.gift.datalist =  res.data.datas.brief.goods_state_gift_info;
                     if(parseInt(this.goodsStatezj) == 0){
                         this.videolist = res.data.datas.details
                         this.allvideolist = this.videolist
@@ -446,6 +470,7 @@ export default {
                         this.duration = this.videolist[0].duration
                         this.audiolist=this.videolist.filter(item=> item.gm == 1||item.freession == 1)
                      } else {
+                        this.goods_buytext = '章节购买';
                         this.chapterlist = res.data.datas.details.data
                         this.videosrc = this.chapterlist[0].chapter_text[0].video_address
                         this.zjtext = this.chapterlist[0].chapter_text[0].courseware
@@ -489,7 +514,7 @@ export default {
                       });
                   }else{
                       this.allbuy = false;
-                      this.goods_buytext = '选集购买';
+                     
                   }
                 }).catch(err => {
                     if (err.message != "interrupt") {
@@ -673,6 +698,19 @@ export default {
             this.sphei = true;
             document.getElementById("myVideo").play();
         },
+        section(value){   //章节购买组件传值
+             this.checkedNames=value
+        },
+        giftoff(){ //礼物展开闭合
+          
+            if(this.gift.isunfold){
+                this.gift.isunfold=false
+            }else{
+                if(this.gift.conditiondata.length != 0){
+                    this.gift.isunfold=true
+                }
+            }
+        },
         //祖传代码请勿动
         listbtn(index, freession, gm, video_address, courseware, vo_id) {
            
@@ -790,7 +828,7 @@ export default {
                     this.disabled = true;
                     this.toast("订单正在提交中...");
                      if(this.sharereception && parseInt(this.discountoption) > this.share_cont){
-                        classapi.shareorder(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount,this.sharereception).then(res => {
+                        classapi.shareorder(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount,this.gift.conditiondata.id,this.sharereception).then(res => {
                             this.disabled = false;
                             this.$router.push({
                                 name: 'pay',
@@ -811,7 +849,7 @@ export default {
                         });
                         
                      }else{
-                        classapi.order(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount).then(res => {
+                        classapi.order(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount,this.gift.conditiondata.id).then(res => {
                             this.disabled = false;
                             this.$router.push({
                                 name: 'pay',
@@ -1075,7 +1113,7 @@ export default {
                let name_img = 'add'
                classapi.sharbg(name_img, this.shareheard,this.share_images,path,this.key).then(res=>{
                     this.shareimgname = res.data.datas
-                    this.shareimg=`http://www.yijiaobaozq.com/haibao/${res.data.datas}`
+                    this.shareimg=`http://ceshi.yijiaobao.com.cn/haibao/${res.data.datas}`;
                     localStorage.setItem(`shareimg-${this.classid}`,this.shareimg)
                }).catch(err => {
                 if (err.message != "interrupt") {
@@ -1102,7 +1140,15 @@ export default {
             classapi.sharemove(this.shareimgname,this.key).then(res=>{
                 
             })
-        }
+        },
+        consultclick(){
+             if(this.isconsult){
+                 this.isconsult=false
+             }else{
+                this.isconsult=true
+             }
+        },
+        
     },
     beforeCreate() {
 
@@ -1137,6 +1183,7 @@ export default {
     },
     watch: {
         checkedNames() {
+           
             var ckallarr = [];
             for (let i in this.videolist) {
                 if (this.videolist[i].freession == 0 && this.videolist[i].gm != 1) {
@@ -1173,6 +1220,18 @@ export default {
                     mjmax = true;
                 }
             }
+            let liwu = false;
+            this.gift.conditiondata = [];
+            for(let w in this.gift.datalist){
+                if(qian >= parseFloat(this.gift.datalist[w].gift_price)){
+                    liwu = true;
+                    this.gift.conditiondata = this.gift.datalist[w]
+                    this.gift.isunfold = true
+                }
+            }
+            if(this.gift.conditiondata.length==0){
+                this.gift.isunfold = false
+            }
             var prices;
             if (mjmax) {
 
@@ -1181,7 +1240,7 @@ export default {
                     type: "success",
                     duration: 1000
                 });
-                this.yjprice = (qian - this.quan[jian].di).toFixed(2);;
+                this.yjprice = (qian - this.quan[jian].di).toFixed(2);
                 this.discountoption = ((qian - this.quan[jian].di) * this.zekou).toFixed(2);
             } else {
                 this.yjprice = qian;

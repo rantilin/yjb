@@ -113,32 +113,10 @@ export default {
         })
         return req
     },
-    order(key, pay_result, class_order, room_audio_id, goods_id, price, order_pay, codeDiscount) {
-        const datas = {
-            'key': key,
-            'pay_result': pay_result,
-            "class_order": class_order,
-            "room_audio_id": room_audio_id,
-            "goods_id": goods_id,
-            "goods_amount": price,
-            "order_amount": price,
-            "order_pay": order_pay,
-            'code_result': codeDiscount.code_result,
-            'tationcode': codeDiscount.tationcode,
-            'discount': codeDiscount.discount
+    order(key, pay_result, class_order, room_audio_id, goods_id, price, order_pay, codeDiscount, giftid) {
+        if(giftid == undefined){
+            giftid = null
         }
-
-        const req = request({
-            method: 'post',
-            url: '/index.php?act=yjb_member_buy&op=buy_step',
-            cancelToken: new axios.CancelToken(c => {
-                Vue.$httpRequestList.push(c);
-            }),
-            data: qs.stringify(datas)
-        })
-        return req
-    },
-    shareorder(key, pay_result, class_order, room_audio_id, goods_id, price, order_pay, codeDiscount,recommend_id) {
         const datas = {
             'key': key,
             'pay_result': pay_result,
@@ -151,7 +129,37 @@ export default {
             'code_result': codeDiscount.code_result,
             'tationcode': codeDiscount.tationcode,
             'discount': codeDiscount.discount,
-            'recommend_id':recommend_id
+            'gift_id' : giftid
+        }
+
+        const req = request({
+            method: 'post',
+            url: '/index.php?act=yjb_member_buy&op=buy_step',
+            cancelToken: new axios.CancelToken(c => {
+                Vue.$httpRequestList.push(c);
+            }),
+            data: qs.stringify(datas)
+        })
+        return req
+    },
+    shareorder(key, pay_result, class_order, room_audio_id, goods_id, price, order_pay, giftid, codeDiscount,recommend_id) {
+        if(giftid == undefined){
+            giftid = null
+        }
+        const datas = {
+            'key': key,
+            'pay_result': pay_result,
+            "class_order": class_order,
+            "room_audio_id": room_audio_id,
+            "goods_id": goods_id,
+            "goods_amount": price,
+            "order_amount": price,
+            "order_pay": order_pay,
+            'code_result': codeDiscount.code_result,
+            'tationcode': codeDiscount.tationcode,
+            'discount': codeDiscount.discount,
+            'recommend_id':recommend_id,
+            'gift_id' : giftid
         }
 
         const req = request({
@@ -206,8 +214,8 @@ export default {
     sharbg(name_img, headimgurl, bj_img, code_url, key) {
         const datas = {
             'name_img': name_img,
-            'headimgurl': `http://www.yijiaobaozq.com/${headimgurl.split('../')[2]}`,
-            'bj_img': `http://www.yijiaobaozq.com/${bj_img.split('../')[1]}`,
+            'headimgurl': `http://ceshi.yijiaobao.com.cn/${headimgurl.split('../')[2]}`,
+            'bj_img': `http://ceshi.yijiaobao.com.cn/${bj_img.split('../')[1]}`,
             'code_url': code_url,
             'key': key
         }
