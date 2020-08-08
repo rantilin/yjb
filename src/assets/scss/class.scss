@@ -1412,8 +1412,14 @@ li {
     }
 
     .yhm_select {
-        width: 6%;
+        width: 8%;
         float: right;
+        .offgift{
+            font-size: 12px;
+            line-height: 20px;
+            color: #21C891;
+            text-align: center;
+        }
         .giftadd{
             width: 16px;
             height: 16px;

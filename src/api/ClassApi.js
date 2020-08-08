@@ -142,7 +142,7 @@ export default {
         })
         return req
     },
-    shareorder(key, pay_result, class_order, room_audio_id, goods_id, price, order_pay, giftid, codeDiscount,recommend_id) {
+    shareorder(key, pay_result, class_order, room_audio_id, goods_id, price, order_pay, codeDiscount, giftid,recommend_id) {
         if(giftid == undefined){
             giftid = null
         }

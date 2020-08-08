@@ -82,7 +82,7 @@
           >
         </div>
         <div class="wxtext">
-             {{consult.describes}}
+             {{consult.after_describes}}
         </div>
       </div>
     </van-popup>
@@ -289,7 +289,13 @@
                   v-if="goods_images!=''"
                   fit="contain"
                   :src="goods_images"
-                />
+                >
+                   <template v-slot:loading>
+                      <van-loading type="spinner" size="24">
+                           图片加载中..
+                      </van-loading>
+                   </template>
+                </van-image>
               </div>
               <div
                 class="slide slide2"
@@ -520,7 +526,7 @@
       >限时观看</cube-button>
        </template>
        <template v-else>
-          <template v-if="!allbuystatic">
+          <template v-if="parseInt(gm)!=1">
            <div class="consultview">
                 <div class="consult" @click="consultclick">
                       <div class="icon"></div>
@@ -664,9 +670,10 @@
           <!-- 赠送礼品 -->
           <div class="goodsgift" v-if="goodsstategift!=0">
                <div class="icon"></div>
-               <div class="text">精美赠品礼物</div>
+               <div class="text">精美礼物</div>
                <div class="yhm_select" @click="giftoff">
-                   <div :class="gift.isunfold?'giftdel':'giftadd'" ></div>
+                   <div class="offgift" v-if="gift.isunfold" >收起</div>
+                   <div class="offgift"  v-else>展开</div>
                </div>
           </div>
             <div class="goodgiftvm" v-if="gift.isunfold">
@@ -751,7 +758,7 @@
       </div>
     </div>
     <!-- 分享赚钱 -->
-    <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :share_price="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && !sharereception"></EarnShare>
+    <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :shareprice="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && sharereception == undefined"></EarnShare>
     <component-loading v-if="loding" />
   </div>
 </template>

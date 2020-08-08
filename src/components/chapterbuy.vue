@@ -12,7 +12,7 @@
         v-if="item.price_count > 0"
       >
         <template v-if="pricebool(item.chapter_text)">
-           {{ item.price_count.toFixed(2)}}
+           ￥{{ item.price_count.toFixed(2)}}
        </template>
        <template v-else>
             已购买
@@ -113,7 +113,9 @@ export default {
      chapterarr(val){
           let checkarr = [];
           for (const key in val) {
-               checkarr.push(`${val[key].vo_id},${val[key].video_price}`)
+               if(parseInt(val[key].freession)!=1){
+                checkarr.push(`${val[key].vo_id},${val[key].video_price}`)
+               }
           }
           return checkarr;
      }
