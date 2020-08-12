@@ -11,7 +11,7 @@
              </div>
           </div>
           <div class="rprice">-{{item.tx_price}}</div>
-       </div>
+     </div>
      
        <component-loading v-if="loding" />
   </div>

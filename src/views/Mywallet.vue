@@ -47,7 +47,7 @@
           <span class="time">{{item.create_time}}</span>
         </div>
       </div>
-      <div class="rprice">+{{item.tg_state}}</div>
+      <div class="rprice">+{{item.share_price}}</div>
       </div>
       </template>
     </div>

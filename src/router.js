@@ -90,6 +90,15 @@ export default new Router({
             }
         },
         {
+            path: '/groupclass',
+            name: 'groupclass',
+            component: () =>
+                import ('./views/groupclass.vue'),
+            meta: {
+                title: '拼团详情'
+            }
+        },
+        {
             path: '/consult',
             name: 'consult',
             component: () =>

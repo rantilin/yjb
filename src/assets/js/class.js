@@ -131,7 +131,7 @@ export default {
             indexlogo: 'http://yijiaobao.com.cn/wap/images/logo1.png',
             desc: "一个帮爸妈养娃省心省力的平台，汇集全国名师名医，提高孩子成绩，实时儿科问诊，还有超多育儿福利资源，快来领取吧~",
             url: process.env.VUE_APP_SERVICE_URLS,
-            present: process.env.VUE_APP_SERVICE_URLS + "#/class?classid=" + this.$route.query.classid + "",
+            present: process.env.VUE_APP_SERVICE_URLS + "#/class?classid=" + this.$route.query.classid + "&state="+this.$route.query.state ,
             fromflag: true,
             xxflag: true,
             noticecontent: '',
@@ -152,7 +152,7 @@ export default {
             share_images: '',//分享海报背景
             shareheard:'',//分享用户头像
             shareimgname:'',
-            shareuid: 0,
+            share_uid: 0,
             sharereception: this.$route.query.shareuid,//分享接受uid
             share_price: 0,//分享获取佣金
             share_cont: 0,
@@ -171,6 +171,7 @@ export default {
             goods_complete: 0,
             goods_buytext: '选集购买',
             goods_sample: 0, //是否咨询
+            goods_state_chapter: 0, //是否开启小结购买
             isconsult: false,
             consult:{
                 titles:'',
@@ -343,6 +344,7 @@ export default {
                     this.mrgoodimg = res.data.datas.brief.goods_images;
                     this.goodsStatezj = res.data.datas.brief.goods_state_zj;
                     this.goods_sample = res.data.datas.brief.goods_sample; //开启咨询
+                    this.goods_state_chapter = res.data.datas.brief.goods_state_chapter;
                     this.consult = res.data.datas.brief.goods_sample_info;
                     this.goodsstategift = parseInt(res.data.datas.brief.goods_state_gift);//开启礼物
                     this.gift.datalist =  res.data.datas.brief.goods_state_gift_info;
@@ -457,6 +459,7 @@ export default {
 
                     this.goods_sample = res.data.datas.brief.goods_sample; //开启咨询
                     this.consult = res.data.datas.brief.goods_sample_info;
+                    this.goods_state_chapter = res.data.datas.brief.goods_state_chapter;
                     
                     this.goodsstategift = res.data.datas.brief.goods_state_gift;//开启礼物
                     this.gift.datalist =  res.data.datas.brief.goods_state_gift_info;
@@ -652,7 +655,9 @@ export default {
             }else{
                 this.goods_images = this.mrgoodimg
             }
-            this.$refs.scroll.refresh();
+            this.$nextTick(() => {
+                this.$refs.scroll.refresh();
+            });
         },
         audioprve(index, src, courseware, vo_id, duration, durations){ //音频组件通讯
             this.chapterindex = index
@@ -827,7 +832,7 @@ export default {
                 } else {
                     this.disabled = true;
                     this.toast("订单正在提交中...");
-                     if(this.sharereception && parseInt(this.discountoption) > this.share_cont){
+                     if(this.sharereception && parseInt(this.discountoption) > parseInt(this.share_cont)){
                         classapi.shareorder(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount,this.gift.conditiondata.id,this.sharereception).then(res => {
                             this.disabled = false;
                             this.$router.push({
@@ -931,12 +936,17 @@ export default {
                     })
                 }
             } else {
-                this.$router.push({
-                    path: '/',
-                    query: {
-                        activeindex: this.index
-                    }
-                })
+                if (window.history.length <= 2) {
+                    this.$router.push({
+                        path: '/',
+                        query: {
+                            activeindex: this.index
+                        }
+                    })
+                }else{
+                    this.$router.go(-1);
+                }
+               
             }
         },
         backindex() {
@@ -1095,7 +1105,7 @@ export default {
         },
         getshareuid(){  //获取分享用户id
             classapi.users(this.key).then(res=>{
-                this.shareuid = res.data.datas.member_info.member_id
+                this.share_uid = res.data.datas.member_info.member_id
                 this.shareheard = res.data.datas.member_info.avator
              }).catch(err => {
                  if (err.message != "interrupt") {
@@ -1113,7 +1123,7 @@ export default {
                let name_img = 'add'
                classapi.sharbg(name_img, this.shareheard,this.share_images,path,this.key).then(res=>{
                     this.shareimgname = res.data.datas
-                    this.shareimg=`http://ceshi.yijiaobao.com.cn/haibao/${res.data.datas}`;
+                    this.shareimg=`http://yijiaobao.com.cn/haibao/${res.data.datas}`;
                     localStorage.setItem(`shareimg-${this.classid}`,this.shareimg)
                }).catch(err => {
                 if (err.message != "interrupt") {
@@ -1148,7 +1158,15 @@ export default {
                 this.isconsult=true
              }
         },
-        
+        gogroup(){
+            this.$router.push({
+                  name:'groupclass',
+                  query: {
+                    classid: this.classid
+                  }
+            })
+            
+        }
     },
     beforeCreate() {
 

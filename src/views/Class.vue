@@ -243,6 +243,7 @@
               class="geryline"
               v-if="video_active==1&&listdata!=''"
             ></div>
+            <div class="groupenter" @click="gogroup"></div>
             <div class="optionbar">
               <div class="vanttab">
                 <van-tabs
@@ -582,7 +583,7 @@
             ref="scrolls"
             v-show="allbuy==false"
           >
-           <template v-if="goodsStatezj == 0">  
+           <template v-if="goodsStatezj == 0 || goods_state_chapter == 1">  
             <div class="selections">
               <div class="btsses">
                 <div
@@ -758,7 +759,7 @@
       </div>
     </div>
     <!-- 分享赚钱 -->
-    <EarnShare :imgsrc="shareimg" :shareuid="shareuid" :shareprice="share_price" @onimgshare="onimgshare"  v-if="shareuid!=0 && sharereception == undefined"></EarnShare>
+    <EarnShare :imgsrc="shareimg" :shareuid="share_uid" :shareprice="share_price" @onimgshare="onimgshare"  v-if="share_uid!=0 && sharereception == undefined"></EarnShare>
     <component-loading v-if="loding" />
   </div>
 </template>

@@ -56,7 +56,7 @@ export default {
   },
 
   methods: {
-   
+    
     checkedBox(index, item) {
           if (this.checkarr.includes(index)) {
                 this.checkarr = this.checkarr.filter(ele=> ele != index);
