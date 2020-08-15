@@ -243,7 +243,7 @@
               class="geryline"
               v-if="video_active==1&&listdata!=''"
             ></div>
-            <div class="groupenter" @click="gogroup"></div>
+            <div class="groupenter" v-if="parseInt(gm)==1&&goods_state_group==1"  @click="gogroup"></div>
             <div class="optionbar">
               <div class="vanttab">
                 <van-tabs
@@ -311,6 +311,7 @@
                   :musicoption="musicoption"
                   :MusicAnimation="MusicAnimation"
                   :classtype="classtype"
+                  :goodsstatechapter="goods_state_chapter"
                   @tebtn="listbtn"
                   v-if="parseInt(this.goodsStatezj) == 1"
                 ></chapter>

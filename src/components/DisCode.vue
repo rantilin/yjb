@@ -86,7 +86,13 @@ export default {
                     (qian * this.zekou).toFixed(2),
                     this.codeDiscount
                   )
-
+                  this.$emit(
+                    'discount',
+                     this.zekou,
+                    (qian * this.zekou).toFixed(2),
+                     this.codeDiscount,
+                     this.DiscountsVerify
+                  )
                   Toast(
                     `邀请码验证成功，您已获得专属${res.data.datas.discount /
                       10}折优惠`
@@ -203,5 +209,6 @@ export default {
   background-size: 100% 100%;
   animation: alia 0.3s;
 }
+
 </style>
 

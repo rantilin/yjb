@@ -40,9 +40,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.push({
-        name: 'mine',
-      })
+      this.$router.go(-1)
     },
     info(){
       this.getinfo()

@@ -168,7 +168,7 @@ export default {
             remend: false,
             allbuy: false,
             allbuystatic: false,
-            goods_complete: 0,
+            goods_complete: 0, //是否开启全集购买
             goods_buytext: '选集购买',
             goods_sample: 0, //是否咨询
             goods_state_chapter: 0, //是否开启小结购买
@@ -182,7 +182,8 @@ export default {
                 isunfold: false,
                 datalist:[],
                 conditiondata: [], //满足条件
-            }
+            },
+            goods_state_group:0,//是否开启团购
         }
     },
     methods: {
@@ -348,6 +349,7 @@ export default {
                     this.consult = res.data.datas.brief.goods_sample_info;
                     this.goodsstategift = parseInt(res.data.datas.brief.goods_state_gift);//开启礼物
                     this.gift.datalist =  res.data.datas.brief.goods_state_gift_info;
+                    this.goods_state_group =  res.data.datas.brief.goods_state_group //开启团购
                     if(parseInt(this.goodsStatezj) == 0){
                         this.videolist = res.data.datas.details
                         this.allvideolist = this.videolist
@@ -1162,7 +1164,8 @@ export default {
             this.$router.push({
                   name:'groupclass',
                   query: {
-                    classid: this.classid
+                    classid: this.classid,
+                    state: this.classtype
                   }
             })
             

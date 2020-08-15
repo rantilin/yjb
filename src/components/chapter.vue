@@ -37,7 +37,7 @@
                             class="nolistenprice"
                             v-if="item.freession==0&&item.gm!=1"
                           >
-                          <template v-if="allbuy==false">
+                          <template v-if="allbuy==false||goodsstatechapter==1">
                           ￥{{item.video_price}}
                           </template>
                           <template v-else>
@@ -76,7 +76,7 @@
 import Lottie from "vue-lottie/src/lottie.vue";
 export default {
   name: 'chapter',
-  props: ['cpdata','morenum','playindex','allbuy','yipics','musicoption','MusicAnimation','classtype'],
+  props: ['cpdata','morenum','playindex','allbuy','yipics','musicoption','MusicAnimation','classtype','goodsstatechapter'],
   components:{
      Lottie
   },

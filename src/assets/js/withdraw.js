@@ -22,9 +22,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.push({
-        name: 'mywallet',
-      })
+      this.$router.go(-1)
     },
     getlist() {
       mywalletapi.deposit(this.key).then(res => {
