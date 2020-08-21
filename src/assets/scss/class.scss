@@ -1583,3 +1583,144 @@ li {
      float: left;
      background: url("../assets/image/gourpentrance.png") no-repeat center/100%;
 }
+.teacherpop{
+    background: none;
+    .close{
+        display:block;
+        width: 27px;
+        height: 27px;
+        margin: 14px auto 8px auto;
+      }
+}
+.teacher{
+    display: flex;
+    align-items: flex-start;
+    padding: 0 5px;
+    border-radius: 6px;
+    background-color: #fff;
+    justify-content: center;
+    align-items: flex-end;
+    .list{
+        width: 103px;
+        margin: 12px 0;
+        flex: 1;
+        .markebg{
+            padding: 6px;
+            background: #F7F9FC;
+            .marketing{
+                width: 89px;
+                height: 65px;
+                border-radius: 5px;
+            }
+            .text{
+                color: #666666;
+                font-size: 13px;
+                text-align: center;
+                line-height: 22px;
+                padding:0 2px;
+            }
+        }
+        .price{
+            font-size: 14px;
+            color: #FF6633;
+            text-align: center;
+            margin:10px auto;
+        }
+        .checked {
+            height: 20px;
+            width: 20px;
+            margin: auto;
+            input{
+                -webkit-appearance: none;
+                width: 20px;
+                height: 20px;
+                background-size: 100% 100%;
+                border-radius: 50%;
+                border: 1px solid rgb(172, 175, 191);
+            }
+            input:checked{
+                background-size: 100% 100%;
+            border-radius: 50%;
+            border: none;
+            background: url(../assets/image/pitchon.png) no-repeat;
+            background-size: 100% 100%;
+            animation: alia 0.3s;
+            }
+        }
+        
+    }
+    .list:nth-child(2){
+        margin: 12px 15px;
+    }
+    
+}
+.teacherfix{
+    position: fixed;
+    top: 110px;
+    right: 10px;
+    width: 60px;
+    z-index: 99;
+    text-align: center;
+    .teacherimg{
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .text{
+        color: #fff;
+        font-size:12px;
+        text-align: center;
+    }
+    .on{
+        padding: 4px 0;
+        background: #fff;
+        color: #FC5D28;
+        font-weight: bold;
+        font-size:12px;
+        text-align: center;
+        border-radius: 12px;
+        border:solid 1px #FC5D28;
+    }
+}
+.teacherfw {  //老师服务
+    width: 100%;
+    height: 30px;
+    padding: 5px 15px;
+    margin: auto;
+    display: flex;
+    box-sizing: border-box;
+    zoom: 1;
+    .icon {
+        width: 17px;
+        height: 17px;
+        margin-top: 3px;
+        margin-left: 3px;
+        background: url("../assets/image/slices.png");
+        background-size: 100% 100%;
+    }
+
+    .text {
+        width: 218px;
+        font-size: 14px;
+        color: #666666;
+        line-height: 22px;
+        text-indent: 10px;
+    }
+    .price{
+         width: 75px;
+         color: #FC5D28;
+         font-size:16px ;
+         line-height: 20px;
+         margin-left: auto;
+    }
+    .righticon{
+        width: 17px;
+        height: 17px;
+        margin-left: 3px;
+        background: url("../assets/image/arrows.png");
+        background-size: 100% 100%;
+        margin-left: auto;
+    }
+
+}

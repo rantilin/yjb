@@ -64,6 +64,10 @@ export default {
                 duration_s: '',
                 price: '',
             },
+            markprice: 0,
+            goods_amount: 0,
+            discount: 1,
+            reduction_amount: 0,
         }
     },
     methods: {
@@ -124,7 +128,14 @@ export default {
         },
         list3() {
             payapi.orderdetail(this.key, this.pay_sn).then(res => {
-                this.price = res.data.datas[0].goods_amount;
+                this.price = res.data.datas[0].order_amount;
+                this.markprice = res.data.datas[0].service_amount;
+                this.goods_amount = res.data.datas[0].goods_amount;
+                this.reduction_amount = res.data.datas[0].reduction_amount;
+                if(res.data.datas[0].discount){
+                    this.discount =  res.data.datas[0].discount/100;
+                }
+                
                 if (this.state == 6) {
                     this.orderusermsg = res.data.datas[0];
                 }
@@ -277,7 +288,7 @@ export default {
             if (this.state == 1) {
                 this.list1();
                 this.classtext = '视频课程'
-                this.text = '选集价';
+                this.text = '合计';
                 this.listenorlook = '看';
                 this.activatecode.kalman_id = 1;
             }

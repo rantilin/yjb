@@ -31,6 +31,7 @@
     display: flex;
     background-color: $bcf;
     border-radius: 12px;
+    flex-wrap: wrap;
     .compic {
         width: 100px;
         height: 100px;
@@ -404,5 +405,62 @@
         font-weight: bold;
         color: #ffffff;
         background: #21C891;
+    }
+}
+.teacherfw {  //老师服务
+    width: 100%;
+    height: 30px;
+    padding: 5px 0;
+    margin: 10px auto;
+    display: flex;
+    .icon {
+        width: 17px;
+        height: 17px;
+        margin-top: 3px;
+        margin-left: 3px;
+        background: url("../assets/image/slices.png");
+        background-size: 100% 100%;
+    }
+
+    .text {
+        width: 218px;
+        font-size: 14px;
+        color: #666666;
+        line-height: 22px;
+        text-indent: 10px;
+    }
+    .price{
+         width: 75px;
+         color: #FC5D28;
+         font-size:16px ;
+         font-weight: bold;
+         line-height: 20px;
+         margin-left: auto;
+    }
+    
+
+}
+.quanview {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    padding: 5px 5px;
+ 
+    .quanpic {
+        width: 14px;
+        height: 11px;
+        background: url("../assets/image/quan.png");
+        background-size: 100% 100%;
+    }
+
+    .quantext {
+        text-indent: 4px;
+        color: #999999;
+        font-size: 14px;
+        margin-left: 6px;
+        .price{
+            color: #FC5D28;
+            text-decoration:line-through;
+        }
     }
 }

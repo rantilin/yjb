@@ -113,7 +113,7 @@ export default {
         })
         return req
     },
-    order(key, pay_result, class_order, room_audio_id, goods_id, price, order_pay, codeDiscount, giftid) {
+    order(key, pay_result, class_order, room_audio_id, goods_id, price, oldprice, order_pay, codeDiscount, giftid, markid, reduction_amount) {
         if(giftid == undefined){
             giftid = null
         }
@@ -123,13 +123,15 @@ export default {
             "class_order": class_order,
             "room_audio_id": room_audio_id,
             "goods_id": goods_id,
-            "goods_amount": price,
+            "goods_amount": oldprice,
             "order_amount": price,
             "order_pay": order_pay,
             'code_result': codeDiscount.code_result,
             'tationcode': codeDiscount.tationcode,
             'discount': codeDiscount.discount,
-            'gift_id' : giftid
+            'gift_id' : giftid,
+            'service_id': markid,
+            'reduction_amount':reduction_amount
         }
 
         const req = request({
@@ -142,7 +144,7 @@ export default {
         })
         return req
     },
-    shareorder(key, pay_result, class_order, room_audio_id, goods_id, price, order_pay, codeDiscount, giftid,recommend_id) {
+    shareorder(key, pay_result, class_order, room_audio_id, goods_id, price, oldprice, order_pay, codeDiscount, giftid,recommend_id, markid, reduction_amount) {
         if(giftid == undefined){
             giftid = null
         }
@@ -152,14 +154,16 @@ export default {
             "class_order": class_order,
             "room_audio_id": room_audio_id,
             "goods_id": goods_id,
-            "goods_amount": price,
+            "goods_amount": oldprice,
             "order_amount": price,
             "order_pay": order_pay,
             'code_result': codeDiscount.code_result,
             'tationcode': codeDiscount.tationcode,
             'discount': codeDiscount.discount,
             'recommend_id':recommend_id,
-            'gift_id' : giftid
+            'gift_id' : giftid,
+            'service_id': markid,
+            'reduction_amount': reduction_amount
         }
 
         const req = request({

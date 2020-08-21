@@ -40,6 +40,7 @@
         @click="closeWechat"
       ></div>
     </div>
+    
     <van-popup v-model="wechatshow">
       <div class="wxpop">
         <div class="wxewm">
@@ -575,10 +576,12 @@
         class="mengcengview"
         @click.self="mengcengview()"
       >
-
+        <div class="teacherfix" @click="teacherpops" v-if="mackdata.customized_info.length > 0">
+               <van-image class="teacherimg" :src="mackdata.customized_images" />
+               <div  :class="markradio>0?'on':'text'">名师指导</div>
+          </div>
         <div class="modelbottombtn">
-          
-       
+
           <cube-scroll
             class="mengcengviews"
             ref="scrolls"
@@ -634,7 +637,7 @@
             </div>
               </template>
                <template v-else>
-                     <chapterbuy :listdata="chapterlist" :quanxuan="quanxuan" @section="section"></chapterbuy> 
+                     <chapterbuy :listdata="chapterlist" :quanxuan="quanxuan" @section="section" :goodsstatechapter="goods_state_chapter"></chapterbuy> 
               </template>
           </cube-scroll>
            
@@ -668,7 +671,14 @@
               <div class="itemprice">￥{{discountoption}}</div>
             </div>
           </div>
-
+         <!-- 名师服务 -->
+           <div class="teacherfw" @click="teacherpops" v-if="markradio>0">
+               <div class="icon"></div>
+               <div class="text">已选择指导老师一对一指导</div>
+               <div class="price">￥{{parseInt(markradio).toFixed(2)}}</div>
+               <div class="righticon"></div>
+           </div>
+          <!-- 名师服务结束 -->
           <!-- 赠送礼品 -->
           <div class="goodsgift" v-if="goodsstategift!=0">
                <div class="icon"></div>
@@ -761,6 +771,26 @@
     </div>
     <!-- 分享赚钱 -->
     <EarnShare :imgsrc="shareimg" :shareuid="share_uid" :shareprice="share_price" @onimgshare="onimgshare"  v-if="share_uid!=0 && sharereception == undefined"></EarnShare>
+    
+    <van-popup v-model="isteacher" class="teacherpop">
+      <div class="teacher">
+
+          <div class="list" v-for="(item,index) in mackdata.customized_info" :key="index">
+             <div class="markebg">
+             <van-image class="marketing" :src="item.adv_image" />
+              <div class="text">
+                  {{item.describes}}
+              </div>
+              </div>
+              <div class="price">￥{{item.zed_price}}元/月</div>
+              <div class="checked">
+                 <input name="mark" @click="markclick($event)"  @change="retainRecord(item.id)" type="radio" v-model="markradio" :value="item.zed_price"/>
+              </div>
+          </div>
+      
+      </div>
+      <img class="close" @click="isteacher=false"  src="../assets/image/shareclose.png" alt="">
+    </van-popup>
     <component-loading v-if="loding" />
   </div>
 </template>

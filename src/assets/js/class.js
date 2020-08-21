@@ -100,7 +100,6 @@ export default {
             checkedNames: [],
             arr: [],
             order_pay: '',
-            discountoption: 0,
             quan: '',
             val: 1,
             tel: '',
@@ -164,7 +163,6 @@ export default {
             yqmCode: '',
             codeDiscount: {},
             zekou: 1,
-            yjprice: '',
             remend: false,
             allbuy: false,
             allbuystatic: false,
@@ -184,6 +182,60 @@ export default {
                 conditiondata: [], //满足条件
             },
             goods_state_group:0,//是否开启团购
+            isteacher: false, //名师服务
+            markid:'',
+            markradio: 0,//名师选择服务
+            markchanged: false,
+            mackdata:{
+                customized_images:'',
+                customized_info:[],
+            },
+            comprice:{
+                yjprice: 0,
+                jian: 0,
+            },
+            reduction_amount: 0,
+        }
+    },
+    computed: {
+        yjprice() {
+            let price = (parseFloat(this.comprice.yjprice) + parseFloat(this.markradio)).toFixed(2)
+            return price 
+        },
+        oldprice(){
+            let price = this.comprice.yjprice;
+            return price 
+        },
+        discountoption(){
+            let price = 0
+            let mjmax = false
+            let jian = 0 
+            let qian = parseFloat(this.comprice.yjprice)
+            let markjg = parseFloat(this.markradio)
+            for (let p in this.quan) {
+                if (qian >= parseFloat(this.quan[p].gao)) {
+                    jian = this.quan[p].index;
+                    mjmax = true;
+                }
+            }
+            
+            if(mjmax){
+                Notify({
+                    message: "已为您自动选择满" + this.quan[jian].gao + "减" + this.quan[jian].di + "的优惠券",
+                    type: "success",
+                    duration: 1000
+                });
+                let jianprice= parseFloat(this.quan[jian].di)
+                this.reduction_amount = jianprice
+                console.log(this.reduction_amount)
+                price = ((qian + markjg) * this.zekou - jianprice).toFixed(2)
+            }else{
+                price = ((qian + markjg) * this.zekou).toFixed(2)
+            } 
+            if(price < 0){
+                price = 0
+            }
+            return price;
         }
     },
     methods: {
@@ -350,6 +402,9 @@ export default {
                     this.goodsstategift = parseInt(res.data.datas.brief.goods_state_gift);//开启礼物
                     this.gift.datalist =  res.data.datas.brief.goods_state_gift_info;
                     this.goods_state_group =  res.data.datas.brief.goods_state_group //开启团购
+                    this.mackdata.customized_images = res.data.datas.brief.customized_images // 名师服务头像
+                    this.mackdata.customized_info = res.data.datas.brief.customized_info // 名师服务列表
+                   
                     if(parseInt(this.goodsStatezj) == 0){
                         this.videolist = res.data.datas.details
                         this.allvideolist = this.videolist
@@ -832,10 +887,47 @@ export default {
                 if (this.optionvalue == '') {
                     this.toast('至少勾选一个章节！！！');
                 } else {
+                    if(this.mackdata.customized_info.length > 0){
+                        console.log(this.markid)
+                        if(this.markradio==0){
+                            Dialog.alert({
+                                width:210,
+                                showCancelButton:true,
+                                message: '您还未选择老师的\n指导服务将失去老师一对一\n为孩子制定计划的机会',
+                                theme:'round',
+                                confirmButtonText:'去选择',
+                                confirmButtonColor:'#21C891',
+                                cancelButtonText:'不需要',
+                                cancelButtonColor:'#21C891',
+                              }).then(() => {
+                                 this.isteacher=true
+                              })
+                              .catch(() => {
+                                this.gopay(id)
+                              });
+                             
+                        }else{
+                            this.gopay(id)
+                        }
+                    }else{
+                        this.gopay(id)
+                    }
+                    
+                }
+            } else {
+                this.$router.push({
+                    path: '/login',
+                    query: {
+                        back: true
+                    }
+                })
+            }
+        },
+        gopay(id){
                     this.disabled = true;
                     this.toast("订单正在提交中...");
                      if(this.sharereception && parseInt(this.discountoption) > parseInt(this.share_cont)){
-                        classapi.shareorder(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount,this.gift.conditiondata.id,this.sharereception).then(res => {
+                        classapi.shareorder(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.oldprice, this.order_pay, this.codeDiscount,this.gift.conditiondata.id,this.sharereception, this.reduction_amount).then(res => {
                             this.disabled = false;
                             this.$router.push({
                                 name: 'pay',
@@ -856,7 +948,7 @@ export default {
                         });
                         
                      }else{
-                        classapi.order(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.order_pay, this.codeDiscount,this.gift.conditiondata.id).then(res => {
+                        classapi.order(this.key, 2, this.classtype, this.optionvalue, id, this.discountoption, this.oldprice, this.order_pay, this.codeDiscount,this.gift.conditiondata.id, this.markid, this.reduction_amount).then(res => {
                             this.disabled = false;
                             this.$router.push({
                                 name: 'pay',
@@ -876,15 +968,6 @@ export default {
                             }
                         });
                      }
-                }
-            } else {
-                this.$router.push({
-                    path: '/login',
-                    query: {
-                        back: true
-                    }
-                })
-            }
         },
         checkedBox(i) {
             if (this.arr.includes(i)) {
@@ -1040,7 +1123,7 @@ export default {
 
         yzcode() {
             let _this = this;
-            this.yjprice = this.discountoption;
+           // this.yjprice = this.discountoption;
             let qian = this.discountoption;
             if (_this.yqmCode.length >= 1) {
                 _this.focusDis = true;
@@ -1061,7 +1144,7 @@ export default {
                             if (res.data.datas.status == 1) {
                                 _this.DiscountsVerify = true;
                                 _this.zekou = res.data.datas.discount / 100;
-                                _this.discountoption = (qian * _this.zekou).toFixed(2);
+                              
                                 _this.codeDiscount.code_result = 1;
                                 _this.codeDiscount.tationcode = res.data.datas.tationcode;
                                 _this.codeDiscount.discount = res.data.datas.discount;
@@ -1169,7 +1252,47 @@ export default {
                   }
             })
             
-        }
+        },
+        
+        markclick($event) {
+            let _this = this;
+            setTimeout(() => {
+              if (!this.markchanged) {
+                $event.target.checked = false
+              //  _this.discountoption = (parseFloat(_this.discountoption) - parseFloat(_this.markradio * _this.zekou)).toFixed(2)
+                _this.markradio = 0
+                _this.markid = ''
+                 // 可以写些单选框没有选中的代码处理
+              } 
+              _this.markchanged = false;
+            }, 0);
+         },
+         retainRecord(id){
+            // 可以写些单选框选中的代码处理
+            this.markchanged = true;
+            this.markid = id
+         },
+         teacherpops(){
+             if(this.isteacher){
+                 this.isteacher=false
+             }else{
+                
+                if(this.checkedNames.length==0){
+                    Dialog.alert({
+                        width:210,
+                        message: '请您先选择课程\n再点击选择指导哦',
+                        theme:'round',
+                        confirmButtonText:'知道了',
+                        confirmButtonColor:'#21C891'
+                      }).then(() => {
+                        // on close
+                      });
+                }else{
+                    this.isteacher=true
+                }
+                
+             }
+         }
     },
     beforeCreate() {
 
@@ -1203,8 +1326,8 @@ export default {
 
     },
     watch: {
-        checkedNames() {
-           
+        checkedNames(val,oldval) {
+            
             var ckallarr = [];
             for (let i in this.videolist) {
                 if (this.videolist[i].freession == 0 && this.videolist[i].gm != 1) {
@@ -1216,6 +1339,7 @@ export default {
             } else {
                 this.quanxuan = false;
             }
+            
             var optionval = [];
             var allprice = 0;
             for (let i in this.checkedNames) {
@@ -1228,19 +1352,18 @@ export default {
             var ckvals = '';
             ckvals += optionval + ","
             this.optionvalue = ckvals.substring(0, ckvals.length - 1);
-            this.discountoption = allprice.toFixed(2);
-            var arrquan = [];
-            var qian = this.discountoption;
-            let jian;
-            var mjmax = false;
-            for (let p in this.quan) {
-
-                if (qian >= parseFloat(this.quan[p].gao)) {
-                    jian = this.quan[p].index;
-
-                    mjmax = true;
+            this.comprice.yjprice = allprice.toFixed(2);
+          //  this.discountoption = allprice.toFixed(2);
+           // var arrquan = [];
+            if(allprice == 0){
+                if(val.length == 0){
+                    this.markradio = 0
+                    this.markid = ''
                 }
             }
+            var qian = this.discountoption
+           
+            
             let liwu = false;
             this.gift.conditiondata = [];
             for(let w in this.gift.datalist){
@@ -1253,22 +1376,12 @@ export default {
             if(this.gift.conditiondata.length==0){
                 this.gift.isunfold = false
             }
-            var prices;
-            if (mjmax) {
-
-                Notify({
-                    message: "已为您自动选择满" + this.quan[jian].gao + "减" + this.quan[jian].di + "的优惠券",
-                    type: "success",
-                    duration: 1000
-                });
-                this.yjprice = (qian - this.quan[jian].di).toFixed(2);
-                this.discountoption = ((qian - this.quan[jian].di) * this.zekou).toFixed(2);
-            } else {
-                this.yjprice = qian;
-                this.discountoption = (qian * this.zekou).toFixed(2);
-            }
+           // var prices;
+            
+            
         },
-
+        
+        
 
     },
     mounted() {

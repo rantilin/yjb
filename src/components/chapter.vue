@@ -37,11 +37,11 @@
                             class="nolistenprice"
                             v-if="item.freession==0&&item.gm!=1"
                           >
-                          <template v-if="allbuy==false||goodsstatechapter==1">
-                          ￥{{item.video_price}}
+                          <template v-if="allbuy==true || goodsstatechapter == 0">
+                            <img class="lockicon" src="../assets/image/lock.png" alt="">
                           </template>
                           <template v-else>
-                            <img class="lockicon" src="../assets/image/lock.png" alt="">
+                            ￥{{item.video_price}}
                           </template>
                           </div>
                           <div class="nolistenprice" v-if="item.gm==1">已购买</div>
@@ -84,6 +84,10 @@ export default {
     return {
       activeName: 0,
     }
+  },
+  created(){
+     console.log(this.goodsstatechapter)
+     
   },
   methods:{
     listbtn(index, freession, gm, video_address, courseware, vo_id){

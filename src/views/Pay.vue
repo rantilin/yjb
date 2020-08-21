@@ -41,10 +41,21 @@
             <div class="comdetail">
               <div class="comname">{{goods_name}}</div>
               <div class="num">
-                <div class="price">￥{{price}}</div>
+                <div class="price">￥{{goods_amount * discount}}</div>
                 <div class="listen">{{goods_click}}人在{{listenorlook}}</div>
               </div>
             </div>
+            <!-- 名师服务 -->
+           <div class="teacherfw" v-if="markprice>0">
+               <div class="icon"></div>
+               <div class="text">已选择指导老师一对一指导</div>
+               <div class="price">￥{{markprice * discount}}</div>
+           </div>
+          <!-- 名师服务结束 -->
+          <div class="quanview" v-if="reduction_amount>0">
+               <div class="quanpic"></div>
+                <div class="quantext">已减免<span class="price">￥{{reduction_amount}}</span></div>
+          </div>
           </li>
           <li class="paygroup" v-if="state==6">
             <van-image class="paygrouppic" fit="cover" :src="grouplist.goods_image" radius="12px" />
