@@ -13,6 +13,7 @@
         <div class="rtitle">
           {{item.goods_name}}
         </div>
+        <div class="tuixiao">{{item.goods_jingle}}</div>
         <div class="buttom">
           <div class="price">￥{{item.goods_price}}</div>
           <div class="watch">{{number(item.goods_click)}}人在看</div>
@@ -98,8 +99,15 @@ export default {
       font-weight: bold;
       line-height: 18px;
     }
+     .tuixiao{
+        width: 160px;;
+        margin: 10px 0;
+        color: #999999;
+        line-height: 20px;
+        font-size: 12px;
+      }
     .buttom {
-      margin-top: 44px;
+      margin-top: 15px;
       display: flex;
       display: -webkit-flex; /* Safari */
       flex-direction: row;
@@ -108,6 +116,7 @@ export default {
         font-size: 13px;
         line-height: 13px;
       }
+     
       .watch {
         margin-left: 6px;
         font-size: 12px;

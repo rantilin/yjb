@@ -403,7 +403,10 @@ export default {
                     this.gift.datalist =  res.data.datas.brief.goods_state_gift_info;
                     this.goods_state_group =  res.data.datas.brief.goods_state_group //开启团购
                     this.mackdata.customized_images = res.data.datas.brief.customized_images // 名师服务头像
-                    this.mackdata.customized_info = res.data.datas.brief.customized_info // 名师服务列表
+                    if(res.data.datas.brief.customized_info){
+                        this.mackdata.customized_info = res.data.datas.brief.customized_info // 名师服务列表
+                    }
+                   
                    
                     if(parseInt(this.goodsStatezj) == 0){
                         this.videolist = res.data.datas.details
@@ -888,7 +891,7 @@ export default {
                     this.toast('至少勾选一个章节！！！');
                 } else {
                     if(this.mackdata.customized_info.length > 0){
-                        console.log(this.markid)
+                      
                         if(this.markradio==0){
                             Dialog.alert({
                                 width:210,

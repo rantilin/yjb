@@ -782,7 +782,7 @@
                   {{item.describes}}
               </div>
               </div>
-              <div class="price">￥{{item.zed_price}}元/月</div>
+              <div class="price">￥{{item.zed_price}}元/{{item.zed_term}}</div>
               <div class="checked">
                  <input name="mark" @click="markclick($event)"  @change="retainRecord(item.id)" type="radio" v-model="markradio" :value="item.zed_price"/>
               </div>
