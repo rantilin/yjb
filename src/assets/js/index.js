@@ -382,6 +382,7 @@ export default {
                         });
                         //
                     }else{
+                        localStorage.removeItem('souquanpath')
                         localStorage.removeItem('souquanquery')
                     }
                 }
@@ -422,6 +423,10 @@ export default {
                 }
             }
         }
+    },
+    destroyed(){
+        localStorage.removeItem('souquanpath')
+        localStorage.removeItem('souquanquery')
     }
 
 };

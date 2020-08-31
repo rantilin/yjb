@@ -64,19 +64,19 @@ export default {
         },
         consultway(index) {
             if (this.key) {
-                if (this.member_mobile == '') {
-                    this.$router.push({
-                        path: '/binding',
-                        query: {
-                            back: true
-                        }
-                    })
-                } else {
+                if (this.member_mobile) {
                     this.$router.push({
                         name: 'consult',
                         query: {
                             id: index,
                             doctorid: this.$route.query.id
+                        }
+                    })
+                } else {
+                    this.$router.push({
+                        path: '/binding',
+                        query: {
+                            back: true
                         }
                     })
                 }

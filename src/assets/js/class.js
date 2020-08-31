@@ -195,6 +195,7 @@ export default {
                 jian: 0,
             },
             reduction_amount: 0,
+            isboard:false
         }
     },
     computed: {
@@ -330,23 +331,24 @@ export default {
             this.show = false;
         },
         selectionsbuy() {
-            if (this.key) {
-                this.show = true;
-                this.sphei = false;
-                if(this.classtype == 1){
-                document.getElementById("myVideo").pause();
-                }
-                this.$nextTick(() => {
-                    this.$refs.scrolls.refresh();
-                });
-            } else {
-                this.$router.push({
-                    path: '/login',
-                    query: {
-                        back: true
-                    }
-                })
-            }
+            this.isboard = true
+            // if (this.key) {
+            //     this.show = true;
+            //     this.sphei = false;
+            //     if(this.classtype == 1){
+            //     document.getElementById("myVideo").pause();
+            //     }
+            //     this.$nextTick(() => {
+            //         this.$refs.scrolls.refresh();
+            //     });
+            // } else {
+            //     this.$router.push({
+            //         path: '/login',
+            //         query: {
+            //             back: true
+            //         }
+            //     })
+            // }
         },
         
      
@@ -1295,6 +1297,29 @@ export default {
                 }
                 
              }
+         },
+         goneweb(){
+             window.location.href = `http://m.yijiaobao.com.cn/wap/#${this.$route.path}?${common.convertObj(this.$route.query)}`
+         },
+         boardclose(){
+             this.isboard = false
+             if (this.key) {
+                this.show = true;
+                this.sphei = false;
+                if(this.classtype == 1){
+                document.getElementById("myVideo").pause();
+                }
+                this.$nextTick(() => {
+                    this.$refs.scrolls.refresh();
+                });
+            } else {
+                this.$router.push({
+                    path: '/login',
+                    query: {
+                        back: true
+                    }
+                })
+            }
          }
     },
     beforeCreate() {
