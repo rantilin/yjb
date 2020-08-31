@@ -231,6 +231,29 @@
       </div>
     </div>
     <div v-wechat-title="$route.meta.title=datas.goods_name"></div>
+    <van-popup v-model="isboard" class="bgnone">
+          <div class="board">
+              <div class="boardtext">
+                 <p class="boardtitle">尊敬的用户：</p>
+                 <p class="boardtitle">您好！</p>
+                 <p class="wenben">为了给您提供更完善的服务，医教宝已对平台用户信息与资金安全做全面升级。</p>
+                 <p class="wenben"><span class="gruebold">2020年8月31日10:00</span>之后，旧版网站不再支持微信支付，后续医教宝新功能也将停止更新（老用户的历史订单在旧版网站依然可以学习观看，不影响使用）。</p>
+                 <p class="wenben">建议您点击下方<span class="gruebold">“知道了”</span>按钮，前往新版网站完成订单</p>
+                 <p class="wenben">对此给您带来的不便我们深表歉意，再次感谢您对此次调整的支持和谅解。期待医教宝能在育儿路上继续为您省心、省力又省钱！</p>
+                 <p class="gbuttom">医教宝官方</p>
+                 <p class="gbuttom">2020-8-28</p>
+                 
+              </div>
+              <div class="buttonbtn">
+                <div class="neednot" @click="boardclose">
+                  <div class="icon"></div>暂时不用
+                </div>
+                <div class="know">
+                    <div class="knowbutn" @click="goneweb">知道了</div>
+                </div>
+              </div>
+          </div>
+     </van-popup>
     <component-loading v-if="loding" />
   </div>
 </template>

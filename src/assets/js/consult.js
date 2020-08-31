@@ -14,9 +14,10 @@ import {
     Uploader,
     ActionSheet,
     Notify,
-    Toast
+    Toast,
+    Popup
 } from 'vant';
-Vue.use(Image);
+Vue.use(Image).use(Popup);
 Vue.use(Uploader);
 Vue.use(ActionSheet);
 Vue.use(Toast);
@@ -58,7 +59,7 @@ export default {
             subject: '',
             total_fee: '',
             sign: '',
-            codeDiscount: {},
+            codeDiscount: "",
             payshow: true,
             kamishow: true,
             activatecode: { //卡密
@@ -73,7 +74,45 @@ export default {
                 duration_s: '',
                 price: '',
             },
+            isboard:false,
         };
+    },
+    created() {
+        this.state = this.$route.query.id;
+        this.doctorid = this.$route.query.doctorid;
+        switch (parseInt(this.state)) {
+            case 1:
+
+                this.consultname = "图文咨询";
+                this.expertid = 0
+                this.loding = false;
+                this.kamishow = false;
+                this.list2();
+                break;
+            case 2:
+
+                this.consultname = "电话咨询";
+                this.expertid = 0
+                this.loding = false;
+                this.kamishow = false;
+                this.list28();
+                break;
+            case 3:
+                this.consultname = "图文咨询";
+                this.expertid = this.doctorid
+                this.list1();
+                break;
+            case 4:
+                this.consultname = "电话咨询";
+                this.expertid = this.doctorid
+                this.list1();
+                break;
+        }
+        if (window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger') {
+            this.order_pay = 'H5'
+        } else {
+            this.order_pay = 'wap'
+        }
     },
     methods: {
         back() {
@@ -90,14 +129,14 @@ export default {
                 if (this.textareas == '') {
                     this.toast('问题描述必填', 'warn');
                 } else {
-                    this.show = true;
+                    this.isboard = true;
                 }
             } else {
                 if (this.value == '') {
                     this.toast('手机号码必填', 'warn');
                 } else {
                     if (common.validateTel(this.value)) {
-                        this.show = true;
+                        this.isboard = true;
                     } else {
                         this.toast('请输入有效的手机号码', 'warn');
                     }
@@ -133,7 +172,11 @@ export default {
         buywaybtn() {
             this.disabled = true;
             this.buytext = '正在生成订单...';
+            if(!this.order_pay){
+                this.toast('网络错误,请刷新网络');
+            }
             if (this.state == '1' || this.state == '3') {
+               
                 consultapi.tworder(this.key, this.imgbase, this.textareas, this.buywayprice, this.order_pay, this.expertid, this.codeDiscount).then(res => {
                     //payway为1就是微信支付
                     if (this.payway == 1) {
@@ -344,46 +387,27 @@ export default {
             } else {
                 Toast.fail('请输入卡密激活码');
             }
+        },
+        goneweb(){
+            window.location.href = `http://m.yijiaobao.com.cn/wap/#${this.$route.path}?${common.convertObj(this.$route.query)}`
+        },
+        boardclose(){
+            this.isboard = false
+            if (this.key) {
+               this.show = true;
+             
+           } else {
+               this.$router.push({
+                   path: '/login',
+                   query: {
+                       back: true
+                   }
+               })
+           }
         }
     },
-    created() {
-        this.state = this.$route.query.id;
-        this.doctorid = this.$route.query.doctorid;
-        switch (parseInt(this.state)) {
-            case 1:
-
-                this.consultname = "图文咨询";
-                this.expertid = 0
-                this.loding = false;
-                this.kamishow = false;
-                this.list2();
-                break;
-            case 2:
-
-                this.consultname = "电话咨询";
-                this.expertid = 0
-                this.loding = false;
-                this.kamishow = false;
-                this.list28();
-                break;
-            case 3:
-                this.consultname = "图文咨询";
-                this.expertid = this.doctorid
-                this.list1();
-                break;
-            case 4:
-                this.consultname = "电话咨询";
-                this.expertid = this.doctorid
-                this.list1();
-                break;
-        }
-        if (window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger') {
-            this.order_pay = 'H5'
-        } else {
-            this.order_pay = 'wap'
-        }
-    },
-    mounted() {},
+    
+   
     watch: {
         textareas() {
             this.textnum = this.textareas.length;

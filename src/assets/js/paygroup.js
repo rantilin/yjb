@@ -12,9 +12,10 @@ Vue.use(VueWechatTitle);
 import {
     Image,
     Tab,
-    Tabs
+    Tabs,
+    Popup
 } from 'vant';
-Vue.use(Image).use(Tab).use(Tabs);
+Vue.use(Image).use(Tab).use(Tabs).use(Popup)
 import {
     share_yp
 } from './share';
@@ -102,7 +103,8 @@ export default {
             url: process.env.VUE_APP_SERVICE_URLS,
             present: process.env.VUE_APP_SERVICE_URLS + "#/paygroup?id=" + this.$route.query.id + "",
             isRouterAlive: true,
-            isDiscuss: false
+            isDiscuss: false,
+            isboard:false,
         }
     },
     methods: {
@@ -141,81 +143,7 @@ export default {
             this.dialogshows = false;
         },
         nowpay() {
-            if (this.key) {
-                if (this.applicant) {
-                    if (this.apply) {
-                        let timestamp = Date.parse(new Date()).toString();
-                        timestamp = timestamp.substr(0, 10);
-                        if (timestamp > this.datas.query_start_time) {
-                            if (timestamp < this.datas.query_end_time) {
-                                if (!common.validateTel(this.member_mobile)) {
-                                    this.$router.push({
-                                        path: '/binding',
-                                        query: {
-                                            back: true
-                                        }
-                                    })
-                                } else {
-                                    this.$router.push({
-                                        path: '/information',
-                                        query: {
-                                            price: this.datas.goods_price,
-                                            id: this.id
-                                        }
-                                    })
-                                }
-                            } else {
-                                if (this.datas.goods_url) {
-                                    var cs = this.datas.goods_url.split('?')[1];
-                                    var cs_arr = cs.split('&');
-                                    var cs = {};
-                                    for (var i = 0; i < cs_arr.length; i++) {
-                                        cs[cs_arr[i].split('=')[0]] = cs_arr[i].split('=')[1]
-                                    }
-                                    this.toast("报名时间已过，正在为您跳转链接");
-                                    setTimeout(() => {
-                                        window.location.href = "/#/paygroup?id=" + cs.id + "&index=2";
-                                    }, 2000)
-                                    // window.open("/#/paygroup?id="+cs.id+"&index=2");
-
-                                } else {
-                                    this.toast("报名时间已过");
-                                }
-
-                            }
-                        } else {
-                            this.toast("报名时间还没到")
-                        }
-                    } else {
-                        this.toast("您已报名过了")
-                    }
-                } else {
-                    if (this.datas.goods_url) {
-                        var cs = this.datas.goods_url.split('?')[1];
-                        var cs_arr = cs.split('&');
-                        var cs = {};
-                        for (var i = 0; i < cs_arr.length; i++) {
-                            cs[cs_arr[i].split('=')[0]] = cs_arr[i].split('=')[1]
-                        }
-                        // window.open("/#/paygroup?id="+cs.id+"&index=2");
-
-                        this.toast("报名人数已满，正在为您跳转链接");
-                        setTimeout(() => {
-                            window.location.href = "/#/paygroup?id=" + cs.id + "&index=2";
-                        }, 2000)
-                    } else {
-                        this.toast("报名人数已满")
-                    }
-
-                }
-            } else {
-                this.$router.push({
-                    path: '/login',
-                    query: {
-                        back: true
-                    }
-                })
-            }
+            this.isboard = true
         },
         pitchtab(index) {
             this.avtiveindex = index;
@@ -578,6 +506,88 @@ export default {
         MusicAnimation(anim) {
             this.musicanim = anim;
         },
+        goneweb(){
+            window.location.href = `http://m.yijiaobao.com.cn/wap/#${this.$route.path}?${common.convertObj(this.$route.query)}`
+        },
+        boardclose(){
+            this.isboard = false
+            if (this.key) {
+                if (this.applicant) {
+                    if (this.apply) {
+                        let timestamp = Date.parse(new Date()).toString();
+                        timestamp = timestamp.substr(0, 10);
+                        if (timestamp > this.datas.query_start_time) {
+                            if (timestamp < this.datas.query_end_time) {
+                                if (!common.validateTel(this.member_mobile)) {
+                                    this.$router.push({
+                                        path: '/binding',
+                                        query: {
+                                            back: true
+                                        }
+                                    })
+                                } else {
+                                    this.$router.push({
+                                        path: '/information',
+                                        query: {
+                                            price: this.datas.goods_price,
+                                            id: this.id
+                                        }
+                                    })
+                                }
+                            } else {
+                                if (this.datas.goods_url) {
+                                    var cs = this.datas.goods_url.split('?')[1];
+                                    var cs_arr = cs.split('&');
+                                    var cs = {};
+                                    for (var i = 0; i < cs_arr.length; i++) {
+                                        cs[cs_arr[i].split('=')[0]] = cs_arr[i].split('=')[1]
+                                    }
+                                    this.toast("报名时间已过，正在为您跳转链接");
+                                    setTimeout(() => {
+                                        window.location.href = "/#/paygroup?id=" + cs.id + "&index=2";
+                                    }, 2000)
+                                    // window.open("/#/paygroup?id="+cs.id+"&index=2");
+
+                                } else {
+                                    this.toast("报名时间已过");
+                                }
+
+                            }
+                        } else {
+                            this.toast("报名时间还没到")
+                        }
+                    } else {
+                        this.toast("您已报名过了")
+                    }
+                } else {
+                    if (this.datas.goods_url) {
+                        var cs = this.datas.goods_url.split('?')[1];
+                        var cs_arr = cs.split('&');
+                        var cs = {};
+                        for (var i = 0; i < cs_arr.length; i++) {
+                            cs[cs_arr[i].split('=')[0]] = cs_arr[i].split('=')[1]
+                        }
+                        // window.open("/#/paygroup?id="+cs.id+"&index=2");
+
+                        this.toast("报名人数已满，正在为您跳转链接");
+                        setTimeout(() => {
+                            window.location.href = "/#/paygroup?id=" + cs.id + "&index=2";
+                        }, 2000)
+                    } else {
+                        this.toast("报名人数已满")
+                    }
+
+                }
+            } else {
+                this.$router.push({
+                    path: '/login',
+                    query: {
+                        back: true
+                    }
+                })
+            }
+            
+        }
 
     },
     created() {

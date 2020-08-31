@@ -92,18 +92,19 @@ export default {
         },
         examine(ids) {
             if (this.key) {
-                if (this.member_mobile == '') {
-                    this.$router.push({
-                        path: '/binding',
-                        query: {
-                            back: true
-                        }
-                    })
-                } else {
+                if (this.member_mobile) {
                     this.$router.push({
                         name: 'issuedetail',
                         query: {
                             id: ids,
+                        }
+                    })
+                    
+                } else {
+                    this.$router.push({
+                        path: '/binding',
+                        query: {
+                            back: true
                         }
                     })
                 }

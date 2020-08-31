@@ -687,3 +687,72 @@
 .disable {
     color: #BFBFBF !important;
 }
+.board{
+    width: 315px;
+    padding: 130px 0 0 0;
+    background: url("../assets/image/board.png") no-repeat top center/100%;
+    background-color: #ffffff;
+    border-radius: 6px;
+    .boardtext{
+        padding: 5px 12px 5px 12px;
+        color: #666666;
+        line-height: 22px;
+        .boardtitle{
+            color: #333333;
+            font-size: 14px;
+            line-height: 25px;
+        }
+        .wenben{
+            text-indent: 25px;
+            padding: 3px 0;
+            font-size: 13px;
+        }
+        .gruebold{
+            color: #21C891;
+        }
+        .gbuttom{
+            text-align: right;
+            font-size: 13px;
+        }
+        
+    }
+    .buttonbtn{
+        width: 100%;
+        border-top: #EBEFF5 solid 2px;
+        display: flex;
+        .neednot{
+            width: 50%;
+            line-height: 59px;
+            border-right: #EBEFF5 solid 1px;
+            color: #999999;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .icon{
+                width: 14px;
+                height: 14px;
+                background: url("../assets/image/refuse.png") no-repeat center center/100%;
+                margin-right: 2px;
+            }
+        }
+        .know{
+            flex-grow:1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .knowbutn{
+                width: 103px;
+                line-height: 35px;
+                color: #fff;
+                border-radius: 17.5px;
+                background-color: #21C891;
+                font-size: 14px;
+                text-align: center;
+            }
+        }
+    }
+}
+.bgnone{
+    background-color: rgb(0, 0, 0, 0);
+}
