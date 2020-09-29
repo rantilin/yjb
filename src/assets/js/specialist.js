@@ -85,7 +85,7 @@ export default {
             doctorid: '',
             keyval: 1,
             sharename: '专家咨询-医教宝',
-            indexlogo: 'http://yijiaobao.com.cn/wap/images/logo1.png',
+            indexlogo: 'http://m.yijiaobao.com.cn/wap/images/logo1.png',
             desc: "孩子咳嗽发烧常见感冒？发育迟缓，语言落后，多动抽动等问题？这里有专业医生，为你在线解答",
             url: process.env.VUE_APP_SERVICE_URLS,
             present: process.env.VUE_APP_SERVICE_URLS + "#/botnav/specialist",
@@ -481,9 +481,7 @@ export default {
             });
         },
     },
-    beforeCreate() {
-
-    },
+ 
     created() {
         var sharefrom = window.location.href;
         if (sharefrom.split("from=")[1]) {

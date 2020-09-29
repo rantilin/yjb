@@ -65,7 +65,7 @@
                  <div class="time">{{item.comment_addtime}}</div>
                  <van-image class="pic1" fit="cover" :src="imageurl" radius="50%" />
                  <div class="content1"  @touchstart="touchinUk(item.comment_id,index)" 
-            @touchend="cleartime(item.comment_id,item.comemt_type,item.type_id)">医教宝将优化产品详情页服务， 闲诚邀参与相关意见反馈，完成即有机会获得课程，点击链接<p style="color:#21C891">http://yijiaobao.com.cn/wap/#/{{item.comemt_type==1?'class':item.comemt_type==2?'paygroup':item.comemt_type==3?'doctor':''}}?{{item.comemt_type==1?'class_id':item.comemt_type==2?'paygroup_id':item.comemt_type==3?'doctor_id':''}}={{item.type_id}}</p></div>
+            @touchend="cleartime(item.comment_id,item.comemt_type,item.type_id)">医教宝将优化产品详情页服务， 闲诚邀参与相关意见反馈，完成即有机会获得课程，点击链接<p style="color:#21C891">http://m.yijiaobao.com.cn/wap/#/{{item.comemt_type==1?'class':item.comemt_type==2?'paygroup':item.comemt_type==3?'doctor':''}}?{{item.comemt_type==1?'class_id':item.comemt_type==2?'paygroup_id':item.comemt_type==3?'doctor_id':''}}={{item.type_id}}</p></div>
                
               </div>
               

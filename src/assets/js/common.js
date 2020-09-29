@@ -62,11 +62,26 @@ export default {
     noban() {
         document.body.style.overflow = 'auto'
     },
-    consindx(val, item){
-      for (let index = 0; index < val.length; index++) {
-          if(val[index].sort == item){
-             return index
-          }
-      }
+    consindx(val, item) {
+        for (let index = 0; index < val.length; index++) {
+            if (val[index].sort == item) {
+                return index
+            }
+        }
+    },
+    //对象转url参数
+    convertObj(data) {
+        var _result = [];
+        for (var key in data) {
+            var value = data[key];
+            if (value.constructor == Array) {
+                value.forEach(function (_value) {
+                    _result.push(key + "=" + _value);
+                });
+            } else {
+                _result.push(key + '=' + value);
+            }
+        }
+        return _result.join('&');
     }
 }

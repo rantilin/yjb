@@ -218,8 +218,8 @@ export default {
     sharbg(name_img, headimgurl, bj_img, code_url, key) {
         const datas = {
             'name_img': name_img,
-            'headimgurl': `http://yijiaobao.com.cn/${headimgurl.split('../')[2]}`,
-            'bj_img': `http://yijiaobao.com.cn/${bj_img.split('../')[1]}`,
+            'headimgurl': `http://m.yijiaobao.com.cn/${headimgurl.split('../')[2]}`,
+            'bj_img': `http://m.yijiaobao.com.cn/${bj_img.split('../')[1]}`,
             'code_url': code_url,
             'key': key
         }

@@ -195,6 +195,9 @@
               margin-top: 7px;
               color: #666666;
               font-size: 12px;
+              height: 28px;
+              text-overflow:clip;
+              overflow: hidden;
               text-align: center;
           }
        }

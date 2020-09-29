@@ -61,7 +61,7 @@ export default {
             loding: true,
             keyval: 1,
             sharename: '医教宝',
-            indexlogo: 'http://yijiaobao.com.cn/wap/images/logo1.png',
+            indexlogo: 'http://m.yijiaobao.com.cn/wap/images/logo1.png',
             desc: "一个帮爸妈养娃省心省力的平台，汇集全国名师名医，提高孩子成绩，实时儿科问诊，还有超多育儿福利资源，快来领取吧~",
             url: process.env.VUE_APP_SERVICE_URLS,
             present: process.env.VUE_APP_SERVICE_URLS,
@@ -382,6 +382,7 @@ export default {
                         });
                         //
                     }else{
+                        localStorage.removeItem('souquanpath')
                         localStorage.removeItem('souquanquery')
                     }
                 }
@@ -422,6 +423,10 @@ export default {
                 }
             }
         }
+    },
+    destroyed(){
+        localStorage.removeItem('souquanpath')
+        localStorage.removeItem('souquanquery')
     }
 
 };

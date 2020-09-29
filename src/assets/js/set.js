@@ -265,6 +265,8 @@ export default {
                             timeout: () => {
                                 this.$store.dispatch('deltoken', '')
                                 localStorage.removeItem('key')
+                                localStorage.removeItem('souquanpath')
+                                localStorage.removeItem('souquanquery')
                                 this.$router.push({ path: '/' })
                             }
                         }

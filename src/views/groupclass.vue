@@ -184,7 +184,7 @@
       <template v-if="groupswith">
         <div class="crossline"></div>
         <div class="sharerule">
-          <van-image :src="listdata.group_image"></van-image>
+          <van-image :src="listdata.discount_image"></van-image>
         </div>
         <div class="crossline"></div>
       </template>
@@ -213,6 +213,7 @@
       class="userloop"
       :vertical="true"
       :show-indicators="false"
+      :touchable="false"
       :autoplay="3000"
       indicator-color="white"
     >

@@ -40,7 +40,7 @@
         @click="closeWechat"
       ></div>
     </div>
-    
+ 
     <van-popup v-model="wechatshow">
       <div class="wxpop">
         <div class="wxewm">
@@ -174,7 +174,8 @@
               <span class="watch">{{goods_click}}人在看</span>
             </div>
             <div class="geryline"></div>
-
+            <div class="groupenter" v-if="parseInt(gm)==1&&goods_state_group==1"  @click="gogroup"></div>
+            
             <div
               class="tuijianvideo"
               v-if="video_active==1&&listdata!=''"
@@ -244,7 +245,7 @@
               class="geryline"
               v-if="video_active==1&&listdata!=''"
             ></div>
-            <div class="groupenter" v-if="parseInt(gm)==1&&goods_state_group==1"  @click="gogroup"></div>
+           
             <div class="optionbar">
               <div class="vanttab">
                 <van-tabs
@@ -543,7 +544,7 @@
          <template v-else>
               <div class="clbumbutton">
               <cube-button class="clbumbuy" @click="consultclick">
-                   加入家庭训练指导群
+                   {{after_button}}
               </cube-button>
               </div>
          </template>
@@ -577,8 +578,11 @@
         @click.self="mengcengview()"
       >
         <div class="teacherfix" @click="teacherpops" v-if="mackdata.customized_info.length > 0">
-               <van-image class="teacherimg" :src="mackdata.customized_images" />
-               <div  :class="markradio>0?'on':'text'">名师指导</div>
+              <div class="teacherbg" >
+                <div class="trace" :class="markradio>0?'tracecek':''"></div>
+                 <van-image class="teacherimg" :src="mackdata.customized_images" />
+                 <div class="monicker" :class="markradio>0?'monickercek':''"></div>
+              </div>
           </div>
         <div class="modelbottombtn">
 
@@ -782,7 +786,7 @@
                   {{item.describes}}
               </div>
               </div>
-              <div class="price">￥{{item.zed_price}}元/{{item.zed_term}}</div>
+              <div class="price">￥{{parseInt(item.zed_price)}}元/{{item.zed_term}}</div>
               <div class="checked">
                  <input name="mark" @click="markclick($event)"  @change="retainRecord(item.id)" type="radio" v-model="markradio" :value="item.zed_price"/>
               </div>
@@ -791,6 +795,29 @@
       </div>
       <img class="close" @click="isteacher=false"  src="../assets/image/shareclose.png" alt="">
     </van-popup>
+        <van-popup v-model="isboard" class="bgnone">
+          <div class="board">
+              <div class="boardtext">
+                 <p class="boardtitle">尊敬的用户：</p>
+                 <p class="boardtitle">您好！</p>
+                 <p class="wenben">为了给您提供更完善的服务，医教宝已对平台用户信息与资金安全做全面升级。</p>
+                 <p class="wenben"><span class="gruebold">2020年8月31日10:00</span>之后，旧版网站不再支持微信支付，后续医教宝新功能也将停止更新（老用户的历史订单在旧版网站依然可以学习观看，不影响使用）。</p>
+                 <p class="wenben">建议您点击下方<span class="gruebold">“知道了”</span>按钮，前往新版网站完成订单</p>
+                 <p class="wenben">对此给您带来的不便我们深表歉意，再次感谢您对此次调整的支持和谅解。期待医教宝能在育儿路上继续为您省心、省力又省钱！</p>
+                 <p class="gbuttom">医教宝官方</p>
+                 <p class="gbuttom">2020-8-28</p>
+                 
+              </div>
+              <div class="buttonbtn">
+                <div class="neednot" @click="boardclose">
+                  <div class="icon"></div>暂时不用
+                </div>
+                <div class="know">
+                    <div class="knowbutn" @click="goneweb">知道了</div>
+                </div>
+              </div>
+          </div>
+     </van-popup>
     <component-loading v-if="loding" />
   </div>
 </template>

@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             key: this.$store.state.key.value,
-            state: '', //1代表匹配医师图文咨询，2代表匹配医师电话咨询，3代表指定医师图文咨询，4代表指定医师电话咨询，
+            state: this.$route.query.id, //1代表匹配医师图文咨询，2代表匹配医师电话咨询，3代表指定医师图文咨询，4代表指定医师电话咨询，
             payway: 1, //1代表微信，2代表支付宝
             consultname: "",
             value: '',
@@ -41,9 +41,9 @@ export default {
             imgbase: [],
             twprice: '',
             dhprice: '',
-            buywayprice: '',
+            buywayprice: 0,
             order_pay: '',
-            doctorid: '',
+            doctorid: this.$route.query.doctorid,
             expert_image: "",
             expert_name: "",
             expert_title: "",
@@ -75,6 +75,43 @@ export default {
             },
         };
     },
+    created() {
+        if (window.navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1) {
+            this.order_pay = 'H5'
+        } else {
+            this.order_pay = 'wap'
+        }
+        switch (parseInt(this.state)) {
+            case 1:
+
+                this.consultname = "图文咨询";
+                this.expertid = 0
+                this.loding = false;
+                this.kamishow = false;
+                this.list2();
+                break;
+            case 2:
+
+                this.consultname = "电话咨询";
+                this.expertid = 0
+                this.loding = false;
+                this.kamishow = false;
+                this.list28();
+                break;
+            case 3:
+                this.consultname = "图文咨询";
+                this.expertid = this.doctorid
+                this.list1();
+                break;
+            case 4:
+                this.consultname = "电话咨询";
+                this.expertid = this.doctorid
+                this.list1();
+                break;
+        }
+        
+    },
+   
     methods: {
         back() {
             this.$router.go(-1);
@@ -121,6 +158,7 @@ export default {
             } else {
                 this.payway = cur;
             }
+            
         },
         tijiaobiaodan() {
             var queryParam = '';
@@ -131,100 +169,102 @@ export default {
             _AP.pay(gotoUrl);
         },
         buywaybtn() {
-            this.disabled = true;
-            this.buytext = '正在生成订单...';
-            if (this.state == '1' || this.state == '3') {
-                consultapi.tworder(this.key, this.imgbase, this.textareas, this.buywayprice, this.order_pay, this.expertid, this.codeDiscount).then(res => {
+            let _this=this;
+            _this.disabled = true;
+            _this.buytext = '正在生成订单...';
+
+            if (parseInt(_this.state) == 1 || parent(_this.state) == 3) {
+                consultapi.tworder(_this.key, _this.imgbase, _this.textareas, _this.buywayprice, _this.order_pay, _this.expertid, _this.codeDiscount).then(res => {
                     //payway为1就是微信支付
-                    if (this.payway == 1) {
+                    if (_this.payway == 1) {
                         // 在微信里面
-                        if (this.order_pay == 'H5') {
-                            commonpay.wxpay(this.key, res.data.datas.pay_sn, '图文咨询', this.buywayprice, '', 'new_order');
+                        if (_this.order_pay == 'H5') {
+                            commonpay.wxpay(_this.key, res.data.datas.pay_sn, '图文咨询', _this.buywayprice, '', 'new_order');
                         } else {
-                            commonpay.wapwxpay(this.key, res.data.datas.pay_sn, '图文咨询', this.buywayprice, '', 'new_order');
+                            commonpay.wapwxpay(_this.key, res.data.datas.pay_sn, '图文咨询', _this.buywayprice, '', 'new_order');
                         }
                     } else {
 
-                        if (this.order_pay == 'H5') {
-                            WeCahtApi.zfb(this.key, res.data.datas.pay_sn, '图文咨询', this.buywayprice, '', 'new_order').then(res => {
-                                this.$refs.fromdatas.innerHTML = res.data
-                                this.out_trade_no = document.getElementsByName('out_trade_no')[0].value;
-                                this.partner = document.getElementsByName('partner')[0].value;
-                                this.payment_type = document.getElementsByName('payment_type')[0].value;
-                                this.seller_id = document.getElementsByName('seller_id')[0].value;
-                                this.subject = document.getElementsByName('subject')[0].value;
-                                this.total_fee = document.getElementsByName('total_fee')[0].value;
-                                this.sign = document.getElementsByName('sign')[0].value;
-                                this.tijiaobiaodan();
+                        if (_this.order_pay == 'H5') {
+                            WeCahtApi.zfb(_this.key, res.data.datas.pay_sn, '图文咨询', _this.buywayprice, '', 'new_order').then(res => {
+                                _this.$refs.fromdatas.innerHTML = res.data
+                                _this.out_trade_no = document.getElementsByName('out_trade_no')[0].value;
+                                _this.partner = document.getElementsByName('partner')[0].value;
+                                _this.payment_type = document.getElementsByName('payment_type')[0].value;
+                                _this.seller_id = document.getElementsByName('seller_id')[0].value;
+                                _this.subject = document.getElementsByName('subject')[0].value;
+                                _this.total_fee = document.getElementsByName('total_fee')[0].value;
+                                _this.sign = document.getElementsByName('sign')[0].value;
+                                _this.tijiaobiaodan();
                             }).catch(err => {
                                 if (err.message != "interrupt") {
                                     let errmsg = '请求失败';
                                     if (err.message.includes('timeout')) {
                                         errmsg = "请检查网络再刷新重试"
                                     }
-                                    this.toast(errmsg);
+                                    _this.toast(errmsg);
                                 }
                             });
                         } else {
-                            commonpay.zfb(this.key, res.data.datas.pay_sn, '图文咨询', this.buywayprice, '', 'new_order');
+                            commonpay.zfb(_this.key, res.data.datas.pay_sn, '图文咨询', _this.buywayprice, '', 'new_order');
                         }
                     }
-                    this.buytext = '请耐心等待';
+                    _this.buytext = '请耐心等待';
                 }).catch(err => {
                     if (err.message != "interrupt") {
                         let errmsg = '请求失败';
                         if (err.message.includes('timeout')) {
                             errmsg = "请检查网络再刷新重试"
                         }
-                        this.toast(errmsg);
+                        _this.toast(errmsg);
                     }
-                    this.buytext = '请耐心等待';
+                    _this.buytext = '请耐心等待';
                 });
             } else {
-                consultapi.dhorder(this.key, this.imgbase, this.textareas, this.value, this.buywayprice, this.order_pay, this.expertid, this.codeDiscount).then(res => {
+                consultapi.dhorder(_this.key, _this.imgbase, _this.textareas, _this.value, _this.buywayprice, _this.order_pay, _this.expertid, _this.codeDiscount).then(res => {
                     //payway为1就是微信支付
-                    if (this.payway == 1) {
+                    if (_this.payway == 1) {
                         // 在微信里面
-                        if (this.order_pay == 'H5') {
-                            commonpay.wxpay(this.key, res.data.datas.pay_sn, '电话咨询', this.buywayprice, '', 'new_order');
+                        if (_this.order_pay == 'H5') {
+                            commonpay.wxpay(_this.key, res.data.datas.pay_sn, '电话咨询', _this.buywayprice, '', 'new_order');
                         } else {
-                            commonpay.wapwxpay(this.key, res.data.datas.pay_sn, '电话咨询', this.buywayprice, '', 'new_order');
+                            commonpay.wapwxpay(_this.key, res.data.datas.pay_sn, '电话咨询', _this.buywayprice, '', 'new_order');
                         }
                     } else {
-                        if (this.order_pay == 'H5') {
-                            WeCahtApi.zfb(this.key, res.data.datas.pay_sn, '电话咨询', this.buywayprice, '', 'new_order').then(res => {
-                                this.$refs.fromdatas.innerHTML = res.data
-                                this.out_trade_no = document.getElementsByName('out_trade_no')[0].value;
-                                this.partner = document.getElementsByName('partner')[0].value;
-                                this.payment_type = document.getElementsByName('payment_type')[0].value;
-                                this.seller_id = document.getElementsByName('seller_id')[0].value;
-                                this.subject = document.getElementsByName('subject')[0].value;
-                                this.total_fee = document.getElementsByName('total_fee')[0].value;
-                                this.sign = document.getElementsByName('sign')[0].value;
-                                this.tijiaobiaodan();
+                        if (_this.order_pay == 'H5') {
+                            WeCahtApi.zfb(_this.key, res.data.datas.pay_sn, '电话咨询', _this.buywayprice, '', 'new_order').then(res => {
+                                _this.$refs.fromdatas.innerHTML = res.data
+                                _this.out_trade_no = document.getElementsByName('out_trade_no')[0].value;
+                                _this.partner = document.getElementsByName('partner')[0].value;
+                                _this.payment_type = document.getElementsByName('payment_type')[0].value;
+                                _this.seller_id = document.getElementsByName('seller_id')[0].value;
+                                _this.subject = document.getElementsByName('subject')[0].value;
+                                _this.total_fee = document.getElementsByName('total_fee')[0].value;
+                                _this.sign = document.getElementsByName('sign')[0].value;
+                                _this.tijiaobiaodan();
                             }).catch(err => {
                                 if (err.message != "interrupt") {
                                     let errmsg = '请求失败';
                                     if (err.message.includes('timeout')) {
                                         errmsg = "请检查网络再刷新重试"
                                     }
-                                    this.toast(errmsg);
+                                    _this.toast(errmsg);
                                 }
                             });
                         } else {
-                            commonpay.zfb(this.key, res.data.datas.pay_sn, '电话咨询', this.buywayprice, '', 'new_order');
+                            commonpay.zfb(_this.key, res.data.datas.pay_sn, '电话咨询', _this.buywayprice, '', 'new_order');
                         }
                     }
-                    this.buytext = '请耐心等待';
+                    _this.buytext = '请耐心等待';
                 }).catch(err => {
                     if (err.message != "interrupt") {
                         let errmsg = '请求失败';
                         if (err.message.includes('timeout')) {
                             errmsg = "请检查网络再刷新重试"
                         }
-                        this.toast(errmsg);
+                        _this.toast(errmsg);
                     }
-                    this.buytext = '请耐心等待';
+                    _this.buytext = '请耐心等待';
                 });
             }
         },
@@ -239,9 +279,10 @@ export default {
             })
         },
         list1() {
-            consultapi.doctordetail(this.doctorid).then(res => {
+            consultapi.doctordetail(parseInt(this.doctorid)).then(res => {
                 if (this.state == 3) {
                     this.buywayprice = res.data.datas.details.tw_price
+                    
                 }
                 if (this.state == 4) {
                     this.buywayprice = res.data.datas.details.dh_price
@@ -346,44 +387,7 @@ export default {
             }
         }
     },
-    created() {
-        this.state = this.$route.query.id;
-        this.doctorid = this.$route.query.doctorid;
-        switch (parseInt(this.state)) {
-            case 1:
-
-                this.consultname = "图文咨询";
-                this.expertid = 0
-                this.loding = false;
-                this.kamishow = false;
-                this.list2();
-                break;
-            case 2:
-
-                this.consultname = "电话咨询";
-                this.expertid = 0
-                this.loding = false;
-                this.kamishow = false;
-                this.list28();
-                break;
-            case 3:
-                this.consultname = "图文咨询";
-                this.expertid = this.doctorid
-                this.list1();
-                break;
-            case 4:
-                this.consultname = "电话咨询";
-                this.expertid = this.doctorid
-                this.list1();
-                break;
-        }
-        if (window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger') {
-            this.order_pay = 'H5'
-        } else {
-            this.order_pay = 'wap'
-        }
-    },
-    mounted() {},
+    
     watch: {
         textareas() {
             this.textnum = this.textareas.length;
@@ -392,7 +396,9 @@ export default {
             this.filenum = this.fileList.length;
         }
     },
+   
     mounted() {
+        
         this.$nextTick(() => {
             this.$refs.scroll.refresh();
         });

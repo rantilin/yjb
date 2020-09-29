@@ -45,7 +45,7 @@ export default {
             msglen: 0,
             value: '',
             goods_image: '',
-            indexlogo: 'http://yijiaobao.com.cn/wap/images/logo1.png',
+            indexlogo: 'http://m.yijiaobao.com.cn/wap/images/logo1.png',
             placeholder: "我来说几句",
             clearable: {
                 visible: true,

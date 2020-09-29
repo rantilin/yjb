@@ -127,7 +127,7 @@ export default {
             zhidingname: "",
             zhidingtime: "",
             keyval: 1,
-            indexlogo: 'http://yijiaobao.com.cn/wap/images/logo1.png',
+            indexlogo: 'http://m.yijiaobao.com.cn/wap/images/logo1.png',
             desc: "一个帮爸妈养娃省心省力的平台，汇集全国名师名医，提高孩子成绩，实时儿科问诊，还有超多育儿福利资源，快来领取吧~",
             url: process.env.VUE_APP_SERVICE_URLS,
             present: process.env.VUE_APP_SERVICE_URLS + "#/class?classid=" + this.$route.query.classid + "&state="+this.$route.query.state ,
@@ -168,6 +168,7 @@ export default {
             allbuystatic: false,
             goods_complete: 0, //是否开启全集购买
             goods_buytext: '选集购买',
+            after_button: '加入家庭训练指导群',
             goods_sample: 0, //是否咨询
             goods_state_chapter: 0, //是否开启小结购买
             isconsult: false,
@@ -195,6 +196,7 @@ export default {
                 jian: 0,
             },
             reduction_amount: 0,
+            isboard:false
         }
     },
     computed: {
@@ -228,9 +230,9 @@ export default {
                 let jianprice= parseFloat(this.quan[jian].di)
                 this.reduction_amount = jianprice
                 console.log(this.reduction_amount)
-                price = ((qian + markjg) * this.zekou - jianprice).toFixed(2)
+                price = (qian * this.zekou - jianprice + markjg).toFixed(2)
             }else{
-                price = ((qian + markjg) * this.zekou).toFixed(2)
+                price = (qian * this.zekou + markjg).toFixed(2)
             } 
             if(price < 0){
                 price = 0
@@ -330,6 +332,7 @@ export default {
             this.show = false;
         },
         selectionsbuy() {
+           // this.isboard = true
             if (this.key) {
                 this.show = true;
                 this.sphei = false;
@@ -399,6 +402,11 @@ export default {
                     this.goods_sample = res.data.datas.brief.goods_sample; //开启咨询
                     this.goods_state_chapter = res.data.datas.brief.goods_state_chapter;
                     this.consult = res.data.datas.brief.goods_sample_info;
+                    if(this.consult){
+                        if(this.consult.after_button){
+                            this.after_button = this.consult.after_button;
+                        }
+                    }
                     this.goodsstategift = parseInt(res.data.datas.brief.goods_state_gift);//开启礼物
                     this.gift.datalist =  res.data.datas.brief.goods_state_gift_info;
                     this.goods_state_group =  res.data.datas.brief.goods_state_group //开启团购
@@ -519,6 +527,7 @@ export default {
 
                     this.goods_sample = res.data.datas.brief.goods_sample; //开启咨询
                     this.consult = res.data.datas.brief.goods_sample_info;
+                  
                     this.goods_state_chapter = res.data.datas.brief.goods_state_chapter;
                     
                     this.goodsstategift = res.data.datas.brief.goods_state_gift;//开启礼物
@@ -894,8 +903,9 @@ export default {
                       
                         if(this.markradio==0){
                             Dialog.alert({
-                                width:210,
+                                width:220,
                                 showCancelButton:true,
+                                className:'checkcalss',
                                 message: '您还未选择老师的\n指导服务将失去老师一对一\n为孩子制定计划的机会',
                                 theme:'round',
                                 confirmButtonText:'去选择',
@@ -1211,7 +1221,7 @@ export default {
                let name_img = 'add'
                classapi.sharbg(name_img, this.shareheard,this.share_images,path,this.key).then(res=>{
                     this.shareimgname = res.data.datas
-                    this.shareimg=`http://yijiaobao.com.cn/haibao/${res.data.datas}`;
+                    this.shareimg=`http://m.yijiaobao.com.cn/haibao/${res.data.datas}`;
                     localStorage.setItem(`shareimg-${this.classid}`,this.shareimg)
                }).catch(err => {
                 if (err.message != "interrupt") {
@@ -1295,6 +1305,29 @@ export default {
                 }
                 
              }
+         },
+         goneweb(){
+             window.location.href = `http://m.m.yijiaobao.com.cn/wap/#${this.$route.path}?${common.convertObj(this.$route.query)}`
+         },
+         boardclose(){
+             this.isboard = false
+             if (this.key) {
+                this.show = true;
+                this.sphei = false;
+                if(this.classtype == 1){
+                document.getElementById("myVideo").pause();
+                }
+                this.$nextTick(() => {
+                    this.$refs.scrolls.refresh();
+                });
+            } else {
+                this.$router.push({
+                    path: '/login',
+                    query: {
+                        back: true
+                    }
+                })
+            }
          }
     },
     beforeCreate() {

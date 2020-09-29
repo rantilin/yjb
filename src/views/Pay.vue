@@ -49,7 +49,7 @@
            <div class="teacherfw" v-if="markprice>0">
                <div class="icon"></div>
                <div class="text">已选择指导老师一对一指导</div>
-               <div class="price">￥{{markprice * discount}}</div>
+               <div class="price">￥{{markprice}}</div>
            </div>
           <!-- 名师服务结束 -->
           <div class="quanview" v-if="reduction_amount>0">
