@@ -3,6 +3,7 @@
     <div class="loadingdv">
       <div class="load">
         <Lottie :options="loadingoption" @animCreated="loadingAnimation" />
+        <div style="font-size:14px;color: #999999;text-align: center; ">加载速度取决于您的网速，请耐心等待</div>
       </div>
     </div>
   </div>
@@ -45,6 +46,7 @@ export default {
   z-index: 50;
   top: 0;
   left: 0;
+  
 }
 .load {
   width: 250px;

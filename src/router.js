@@ -331,6 +331,42 @@ export default new Router({
             }
         },
         {
+            path: '/yuyue',
+            name: 'yuyue',
+            component: () =>
+                import ('./views/yuyue.vue'),
+            meta: {
+                title: '医生详情'
+            }
+        },
+        {
+            path: '/yuyuedeil',
+            name: 'yuyuedeil',
+            component: () =>
+                import ('./views/yuyuedeil.vue'),
+            meta: {
+                title: '医生详情'
+            }
+        },
+        {
+            path: '/yuyuepay',
+            name: 'yuyuepay',
+            component: () =>
+                import ('./views/yuyuepay.vue'),
+            meta: {
+                title: '立即支付'
+            }
+        },
+        {
+            path: '/yysuccee',
+            name: 'yysuccee',
+            component: () =>
+                import ('./views/yysuccee.vue'),
+            meta: {
+                title: '预约成功'
+            }
+        },
+        {
             path: '/botnav',
             name: 'botnav',
             component: () =>

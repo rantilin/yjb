@@ -7,6 +7,9 @@ import consultapi from "@/api/ConsultApi";
 import payapi from "@/api/PayApi";
 import ComponentLoading from '@/components/ComponentLoading';
 import DisCode from '@/components/DisCode';
+import {
+    compressImage
+} from '@/utils/ImageUtils'
 Vue.use(ComponentLoading);
 Vue.component('component-loading', ComponentLoading);
 import {
@@ -36,7 +39,7 @@ export default {
             textnum: 0,
             filenum: 0,
             show: false,
-            doctormatching: require("../image/dhzx.png"),
+            doctormatching: require("../image/charpic.png"),
             fileList: [],
             imgbase: [],
             twprice: '',
@@ -83,7 +86,7 @@ export default {
         }
         switch (parseInt(this.state)) {
             case 1:
-
+                this.doctormatching =  require("../image/charpic.png")
                 this.consultname = "图文咨询";
                 this.expertid = 0
                 this.loding = false;
@@ -91,7 +94,7 @@ export default {
                 this.list2();
                 break;
             case 2:
-
+                this.doctormatching =  require("../image/dhzx.png")
                 this.consultname = "电话咨询";
                 this.expertid = 0
                 this.loding = false;
@@ -109,18 +112,50 @@ export default {
                 this.list1();
                 break;
         }
-        
+
     },
-   
+
     methods: {
         back() {
             this.$router.go(-1);
         },
         afterRead(file) {
-            this.imgbase.push(file.content);
+            this._compressAndUploadFile(file);
+            //  this.imgbase.push(file.content);
         },
-        del(detail) {
-            this.imgbase.splice(this.imgbase.indexOf(detail.content), 1)
+        //压缩图片上传
+        _compressAndUploadFile(file) {
+           
+            compressImage(file.content).then(result => {
+                //  console.log('压缩后的结果', result); // result即为压缩后的结果
+                //  console.log('压缩前大小', file.file.size);
+                //  console.log('压缩后大小', result.size);
+                if (result.size > file.file.size) {
+                   //  console.log('上传原图');
+                    //压缩后比原来更大，则将原图上传
+                    let uplod=[]
+                    uplod.push(file.content)
+                    this._uploadFile(uplod);
+                } else {
+                    //压缩后比原来小，上传压缩后的
+                    let uplod=[]
+                    uplod.push(result)
+                    this._uploadFile(uplod)
+                }
+            })
+        },
+        //上传图片
+        _uploadFile(file) {
+            consultapi.uploadImage(this.key, file).then(res => {
+
+                this.imgbase.push(res.data.datas)
+                //上传成功，写自己的逻辑
+            }).catch(err => {
+                console.log('err', err);
+            });
+        },
+        del(file,detail) {
+            this.imgbase.splice(detail.index, 1)
         },
         submit() {
             if (this.state == '1' || this.state == '3') {
@@ -158,7 +193,7 @@ export default {
             } else {
                 this.payway = cur;
             }
-            
+
         },
         tijiaobiaodan() {
             var queryParam = '';
@@ -169,12 +204,12 @@ export default {
             _AP.pay(gotoUrl);
         },
         buywaybtn() {
-            let _this=this;
+            let _this = this;
             _this.disabled = true;
             _this.buytext = '正在生成订单...';
 
-            if (parseInt(_this.state) == 1 || parent(_this.state) == 3) {
-                consultapi.tworder(_this.key, _this.imgbase, _this.textareas, _this.buywayprice, _this.order_pay, _this.expertid, _this.codeDiscount).then(res => {
+            if (parseInt(_this.state) == 1 || parseInt(_this.state) == 3) {
+                consultapi.tworder(_this.key, _this.imgbase.toString(), _this.textareas, _this.buywayprice, _this.order_pay, _this.expertid, _this.codeDiscount).then(res => {
                     //payway为1就是微信支付
                     if (_this.payway == 1) {
                         // 在微信里面
@@ -221,7 +256,7 @@ export default {
                     _this.buytext = '请耐心等待';
                 });
             } else {
-                consultapi.dhorder(_this.key, _this.imgbase, _this.textareas, _this.value, _this.buywayprice, _this.order_pay, _this.expertid, _this.codeDiscount).then(res => {
+                consultapi.dhorder(_this.key, _this.imgbase.toString(), _this.textareas, _this.value, _this.buywayprice, _this.order_pay, _this.expertid, _this.codeDiscount).then(res => {
                     //payway为1就是微信支付
                     if (_this.payway == 1) {
                         // 在微信里面
@@ -282,7 +317,7 @@ export default {
             consultapi.doctordetail(parseInt(this.doctorid)).then(res => {
                 if (this.state == 3) {
                     this.buywayprice = res.data.datas.details.tw_price
-                    
+
                 }
                 if (this.state == 4) {
                     this.buywayprice = res.data.datas.details.dh_price
@@ -330,7 +365,7 @@ export default {
                                     this.activatecode.kalman_code = res.data.datas.kalman_code;
 
                                     Toast("卡密激活中...");
-                                    consultapi.tworder(this.key, this.imgbase, this.textareas, this.buywayprice, this.order_pay, this.expertid, this.codeDiscount).then(res => {
+                                    consultapi.tworder(this.key, this.imgbase.toString(), this.textareas, this.buywayprice, this.order_pay, this.expertid, this.codeDiscount).then(res => {
 
                                         payapi.eaitordersn(this.key, res.data.datas.pay_sn, 2, this.activatecode.id, this.activatecode.kalman_code).then(res => {
                                             if (res.data.datas == 1) {
@@ -387,7 +422,7 @@ export default {
             }
         }
     },
-    
+
     watch: {
         textareas() {
             this.textnum = this.textareas.length;
@@ -396,9 +431,9 @@ export default {
             this.filenum = this.fileList.length;
         }
     },
-   
+
     mounted() {
-        
+
         this.$nextTick(() => {
             this.$refs.scroll.refresh();
         });

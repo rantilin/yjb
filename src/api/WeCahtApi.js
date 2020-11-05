@@ -43,6 +43,26 @@ export default {
         })
         return req
     },
+    //内部支付
+    yywxpayn(key, pay_sn, subject, money, roomid, class_order) {
+        const datas = {
+            'key': key,
+            'trade_no': pay_sn,
+            'ordsubject': subject,
+            'ordtotal_fee': money,
+            'roomid': roomid,
+            'yjb_type': class_order
+        }
+        const req = request({
+            method: 'post',
+            url: '/index.php?act=wx_yjbgh_pay&op=wxpay',
+            cancelToken: new axios.CancelToken(c => {
+                Vue.$httpRequestList.push(c);
+            }),
+            data: qs.stringify(datas)
+        })
+        return req
+    },
     //支付宝zfb
     zfb(key, pay_sn, subject, money, roomid, class_order) {
         const datas = {

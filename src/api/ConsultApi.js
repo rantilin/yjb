@@ -55,4 +55,16 @@ export default {
         })
         return req
     },
+    uploadImage(key, pics){
+        const datas = { 'key': key,'pics':pics }
+        const req = request({
+            method: 'post',
+            url: '/index.php?act=yjb_member_buy&op=image_tw',
+            cancelToken: new axios.CancelToken(c => {
+                Vue.$httpRequestList.push(c);
+            }),
+            data: qs.stringify(datas)
+        })
+        return req
+    }
 }
