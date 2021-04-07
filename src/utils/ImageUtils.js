@@ -64,10 +64,10 @@ export function compressImage(path) {
       canvas.width = compressedWidth;
       context.clearRect(0, 0, compressedWidth, compressedHeight);
       context.drawImage(img, 0, 0, compressedWidth, compressedHeight);
-      let base64 = canvas.toDataURL('image/*', 0.8);
+      let base64 = canvas.toDataURL('image/*', 1);
       let blob = convertBase64UrlToBlob(base64);
       // 回调函数返回blob的值。也可根据自己的需求返回base64的值
-      resolve(base64)
+      resolve(blob)
     }
   })
 }

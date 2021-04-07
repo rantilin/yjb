@@ -108,10 +108,11 @@
                 x5-playsinline
                 x5-video-player-fullscreen="true"
                 playsinline
+                x5-video-player-type="h5"
                 webkit-playsinline
                 :src="videosrc"
                 :poster="goods_image"
-                style="z-index:9999"
+                style="z-index:9999;"
                 :class="[sphei?'sphei-active':'sphei']"
               ></video>
             </div>
@@ -745,12 +746,12 @@
                 <div class="quantext">满{{item.gao}}减{{item.di}}</div>
               </div>
             </li>
-            <li>
+            <!-- <li>
               <div class="tuiview">
                 <div class="tuiimage"></div>
                 <div class="tuitext">#医教宝承诺，课程无帮助可联系{{index==0?'大童':'童姐'}}退款</div>
               </div>
-            </li>
+            </li> -->
           </ul>
 
           <cube-button class="allpriceview">
@@ -818,6 +819,7 @@
               </div>
           </div>
      </van-popup>
+      
     <component-loading v-if="loding" />
   </div>
 </template>

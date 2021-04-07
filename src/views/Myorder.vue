@@ -47,6 +47,10 @@
                   <span class="listname" v-if="item.class_order==5">精选问答</span>
                   <div class="listpic ordergroup" v-if="item.class_order==6"></div>
                   <span class="listname" v-if="item.class_order==6">训练班</span>
+                   <span
+                    class="liststate-active"
+                    v-if="item.order_state==40"
+                  >已退款</span>
                   <span
                     class="liststate-active"
                     v-if="item.order_state==20||item.order_state==30"

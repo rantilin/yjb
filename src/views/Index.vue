@@ -13,6 +13,7 @@
           :border="vantab.border"
           :swipeable="vantab.swipeable"
           @click="pitchtab"
+          :ellipsis="false"
           v-model="avtiveindex"
         >
           <van-tab

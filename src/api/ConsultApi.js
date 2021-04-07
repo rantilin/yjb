@@ -1,6 +1,9 @@
 import request from '@/utils/request'
 import qs from 'qs';
 import Vue from 'vue'
+import {
+    convertBase64UrlToBlob
+} from '@/utils/ImageUtils'
 import axios from 'axios'
 export default {
     //图文订单
@@ -56,14 +59,17 @@ export default {
         return req
     },
     uploadImage(key, pics){
-        const datas = { 'key': key,'pics':pics }
+        let formData = new FormData();
+        formData.append('key',key)
+        formData.append('Files',convertBase64UrlToBlob(pics),"image.png")
         const req = request({
             method: 'post',
-            url: '/index.php?act=yjb_member_buy&op=image_tw',
+            url: '/index.php?act=yjb_member_buy&op=image_header',
+            headers:{"Content-Type":"multipart/form-data"},
             cancelToken: new axios.CancelToken(c => {
                 Vue.$httpRequestList.push(c);
             }),
-            data: qs.stringify(datas)
+            data: formData
         })
         return req
     }

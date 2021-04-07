@@ -7,9 +7,6 @@ import consultapi from "@/api/ConsultApi";
 import payapi from "@/api/PayApi";
 import ComponentLoading from '@/components/ComponentLoading';
 import DisCode from '@/components/DisCode';
-import {
-    compressImage
-} from '@/utils/ImageUtils'
 Vue.use(ComponentLoading);
 Vue.component('component-loading', ComponentLoading);
 import {
@@ -71,11 +68,12 @@ export default {
                 codeshow: false,
                 textcode: '',
                 kalman_id: '',
-                kalman_kzb_id: this.$route.query.id,
+                kalman_kzb_id: this.$route.query.doctorid,
                 chapter: '',
                 duration_s: '',
                 price: '',
             },
+            isupload: true,
         };
     },
     created() {
@@ -120,38 +118,44 @@ export default {
             this.$router.go(-1);
         },
         afterRead(file) {
+            file.status = 'uploading';
+            file.message = '上传中...';
+            this.isupload = false;
+            console.log(file)
             this._compressAndUploadFile(file);
             //  this.imgbase.push(file.content);
         },
         //压缩图片上传
         _compressAndUploadFile(file) {
-           
-            compressImage(file.content).then(result => {
-                //  console.log('压缩后的结果', result); // result即为压缩后的结果
-                //  console.log('压缩前大小', file.file.size);
-                //  console.log('压缩后大小', result.size);
-                if (result.size > file.file.size) {
-                   //  console.log('上传原图');
-                    //压缩后比原来更大，则将原图上传
-                    let uplod=[]
-                    uplod.push(file.content)
-                    this._uploadFile(uplod);
-                } else {
-                    //压缩后比原来小，上传压缩后的
-                    let uplod=[]
-                    uplod.push(result)
-                    this._uploadFile(uplod)
-                }
-            })
+            this._uploadFile(file.content,file);
+            // compressImage(file.content).then(result => {
+            //     //  console.log('压缩后的结果', result); // result即为压缩后的结果
+            //     //  console.log('压缩前大小', file.file.size);
+            //     //  console.log('压缩后大小', result.size);
+            //     if (result.size > file.file.size) {
+            //         // console.log('上传原图');
+            //         //压缩后比原来更大，则将原图上传
+                    
+            //         this._uploadFile(file.content,file);
+            //     } else {
+            //        // console.log('上传压缩');
+            //         //压缩后比原来小，上传压缩后的
+            //         this._uploadFile(result,file)
+            //     }
+            // })
         },
         //上传图片
-        _uploadFile(file) {
+        _uploadFile(file,objflie) {
             consultapi.uploadImage(this.key, file).then(res => {
-
+                objflie.status = 'done';
+                this.isupload = true;
                 this.imgbase.push(res.data.datas)
                 //上传成功，写自己的逻辑
             }).catch(err => {
-                console.log('err', err);
+                objflie.status = 'failed';
+                objflie.message = '上传失败';
+                this.isupload = true;
+                this.toast('图片上传失败，请删除后重新上传，或直接提交', 'warn');
             });
         },
         del(file,detail) {
@@ -161,6 +165,8 @@ export default {
             if (this.state == '1' || this.state == '3') {
                 if (this.textareas == '') {
                     this.toast('问题描述必填', 'warn');
+                }else if(this.isupload == false){
+                    this.toast('图片还没上传完', 'warn');
                 } else {
                     this.show = true;
                 }

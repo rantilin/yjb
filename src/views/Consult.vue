@@ -97,6 +97,7 @@
               :max-count="3"
               @delete="del"
             >
+            
               <div class="uploadpicview">
                 <div class="uppicview">
                   <div></div>
