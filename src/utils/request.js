@@ -1,8 +1,8 @@
 import axios from 'axios'
 //自定义创建axios
 const request = axios.create({
-      baseURL: process.env.VUE_APP_BASE_API,
-     //   baseURL: 'http://m.yijiaobao.com.cn/mobile/',
+       baseURL: process.env.VUE_APP_BASE_API,
+      //  baseURL: 'http://m.yijiaobao.com.cn/mobile/',
       // timeout: 10,
     })
     //请求拦截器

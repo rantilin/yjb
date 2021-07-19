@@ -202,6 +202,7 @@ export default {
             isshare: 0, //是否自定义分享
             sharedata: [], //分享配置
             isscreen: 0, //是否默认全屏
+            isback: true,//是否有返回键
         }
     },
     computed: {
@@ -505,13 +506,18 @@ export default {
                     } else {
                         this.allbuy = false;
                     }
-
+                  
                     let shareis = res.data.datas.brief.goods_state_share //是否开启分享返现
                     if (parseInt(shareis) == 1) {
                         this.share_images = res.data.datas.brief.share_images //分享背景图片
                         this.share_price = res.data.datas.brief.share_price //分享佣金
                         this.share_cont = res.data.datas.brief.share_reserve_price //金额上限分享
                         this.getshareuid()
+                    }
+                    let isbackdata = res.data.datas.brief.goods_state_return //是否开启返回按钮
+                    if (parseInt(isbackdata) == 1) {
+                        this.xxflag = false;
+                        this.isback = false;
                     }
 
                 }).catch(err => {
@@ -600,6 +606,10 @@ export default {
                     } else {
                         this.allbuy = false;
 
+                    }
+                    if (parseInt(isbackdata) == 1) {
+                        this.xxflag = false;
+                        this.isback = false;
                     }
                 }).catch(err => {
                     if (err.message != "interrupt") {

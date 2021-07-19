@@ -265,6 +265,15 @@ export default new Router({
             }
         },
         {
+            path: '/agree',
+            name: 'agree',
+            component: () =>
+                import ('./views/Agreement.vue'),
+            meta: {
+                title: '指导协议声明'
+            }
+        },
+        {
             path: '/qusertpay',
             name: 'qusertpay',
             component: () =>

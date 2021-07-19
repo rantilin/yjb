@@ -11,9 +11,10 @@ import ComponentLoading from '@/components/ComponentLoading';
 Vue.use(ComponentLoading);
 Vue.component('component-loading', ComponentLoading);
 import {
-    Toast
+    Toast,
+    Dialog
 } from 'vant';
-Vue.use(Toast);
+Vue.use(Toast).use(Dialog);
 import {
     Image
 } from 'vant';
@@ -68,6 +69,10 @@ export default {
             goods_amount: 0,
             discount: 1,
             reduction_amount: 0,
+            isagree: false, //是否同意协议
+            agreement: 0, //是否开启协议
+            agreetext: '',//协议标题
+            agreeimg:'',
         }
     },
     methods: {
@@ -97,7 +102,10 @@ export default {
                 this.goods_image = res.data.datas.brief.goods_image;
                 this.goods_name = res.data.datas.brief.goods_name;
                 this.goods_price = res.data.datas.brief.goods_price;
-                this.goods_click = common.number(res.data.datas.brief.goods_click);
+                this.goods_click = common.number(res.data.datas.brief.goods_click)
+                this.agreement = res.data.datas.brief.goods_state_agreement
+                this.agreeimg = res.data.datas.brief.agreement_images
+                this.agreetext = res.data.datas.brief.agreement_name
                 this.loding = false;
             }).catch(err => {
                 if (err.message != "interrupt") {
@@ -173,7 +181,24 @@ export default {
             _AP.pay(gotoUrl);
         },
         gobuy() {
+            switch (this.agreement){
+                case "0":
+                    this.pay()
+                    break;
+                case "1":
+                    if(this.isagree){
+                        this.pay();
+                    }else{
+                        this.toast('请先勾选同意协议');
+                    }
+                    break;
+                default:
+                    this.pay();
+                    break;
+            }
 
+        },
+        pay(){
             switch (this.payway) {
                 case '1':
                     // 在微信里面
@@ -214,7 +239,6 @@ export default {
                 default:
                     console.log(123);
             }
-
         },
         activate() {
             if (this.activatecode.textcode.length > 0) {
@@ -276,6 +300,21 @@ export default {
             } else {
                 Toast.fail('请输入卡密激活码');
             }
+        },
+        changeisagree(){
+            if(this.isagree){
+                this.isagree = false
+            }else{
+                this.isagree = true
+            }
+        },
+        gogree(){
+            this.$router.push({
+                path: '/agree',
+                query: {
+                    imgsrc: encodeURIComponent(this.agreeimg)
+                }
+            })
         }
     },
     created() {
