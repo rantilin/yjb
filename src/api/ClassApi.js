@@ -34,17 +34,19 @@ export default {
         })
         return req
     },
-    msglist(id) {
+    msglist(id, page, num) {
         const datas = {
-            'goods_id': id
+            'goods_id': id,
+            'curpage': page,
+            'num': num,
         }
         const req = request({
-            method: 'post',
-            url: '/index.php?act=yjb_course_info&op=course_msglist',
+            method: 'get',
+            url: `/index.php?act=yjb_course_info&op=course_msglist`,
             cancelToken: new axios.CancelToken(c => {
                 Vue.$httpRequestList.push(c);
             }),
-            data: qs.stringify(datas)
+            params: datas
         })
         return req
     },

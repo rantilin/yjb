@@ -438,7 +438,7 @@
                     </div>
                   </li>
                   <li v-for="(item, index) in msglists" :key="index">
-                    <div class="cometntdiv" v-if="index < morenumpl">
+                    <div class="cometntdiv">
                       <div class="user">
                         <van-image
                           class="pices"

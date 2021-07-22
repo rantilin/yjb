@@ -203,6 +203,8 @@ export default {
             sharedata: [], //分享配置
             isscreen: 0, //是否默认全屏
             isback: true,//是否有返回键
+            page: 1,//笔记分页
+            pagecount: 8,//分页大小
         }
     },
     computed: {
@@ -376,8 +378,9 @@ export default {
                     }
                     break;
                 case 2:
-                    if (this.morenumpl < this.msglists.length) {
-                        this.morenumpl = this.morenumpl + 8;
+                    if (this.page < this.msglen / this.pagecount) {
+                        this.page ++
+                        this.list2()
                         this.$refs.scroll.forceUpdate(true);
                         this.$refs.scroll.refresh();
                     } else {
@@ -423,7 +426,6 @@ export default {
                     if (res.data.datas.brief.customized_info) {
                         this.mackdata.customized_info = res.data.datas.brief.customized_info // 名师服务列表
                     }
-
                     this.isscreen = res.data.datas.brief.goods_state_screen; //开启默认全屏
                     if (parseInt(this.goodsStatezj) == 0) {
                         this.videolist = res.data.datas.details
@@ -514,11 +516,15 @@ export default {
                         this.share_cont = res.data.datas.brief.share_reserve_price //金额上限分享
                         this.getshareuid()
                     }
-                    let isbackdata = res.data.datas.brief.goods_state_return //是否开启返回按钮
-                    if (parseInt(isbackdata) == 1) {
-                        this.xxflag = false;
-                        this.isback = false;
+                    
+                    if (res.data.datas.brief.goods_state_return) {
+                        let isbackdata = res.data.datas.brief.goods_state_return //是否开启返回按钮
+                              if (parseInt(isbackdata) == 1) {
+                                  this.xxflag = false;
+                                  this.isback = false;
+                              }
                     }
+                    
 
                 }).catch(err => {
                     if (err.message != "interrupt") {
@@ -607,9 +613,12 @@ export default {
                         this.allbuy = false;
 
                     }
-                    if (parseInt(isbackdata) == 1) {
-                        this.xxflag = false;
-                        this.isback = false;
+                   if (res.data.datas.brief.goods_state_return) {
+                        let isbackdata = res.data.datas.brief.goods_state_return //是否开启返回按钮
+                              if (parseInt(isbackdata) == 1) {
+                                  this.xxflag = false;
+                                  this.isback = false;
+                              }
                     }
                 }).catch(err => {
                     if (err.message != "interrupt") {
@@ -624,7 +633,7 @@ export default {
 
         },
         list2() {
-            classapi.msglist(this.classid).then(res => {
+            classapi.msglist(this.classid,this.page, this.pagecount).then(res => {
                 if (common.dataisnull(res.data.datas.msg)) {
                     if (common.dataisnull(res.data.datas.zhiding)) {
                         this.msglistes = res.data.datas.zhiding
@@ -641,12 +650,11 @@ export default {
                             }
                         });
                         msg.splice(indexs, 1);
-
-                        this.msglists = msg
-                        this.msglen = this.msglists.length + 1
+                        this.msglists = [...this.msglists, ...msg]
+                        this.msglen = res.data.datas.page_count
                     } else {
-                        this.msglists = res.data.datas.msg
-                        this.msglen = this.msglists.length
+                        this.msglists = [...this.msglists, ...msg]
+                        this.msglen = res.data.datas.page_count
                         this.msglistes = null
                     }
                 } else {
