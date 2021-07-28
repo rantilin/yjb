@@ -1,7 +1,15 @@
 
 <template>
   <div>
-    <component-head :comname="comname"></component-head>
+    <!-- <component-head :comname="comname"></component-head> -->
+    <div class="commontitles">
+      <div class="commontitle">
+        <!-- <div class="commonback">
+          <div class="commonbackpic"></div>
+        </div> -->
+        <div class="commontitlename">{{comname}}</div>
+      </div>
+    </div>
     <div class="babytopanelview" id="babytopanelview">
       <cube-scroll class="babytopanels" ref="scroll">
         <div class="page">
