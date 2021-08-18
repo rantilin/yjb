@@ -61,7 +61,7 @@
       </div>
     </van-popup>
     <!-- 咨询窗口 -->
-    <div :class="[xxflag ? 'classpanelview' : 'classpanelviews']">
+    <div :class="[xxflag && wechatdata ? 'classpanelview' : 'classpanelviews']">
       <cube-scroll
         class="classpanels"
         ref="scroll"
@@ -416,25 +416,54 @@
               </div>
               <div class="slide" v-show="2 == currentTab">
                 <ul class="commentul" v-if="msglists != null">
-                  <li v-if="msglistes != null">
+                  <li v-for="item in msglistes" :key="item.comment_id">
                     <div class="cometntdiv">
                       <div class="user">
                         <van-image
                           class="pices"
                           fit="cover"
-                          :src="zhidingpic"
+                          :src="item.member_avatar"
                           radius="50%"
                         />
                         <div class="nameview">
-                          <div class="name">{{ zhidingname }}</div>
-                          <div class="time">{{ zhidingtime }}</div>
+                          <div class="name">{{ item.nicknames }}</div>
+                          <div class="time">{{ item.comment_addtime }}</div>
                         </div>
                       </div>
-                      <div
-                        class="text"
-                        style="margin-left: 20px"
-                        ref="comment"
-                      ></div>
+                      <div class="text">{{ item.comment_content }}</div>
+                      <div v-for="(item1, index2) in item.huifu" :key="index2">
+                        <div
+                          class="user"
+                          style="margin-left: 35px; margin-top: 20px"
+                        >
+                          <van-image
+                            class="pices"
+                            fit="cover"
+                            :src="item1.jk_image"
+                            radius="50%"
+                          />
+                          <div class="nameview">
+                            <div class="name" style="display: flex">
+                              <div style="font-weight: bold">
+                                {{ item1.comment_memberid }}
+                              </div>
+                              <div
+                                v-if="item1.comment_memberid == '医教宝'"
+                                class="biaoqian"
+                              >
+                                官方
+                              </div>
+                            </div>
+                            <div class="time">{{ item1.comment_addtime }}</div>
+                          </div>
+                        </div>
+                        <div
+                          class="text"
+                          style="margin-left: 35px; padding-bottom: 10px"
+                        >
+                          {{ item1.comment_content }}
+                        </div>
+                      </div>
                     </div>
                   </li>
                   <li v-for="(item, index) in msglists" :key="index">

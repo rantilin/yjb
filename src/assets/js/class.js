@@ -633,26 +633,28 @@ export default {
 
         },
         list2() {
-            classapi.msglist(this.classid,this.page, this.pagecount).then(res => {
+            classapi.msglist(this.classid, this.page, this.pagecount).then(res => {
                 if (common.dataisnull(res.data.datas.msg)) {
                     if (common.dataisnull(res.data.datas.zhiding)) {
                         this.msglistes = res.data.datas.zhiding
-                        this.zhidingpic = this.msglistes[0].member_avatar
-                        this.zhidingname = this.msglistes[0].nicknames
-                        this.zhidingtime = this.msglistes[0].comment_addtime
-                        this.$refs.comment.innerHTML = this.msglistes[0].comment_content
+                        // this.zhidingpic = this.msglistes[0].member_avatar
+                        // this.zhidingname = this.msglistes[0].nicknames
+                        // this.zhidingtime = this.msglistes[0].comment_addtime
+                        // this.$refs.comment.innerHTML = this.msglistes[0].comment_content
                         var msg = res.data.datas.msg;
-                        var zhidingid = res.data.datas.zhiding[0].comment_id;
-                        var indexs;
-                        msg.map((item, i) => {
-                            if (msg[i].comment_id == zhidingid) {
-                                indexs = i
-                            }
-                        });
-                        msg.splice(indexs, 1);
+                        // var zhidingid = res.data.datas.zhiding[0].comment_id;
+                        // var indexs;
+                        // msg.map((item, i) => {
+                        //     if (msg[i].comment_id == zhidingid) {
+                        //         indexs = i
+                        //     }
+                        // });
+                        // msg.splice(indexs, 1);
+                        
                         this.msglists = [...this.msglists, ...msg]
-                        this.msglen = res.data.datas.page_count
+                        this.msglen = parseInt(res.data.datas.page_count) + this.msglistes.length
                     } else {
+                        var msg = res.data.datas.msg;
                         this.msglists = [...this.msglists, ...msg]
                         this.msglen = res.data.datas.page_count
                         this.msglistes = null
@@ -681,6 +683,7 @@ export default {
         list3() {
             if (this.key) {
                 classapi.collectstate(this.key, this.classid).then(res => {
+                  
                     this.collectstate = res.data.datas;
                 }).catch(err => {
                     if (err.message != "interrupt") {
@@ -1107,8 +1110,12 @@ export default {
         },
         list7() {
             classapi.notice().then(res => {
-                this.noticecontent = res.data.datas[0].briefs;
-                this.wximg = res.data.datas[0].case_image;
+                if (res.data.datas) {
+                    this.noticecontent = res.data.datas[0].briefs;
+                    this.wximg = res.data.datas[0].case_image;
+                } else {
+                    this.wechatdata = false;
+                }
             }).catch(err => {
                 if (err.message != "interrupt") {
                     let errmsg = '请求失败';
