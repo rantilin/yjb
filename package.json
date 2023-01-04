@@ -22,8 +22,8 @@
         "weixin-js-sdk": "^1.4.0-test"
     },
     "devDependencies": {
-        "@vue/cli-plugin-babel": "^3.11.0",
-        "@vue/cli-service": "^3.11.0",
+        "@vue/cli-plugin-babel": "^5.0.8",
+        "@vue/cli-service": "^5.0.8",
         "babel-plugin-import": "^1.12.2",
         "compression-webpack-plugin": "^3.0.1",
         "echarts": "^4.3.0",
